@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TopController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +19,57 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+/* ログイン前 */
+Route::get('/',[TopController::class,'index'])->name("top.index");
+Route::get('/search',[TopController::class,'search'])->name("top.search");
+Route::get('/index/detail',[TopController::class,'indexDetailItem'])->name("top.detail_item");
+Route::get('/index/sold/detail',[TopController::class,'indexDetailSold'])->name("top.detail_sold");
+
+
+/* 認証 */
+Route::post('/register',[AuthController::class,'store'])->name("auth.store");
+
+
+/* ログイン後 */
+/* 商品の表示・出品・購入 */
+Route::middleware('auth')->group(function () {
+    Route::get('/home',[ItemController::class,'home'])->name("item.home");
+    Route::get('/home/search',[ItemController::class,'homeSearch'])->name("item.search");
+    Route::get('/create',[ItemController::class,'create'])->name("item.create");
+    Route::get('/store',[ItemController::class,'store'])->name("item.store");
+    Route::get('/home/detail',[ItemController::class,'homeDetailItem'])->name("home.detail_item");
+    Route::get('/home/sold/detail',[ItemController::class,'homeDetailSold'])->name("home.detail_sold");
+    Route::get('/purchase',[ItemController::class,'purchase'])->name("item.purchase");
+    Route::post('/purchase/complete',[ItemController::class,'purchaseComplete'])->name("item.purchased");
 });
+
+/* ログイン後 */
+/* お気に入りリストの表示・お気に入り追加・削除 */
+Route::middleware('auth')->group(function () {
+    Route::get('/home/favorite/list',[FavoriteController::class,'favoriteList'])->name("favorite.list");
+    Route::get('/home/favorite',[FavoriteController::class,'itemFavorite'])->name("item.favorite");
+    Route::get('/home/favorite/sold',[FavoriteController::class,'soldItemFavorite'])->name("solditem.favorite");
+});
+
+/* ログイン後 */
+/* コメントの表示・送信・自分のコメント削除 */
+Route::middleware('auth')->group(function () {
+    Route::get('/comment/list',[CommentController::class,'commentList'])->name("comment.list");
+    Route::get('/comment/send',[CommentController::class,'commentSend'])->name("comment.send");
+    Route::get('/comment/delete/confirm',[CommentController::class,'commentConfirm'])->name("comment.confirm");
+    Route::delete('/comment/delete',[CommentController::class,'commentDestroy'])->name("comment.destroy");
+});
+
+/* ログイン後 */
+/* 購入時の配送先変更・マイページ各種表示・プロフィール編集 */
+Route::middleware('auth')->group(function () {
+    Route::get('/purchase/address/edit',[UserController::class,'addressEdit'])->name("address.edit");
+    Route::post('/purchase/address/update',[UserController::class,'addressUpdate'])->name("address.update");
+    Route::get('/mypage/sell/list',[UserController::class,'mypageSellList'])->name("mypage.selllist");
+    Route::get('/mypage/purchased/list',[UserController::class,'mypagePurchasedList'])->name("mypage.purchasedlist");
+    Route::get('/mypage/search',[UserController::class,'mypageSearch'])->name("mypage.search");
+    Route::get('/mypage/profile/edit',[UserController::class,'profileEdit'])->name("profile.edit");
+    Route::post('/mypage/profile/update',[UserController::class,'profileUpdate'])->name("profile.update");
+
+});
+

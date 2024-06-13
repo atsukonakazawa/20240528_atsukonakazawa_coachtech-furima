@@ -1,0 +1,45 @@
+/* モーダルウィンドウ全体 */
+.modal {
+    display: none;
+    /* 最初は非表示にする */
+    margin: auto;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: white;
+    /* モーダルの背景色 */
+}
+
+/* モーダルコンテンツ */
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: auto;
+    width: 1400px;
+    height: 900px;
+}
+
+.close-button__outer {
+    margin: 10px auto;
+    width: 1300px;
+    height: 80px;
+    text-align: left;
+}
+
+/* 閉じるボタン */
+.close {
+    background-color: #305DFF;
+    border-radius: 5px;
+    border: 0;
+    padding: 0 auto;
+    width: 60px;
+    height: 60px;
+    color: white;
+    font-weight: 1;
+    font-size: 45px;
+    box-shadow: 3px 3px 3px gainsboro;
+}

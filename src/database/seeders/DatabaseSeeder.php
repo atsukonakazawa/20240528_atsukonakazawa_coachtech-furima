@@ -13,6 +13,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        //マスター
+        //$this->call(MainCategoriesTableSeeder::class);
+        //$this->call(SubCategoriesTableSeeder::class);
+        //$this->call(ConditionsTableSeeder::class);
+        //$this->call(PaymentWaysTableSeeder::class);
+
+        //ユーザー
+        //$this->call(UsersTableSeeder::class);
+
+        //プロフィール
+        //$this->call(ProfilesTableSeeder::class);
+
+        //商品
+        //$this->call(ItemsTableSeeder::class);
+        //$this->call(SoldItemsTableSeeder::class);
+
+        //商品に対するコメント、お気に入り
+        $this->call(CommentsTableSeeder::class);
+        $this->call(FavoritesTableSeeder::class);
     }
 }
