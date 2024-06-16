@@ -20,33 +20,6 @@
 </div>
 @endsection
 
-@section('sell')
-<div class="sell__outer">
-    <a href="/login"  class="open-modal">
-        出品
-    </a>
-</div>
-@endsection
-
-<!--ここからモーダルウィンドウ-->
-<div id="modal" class="modal">
-    <!-- ここからモーダルコンテンツ -->
-    <div class="modal__content">
-        <div class="close-button__outer">
-            <button class="close">
-                &times;
-            </button>
-        </div>
-        <div class="message__outer">
-            <p class="message">
-                出品はログイン後にご利用いただけます
-            </p>
-        </div>
-    </div>
-</div>
-<!--ここまでモーダルウィンドウ-->
-
-
 @section('content')
 <div class="content__outer">
     @foreach($soldItems as $soldItem)
@@ -113,7 +86,7 @@
                     サブカテゴリー：{{ $soldItem->subCategory->sub_category }}
                 </p>
                 <p class="color">
-                    カラー：{{ $soldItem->item_color }}
+                    カラー：{{ $soldItem->color->color }}
                 </p>
                 <p class="detail">
                     説明：{{ $soldItem->item_detail }}

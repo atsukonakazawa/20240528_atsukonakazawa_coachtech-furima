@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/after-login/change_profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/purchase/change_address.css') }}">
 @endsection
 
 @section('logout')
@@ -55,44 +55,12 @@
 <div class="content__outer">
     <div class="title__outer">
         <h2>
-            プロフィール設定
+            配送先住所の変更
         </h2>
     </div>
     <div class="input__group">
-        <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('address.update') }}" method="post">
         @csrf
-
-            <div class="input__group-row">
-                <img src="{{ asset('storage/' . basename($profile->img)) }}" alt="user_img">
-                <input class="input__img" type="file" id="img" name="newImg" value="{{ old('img') }}" >
-                <p class="limit__p">
-                    ※取扱可能な画像形式はjpeg,jpg,svgです。
-                </p>
-                <p class="limit__p">
-                    ※最大サイズは2048KBまでです。
-                </p>
-            </div>
-            <div class="form__error">
-            @error('img')
-                {{ $message }}
-            @enderror
-            </div>
-
-            <div class="input__group-row">
-                <p class="input__group-p">
-                    ユーザー名
-                </p>
-                <input class="input__nickname" name="newNickname" value="{{ old('nickname') }}" type="text" placeholder="{{ $profile->nickname }}">
-                <p class="limit__p">
-                    ※アプリ上で公開される名前となります
-                </p>
-            </div>
-            <div class="form__error">
-            @error('nickname')
-                {{ $message }}
-            @enderror
-            </div>
-
             <div class="input__group-row">
                 <p class="input__group-p">
                     郵便番号(半角・数字・ハイフンなし)
@@ -100,7 +68,7 @@
                 <input class="input__postcode" id="postcode" name="newPostcode" value="{{ old('postcode') }}" type="text" placeholder="{{ $profile->postcode }}" onblur="fetchAddress()">
             </div>
             <div class="form__error">
-            @error('postcode')
+            @error('newPostcode')
                 {{ $message }}
             @enderror
             </div>
@@ -112,7 +80,7 @@
                 <input class="input__address" id="address" name="newAddress" value="{{ old('address') }}" type="text" placeholder="{{ $profile->address }}">
             </div>
             <div class="form__error">
-            @error('address')
+            @error('newAddress')
                 {{ $message }}
             @enderror
             </div>
@@ -124,26 +92,13 @@
                 <input class="input__building" name="newBuilding" value="{{ old('building') }}" type="text" placeholder="{{ $profile->building }}">
             </div>
 
-            <div class="input__group-row">
-                <p class="input__group-p">
-                    自己紹介文
-                </p>
-                <input class="input__introduction" name="newIntroduction" type="text" value="{{ old('introduction') }}" placeholder="{{ $profile->introduction }}">
-            </div>
-            <div class="form__error">
-            @error('introduction')
-                {{ $message }}
-            @enderror
-            </div>
-
             <div class="update__button-outer">
                 <button class="update__button" type="submit">
                     更新する
                 </button>
             </div>
-            @if (Auth::check())
-            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-            @endif
+            <input type="hidden" name="profile_id" value="{{ $profile->id }}">
+            <input type="hidden" name="item_id" value="{{ $item->id }}">
         </form>
     </div>
 </div>

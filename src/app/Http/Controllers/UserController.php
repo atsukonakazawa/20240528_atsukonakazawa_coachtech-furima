@@ -7,7 +7,10 @@ use App\Models\Item;
 use App\Models\SoldItem;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\PaymentWay;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\AddressRequest;
+
 
 
 class UserController extends Controller
@@ -174,5 +177,45 @@ class UserController extends Controller
         //Auth::login($user);
 
         return view('after-login.profile_changed');
+    }
+
+    public function addressEdit(Request $request){
+
+        $profileId = $request->profile_id;
+        $profile = Profile::where('id',$profileId)
+                        ->first();
+        $itemId = $request->item_id;
+        $item = Item::where('id',$itemId)
+                        ->first();
+
+        return view('purchase.change_address',compact('profile','item'));
+    }
+
+    public function addressUpdate(AddressRequest $request){
+
+        $result = [
+            'postcode' => $request->newPostcode,
+            'address' => $request->newAddress
+        ];
+
+        //buildingが入力されている場合のみresultに追加
+        $building = $request->newBuilding;
+        if($building !== null)
+        {
+            $result['building'] = $request->newBuilding;
+        }
+
+        $profileId = $request->profile_id;
+        Profile::where('id',$profileId)
+                    ->update($result);
+        $profile = Profile::where('id',$profileId)
+                        ->first();
+
+        $itemId = $request->item_id;
+        $item = Item::where('id',$itemId)
+                    ->first();
+        $paymentWays = PaymentWay::all();
+
+        return view('purchase.purchase',compact('item','profile','paymentWays'));
     }
 }

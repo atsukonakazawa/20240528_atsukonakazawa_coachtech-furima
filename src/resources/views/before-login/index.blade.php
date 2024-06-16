@@ -29,33 +29,6 @@
 </div>
 @endsection
 
-@section('sell')
-<div class="sell__outer">
-    <a href="/login" class="open-modal">
-        出品
-    </a>
-</div>
-
-<!--ここからモーダルウィンドウ-->
-<div id="modal" class="modal">
-    <!-- ここからモーダルコンテンツ -->
-    <div class="modal__content">
-        <div class="close-button__outer">
-            <button class="close">
-                &times;
-            </button>
-        </div>
-        <div class="message__outer">
-            <p class="message">
-                出品はログイン後にご利用いただけます
-            </p>
-        </div>
-    </div>
-</div>
-<!--ここまでモーダルウィンドウ-->
-
-@endsection
-
 @section('content')
 <div class="content__outer">
     <div class="title__outer">
@@ -63,6 +36,15 @@
             おすすめ
         </h2>
     </div>
+    <div class="message-outer">
+        <!-- 検索結果がない場合のメッセージ -->
+        @if(session('search_message'))
+            <p class="search-message">
+                {{ session('search_message') }}
+            </p>
+        @endif
+    </div>
+
     <!--商品一覧-->
     <div class="items__outer">
         @foreach($items as $item)

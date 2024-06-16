@@ -74,9 +74,9 @@
                             <img src="{{ asset('storage/' . basename($item->item_img)) }}" alt="商品画像">
                         </div>
                         <div class="price__outer">
-                            <div class="price">
-                                {{ $item->item_price }}
-                            </div>
+                            <p class="price">
+                                ¥ {{ number_format($item->item_price) }}
+                            </p>
                         </div>
                     </div>
                 </button>
@@ -95,9 +95,9 @@
                             </p>
                         </div>
                         <div class="price__outer">
-                            <div class="price">
-                                {{ $soldItem->item_price }}
-                            </div>
+                            <p class="price">
+                                ¥ {{ number_format($soldItem->item_price) }}
+                            </p>
                         </div>
                     </button>
                 </div>

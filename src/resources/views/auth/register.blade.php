@@ -43,12 +43,9 @@
 
                 <div class="register__box-row">
                     <p class="register__box-p">
-                        郵便番号 <span class="required">※必須</span>
+                        郵便番号(半角・数字・ハイフンなし) <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" id="postcode" name="postcode" value="{{ old('postcode') }}" type="text" placeholder="1231234" onblur="fetchAddress()">
-                    <p class="limit__p">
-                        ※ハイフンなし
-                    </p>
                 </div>
                 <div class="form__error">
                 @error('postcode')
@@ -58,7 +55,7 @@
 
                 <div class="register__box-row">
                     <p class="register__box-p">
-                        住所 <span class="required">※必須</span>
+                        住所(番地まで) <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" id="address" name="address" value="{{ old('address') }}" type="text" placeholder="東京都港区芝公園4-2-8">
                 </div>
@@ -74,11 +71,6 @@
                     </p>
                     <input class="register__box-input" name="building" value="{{ old('building') }}" type="text" placeholder="東京マンション333">
                 </div>
-                <div class="form__error">
-                @error('building')
-                    {{ $message }}
-                @enderror
-                </div>
 
                 <div class="register__box-row">
                     <p class="register__box-p">
@@ -91,7 +83,7 @@
                     </p>
                 </div>
                 <div class="form__error">
-                @error('email')
+                @error('introduction')
                     {{ $message }}
                 @enderror
                 </div>

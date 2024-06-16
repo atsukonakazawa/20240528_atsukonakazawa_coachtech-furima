@@ -38,8 +38,8 @@ class RegisterRequest extends FormRequest
     {
     return [
             'name.required' => '名前を入力してください',
-            'nickname.required' => 'ニックネームを入力してください',
-            'nickname.unique' => 'このニックネームはすでに使われています',
+            'nickname.required' => 'ユーザー名を入力してください',
+            'nickname.unique' => 'このユーザー名はすでに使われています',
             'postcode.required' => '郵便番号を入力してください',
             'address.required' => '住所を入力してください',
             'email.required' => 'メールアドレスを入力してください',

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/after-login/sell_done.css') }}">
+<link rel="stylesheet" href="{{ asset('css/comment/comment_confirm.css') }}">
 @endsection
 
 @section('logout')
@@ -55,8 +55,30 @@
 <div class="content__outer">
     <div class="title__outer">
         <h2 class="title">
-            出品を完了しました
+            このコメントを本当に削除しますか？
         </h2>
+        <p class="title__outer-p">
+            ※一度削除すると元に戻せません
+        </p>
     </div>
+    <div class="comment__outer">
+        <div class="comment">
+            {{ $comment->comment }}
+        </div>
+    </div>
+    <form action="{{ route('comment.remove') }}" method="post">
+    @csrf
+        <div class="remove__button-outer">
+            <button class="remove__button" type="submit">
+                コメントを削除する
+            </button>
+            <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+            @if($itemId)
+            <input type="hidden" name="item_id" value="{{ $itemId }}">
+            @elseif($soldItemId)
+            <input type="hidden" name="sold_item_id" value="{{ $soldItemId }}">
+            @endif
+        </div>
+    </form>
 </div>
 @endsection

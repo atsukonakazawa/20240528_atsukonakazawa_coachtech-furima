@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/after-login/sell_done.css') }}">
+<link rel="stylesheet" href="{{ asset('css/comment/comment_removed.css') }}">
 @endsection
 
 @section('logout')
@@ -55,8 +55,21 @@
 <div class="content__outer">
     <div class="title__outer">
         <h2 class="title">
-            出品を完了しました
+            コメントを削除しました
         </h2>
     </div>
+    <form action="{{ route('comment.back') }}" method="get">
+    @csrf
+        <div class="back__button-outer">
+            <button class="back__button" type="submit">
+                戻る
+            </button>
+            @if($itemId)
+            <input type="hidden" name="item_id" value="{{ $itemId }}">
+            @elseif($soldItemId)
+            <input type="hidden" name="sold_item_id" value="{{ $soldItemId }}">
+            @endif
+        </div>
+    </form>
 </div>
 @endsection

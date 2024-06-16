@@ -36,10 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/home',[ItemController::class,'home'])->name("item.home");
     Route::get('/home/search',[ItemController::class,'homeSearch'])->name("item.search");
     Route::get('/create',[ItemController::class,'create'])->name("item.create");
-    Route::get('/store',[ItemController::class,'store'])->name("item.store");
+    Route::post('/store',[ItemController::class,'store'])->name("item.store");
     Route::get('/home/detail',[ItemController::class,'homeDetailItem'])->name("home.detail_item");
     Route::get('/home/sold/detail',[ItemController::class,'homeDetailSold'])->name("home.detail_sold");
     Route::get('/purchase',[ItemController::class,'purchase'])->name("item.purchase");
+    Route::get('/purchase/payment',[ItemController::class,'purchasePayment'])->name("item.payment");
     Route::post('/purchase/complete',[ItemController::class,'purchaseComplete'])->name("item.purchased");
 });
 
@@ -55,9 +56,11 @@ Route::middleware('auth')->group(function () {
 /* コメントの表示・送信・自分のコメント削除 */
 Route::middleware('auth')->group(function () {
     Route::get('/comment/list',[CommentController::class,'commentList'])->name("comment.list");
+    Route::get('/comment/list/sold',[CommentController::class,'commentListSold'])->name("comment.listSold");
     Route::get('/comment/send',[CommentController::class,'commentSend'])->name("comment.send");
     Route::get('/comment/delete/confirm',[CommentController::class,'commentConfirm'])->name("comment.confirm");
-    Route::delete('/comment/delete',[CommentController::class,'commentDestroy'])->name("comment.destroy");
+    Route::post('/comment/delete',[CommentController::class,'commentRemove'])->name("comment.remove");
+    Route::get('/comment/back',[CommentController::class,'commentBack'])->name("comment.back");
 });
 
 /* ログイン後 */

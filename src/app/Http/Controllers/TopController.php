@@ -33,7 +33,6 @@ class TopController extends Controller
         foreach($keywordsArray as $keyword){
             $query1->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
-                ->orWhere('item_color','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
                 ->orWhere('item_price','like', '%'.$keyword.'%');
         }
@@ -43,11 +42,15 @@ class TopController extends Controller
         foreach($keywordsArray as $keyword){
             $query2->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
-                ->orWhere('item_color','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
                 ->orWhere('item_price','like', '%'.$keyword.'%');
         }
         $soldItems = $query2->get();
+
+        // 検索結果が空の場合にフラッシュメッセージをセッションに保存
+        if ($items->isEmpty() && $soldItems->isEmpty()) {
+            session()->flash('search_message', '該当するものがありませんでした');
+        }
 
         //検索欄に入力されたキーワードを取得し、セッションに保存
         $selectedKeyword = $keywords;

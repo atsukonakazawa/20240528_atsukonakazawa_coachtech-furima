@@ -8,8 +8,6 @@ use App\Models\Profile;
 use App\Models\Item;
 use App\Models\SoldItem;
 use App\Http\Requests\RegisterRequest;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
 
 class AuthController extends Controller

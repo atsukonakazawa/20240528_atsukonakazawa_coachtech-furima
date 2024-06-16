@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/before-login/sold_item.css') }}">
+<link rel="stylesheet" href="{{ asset('css/comment/comment_list_sold.css') }}">
 @endsection
 
 @section('logout')
@@ -55,11 +55,8 @@
 <div class="content__outer">
     @foreach($soldItems as $soldItem)
         <div class="img__outer">
-            <img src="{{ asset('storage/' . basename($soldItem->item_img)) }}">
+            <img src="{{ asset('storage/' . basename($soldItem->item_img)) }}" alt="商品画像">
         </div>
-        <p class="sold__mark">
-            sold
-        </p>
 
         <div class="detail__outer">
             <h2 class="item__title">
@@ -74,47 +71,48 @@
             <div class="icon__group">
                 <form action="{{ route('solditem.favorite') }}" method="get">
                 @csrf
-                    <button type="submit" onclick="toggleLike(this, {{ $soldItem->id }})" >
+                    <button type="submit" onclick="toggleLike(this, {{ $soldItem->id }})">
                         <img src="{{ in_array($soldItem->id, $favorites) ? asset('img/yellow-star.jpeg') :  asset('img/white-star.jpeg')}}" alt="star">
+
                     </button>
                     <input type="hidden" name="sold_item_id" value="{{ $soldItem->id }}">
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 </form>
-                <p>{{ $favoritesCount }}</p> <!-- お気に入り数を表示 -->
-                <form action="{{ route('comment.listSold') }}" method="get">
+                <form action="{{ route('comment.list') }}" method="get">
                 @csrf
                     <button type="submit">
                         <img src="{{ asset('img/comment.jpeg') }}" alt="comment">
                     </button>
                     <input type="hidden" name="sold_item_id" value="{{ $soldItem->id }}">
                 </form>
-                <p>{{ $commentsCount }}</p> <!-- コメント数を表示 -->
             </div>
+        </div>
 
-            <a class="purchase__button" href="/login">
-                <button type="button" disabled>
-                    購入する
-                </button>
-            </a>
-            <div class="detail__group">
-                <h3 class="detail__title">
-                    商品説明
-                </h3>
-                <p class="condition">
-                    商品の状態：{{ $soldItem->condition->condition }}
-                </p>
-                <p class="main__catogory">
-                    メインカテゴリー：{{ $soldItem->mainCategory->mian_category }}
-                </p>
-                <p class="sub__catogory">
-                    サブカテゴリー：{{ $soldItem->subCategory->sub_category }}
-                </p>
-                <p class="color">
-                    カラー：{{ $soldItem->color->color }}
-                </p>
-                <p class="detail">
-                    説明：{{ $soldItem->item_detail }}
-                </p>
+        <div class="comment__list-outer">
+            <div class="comment__list">
+                @foreach($comments as $comment)
+                    <div class="comment__user-img">
+                    <img src="{{ asset('storage/' . basename($comment->user->profile->img)) }}" alt="user_img">
+                    </div>
+                    <div class="comment__user">
+                        {{ $comment->user->profile->nickname }}
+                    </div>
+                    <div class="comment__content">
+                        {{ $comment->comment }}
+                    </div>
+                    @if( $comment->user_id == $user->id )
+                        <form action="{{ route('comment.confirm') }}" method="get">
+                        @csrf
+                            <div class="comment-delete__button-outer">
+                                <button class="comment-delete__button" type="submit" value="back">
+                                    削除
+                                </button>
+                                <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                <input type="hidden" name="sold_item_id" value="{{ $soldItem->id }}">
+                            </div>
+                        </form>
+                    @endif
+                @endforeach
             </div>
         </div>
     @endforeach

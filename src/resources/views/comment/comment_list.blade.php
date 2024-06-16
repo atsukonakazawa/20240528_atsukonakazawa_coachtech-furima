@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/after-login/home_item.css') }}">
+<link rel="stylesheet" href="{{ asset('css/comment/comment_list.css') }}">
 @endsection
 
 @section('logout')
@@ -78,7 +78,6 @@
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 </form>
-                <p>{{ $favoritesCount }}</p> <!-- お気に入り数を表示 -->
                 <form action="{{ route('comment.list') }}" method="get">
                 @csrf
                     <button type="submit">
@@ -86,38 +85,57 @@
                     </button>
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                 </form>
-                <p>{{ $commentsCount }}</p> <!-- コメント数を表示 -->
             </div>
+        </div>
 
-            <form action="{{ route('item.purchase') }}" method="get">
-                <div class="purchase__button-outer">
-                    <button type="purchase__button">
-                        購入する
+        <div class="comment__list-outer">
+            <div class="comment__list">
+                @foreach($comments as $comment)
+                    <div class="comment__user-img">
+                    <img src="{{ asset('storage/' . basename($comment->user->profile->img)) }}" alt="user_img">
+                    </div>
+                    <div class="comment__user">
+                        {{ $comment->user->profile->nickname }}
+                    </div>
+                    <div class="comment__content">
+                        {{ $comment->comment }}
+                    </div>
+                    @if( $comment->user_id == $user->id )
+                        <form action="{{ route('comment.confirm') }}" method="get">
+                        @csrf
+                            <div class="comment-delete__button-outer">
+                                <button class="comment-delete__button" type="submit" value="back">
+                                    削除
+                                </button>
+                                <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                                <input type="hidden" name="item_id" value="{{ $item->id }}">
+                            </div>
+                        </form>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+
+        <div class="comment__create-outer">
+            <form action="{{ route('comment.send') }}">
+            @csrf
+                <p class="comment__create-p">
+                    商品へのコメント（50文字以内）
+                </p>
+                <input class="comment__create" name="comment" type="text">
+                <div class="form__error">
+                    @error('comment')
+                        {{ $message }}
+                    @enderror
+                </div>
+                <div class="comment-send__button-outer">
+                    <button class="comment-send__button" type="submit">
+                        コメントを送信する
                     </button>
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 </div>
             </form>
-            <div class="detail__group">
-                <h3 class="detail__title">
-                    商品説明
-                </h3>
-                <p class="condition">
-                    商品の状態：{{ $item->condition->condition }}
-                </p>
-                <p class="main__category">
-                    メインカテゴリー：{{ $item->mainCategory->main_category }}
-                </p>
-                <p class="sub__category">
-                    サブカテゴリー：{{ $item->subCategory->sub_category }}
-                </p>
-                <p class="color">
-                    カラー：{{ $item->color->color }}
-                </p>
-                <p class="detail">
-                    説明：{{ $item->item_detail }}
-                </p>
-            </div>
         </div>
     @endforeach
 </div>

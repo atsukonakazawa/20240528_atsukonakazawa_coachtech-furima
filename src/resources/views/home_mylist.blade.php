@@ -95,12 +95,12 @@
                             <div class="price__outer">
                                 <div class="price">
                                     @if($favorite->item_id)
-                                        {{ $favorite->item->item_price }}
+                                        ¥ {{ number_format($favorite->item->item_price) }}
                                     @elseif($favorite->sold_item_id)
                                     <p class="sold__mark">
                                         sold
                                     </p>
-                                        {{ $favorite->soldItem->item_price }}
+                                        ¥ {{ number_format($favorite->soldItem->item_price) }}
                                     @endif
                                 </div>
                             </div>

@@ -119,7 +119,7 @@
                         </div>
                         <div class="price__outer">
                             <div class="price">
-                                {{$item->price}}
+                                ¥ {{ number_format($item->item_price) }}
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="price__outer">
                             <div class="price">
-                                {{$soldItem->price}}
+                                ¥ {{ number_format($soldItem->item_price) }}
                             </div>
                         </div>
                     </button>

@@ -15,10 +15,10 @@ class SoldItem extends Model
         'main_category_id',
         'sub_category_id',
         'condition_id',
+        'color_id',
         'payment_way_id',
         'item_name',
         'item_brand',
-        'item_color',
         'item_detail',
         'item_img',
         'item_price',
@@ -48,6 +48,11 @@ class SoldItem extends Model
     public function condition()
     {
         return $this->belongsTo(Condition::class, 'condition_id');
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class, 'color_id');
     }
 
     public function paymentWay()

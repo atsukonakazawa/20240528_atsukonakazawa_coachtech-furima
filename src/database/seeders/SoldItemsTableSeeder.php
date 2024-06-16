@@ -20,9 +20,9 @@ class SoldItemsTableSeeder extends Seeder
             'main_category_id' => '2',
             'sub_category_id' => '3',
             'condition_id' => '2',
+            'color_id' => '8',
             'payment_way_id' => '1',
             'item_name' => '知育パズル',
-            'item_color' => 'ブラウン',
             'item_detail' => '子供が大変気に入っていましたが、すぐにコツを覚えて使わなくなりました。',
             'item_img' => 'storage/big-pieces-puzzle.jpg',
             'item_price' => '777'
@@ -35,6 +35,7 @@ class SoldItemsTableSeeder extends Seeder
             'main_category_id' => '3',
             'sub_category_id' => '4',
             'condition_id' => '2',
+            'color_id' => '11',
             'payment_way_id' => '2',
             'item_name' => 'ハリーポッターシリーズ　書籍',
             'item_detail' => 'ずっと大切にしていましたが、引越でさよならすることになりました。名残惜しいですが、またどなたかに大切に使っていただけたら大変嬉しいです。',
