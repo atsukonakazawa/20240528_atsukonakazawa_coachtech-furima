@@ -26,7 +26,7 @@ class UserController extends Controller
         $profile = Profile::where('user_id',$request->user_id)
                         ->first();
 
-        return view('after-login.mypage',compact('items','soldItems','user','profile'));
+        return view('after-login.mypage_sell_list',compact('items','soldItems','user','profile'));
     }
 
     public function mypageSellList(Request $request){
@@ -108,7 +108,7 @@ class UserController extends Controller
 
             //既存の画像ファイルをstorage/app/publicから削除
             $filename = $email . '.' . pathinfo($profile->img, PATHINFO_EXTENSION);
-            $filePath = 'public/' . $filename;
+            $filePath = 'public/profiles/' . $filename;
 
             Storage::delete($filePath);
 
@@ -116,10 +116,10 @@ class UserController extends Controller
             //storage/app/publicに保存
             $file = $request->file('newImg');
             $filename = $email . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('public', $filename);
+            $path = $file->storeAs('public/profiles/', $filename);
 
             //画像までのパスをstorage/...の形式でprofilesテーブルのimgカラムに保存
-            $publicPath = 'storage/' . $filename;
+            $publicPath = 'storage/profiles/' . $filename;
             $profile->update(['img' => $publicPath]);
         }
 

@@ -75,39 +75,46 @@
     </div>
     <!--商品一覧-->
     <div class="items__outer">
-            @foreach($favorites as $favorite)
+        @foreach($favorites as $favorite)
+            @if($favorite->item_id)
                 <form action="{{ route('home.detail_item') }}" method="get">
                 @csrf
                     <button type="submit">
                         <div class="item__box">
-                            @if($favorite->item_id)
-                                <input type="hidden" name="item_id" value="{{ $favorite->item_id }}">
-                            @elseif($favorite->sold_item_id)
-                                <input type="hidden" name="sold_item_id" value="{{ $favorite->sold_item_id }}">
-                            @endif
+                            <input type="hidden" name="item_id" value="{{ $favorite->item_id }}">
                             <div class="item__img">
-                                @if($favorite->item_id)
-                                    <img src="{{ asset('storage/' . basename($favorite->item->item_img)) }}" alt="商品画像">
-                                @elseif($favorite->sold_item_id)
-                                    <img src="{{ asset('storage/' . basename($favorite->soldItem->item_img)) }}" alt="商品画像">
-                                @endif
+                                <img src="{{ asset('storage/items/' . basename($favorite->item->item_img)) }}" alt="商品画像">
                             </div>
                             <div class="price__outer">
                                 <div class="price">
-                                    @if($favorite->item_id)
-                                        ¥ {{ number_format($favorite->item->item_price) }}
-                                    @elseif($favorite->sold_item_id)
-                                    <p class="sold__mark">
-                                        sold
-                                    </p>
-                                        ¥ {{ number_format($favorite->soldItem->item_price) }}
-                                    @endif
+                                    ¥ {{ number_format($favorite->item->item_price) }}
                                 </div>
                             </div>
                         </div>
                     </button>
                 </form>
-            @endforeach
+            @elseif($favorite->sold_item_id)
+                <form action="{{ route('home.detail_sold') }}" method="get">
+                @csrf
+                    <button type="submit">
+                        <div class="item__box">
+                            <input type="hidden" name="soldItem_id" value="{{ $favorite->sold_item_id }}">
+                            <div class="item__img">
+                                <img src="{{ asset('storage/sold_items/' . basename($favorite->soldItem->item_img)) }}" alt="商品画像">
+                            </div>
+                            <div class="price__outer">
+                                <div class="price">
+                                    <p class="sold__mark">
+                                        sold
+                                    </p>
+                                    ¥ {{ number_format($favorite->soldItem->item_price) }}
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </form>
+            @endif
+        @endforeach
     </div>
 </div>
 @endsection

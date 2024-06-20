@@ -53,9 +53,15 @@
 
 @section('content')
 <div class="content__outer">
+    <form action="{{ route('favorite.list') }}" method="get">
+    @csrf
+        <button class="favorite__list-button" type="submit">
+            マイリスト
+        </button>
+    </form>
     @foreach($soldItems as $soldItem)
         <div class="img__outer">
-            <img src="{{ asset('storage/' . basename($soldItem->item_img)) }}">
+            <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}">
         </div>
         <p class="sold__mark">
             sold

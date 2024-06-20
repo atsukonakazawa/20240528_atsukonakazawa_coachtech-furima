@@ -54,7 +54,7 @@
 @section('content')
 <div class="content__outer">
     <div class="img__outer">
-        <img src="{{ asset('storage/' . basename($item->item_img)) }}" alt="商品画像">
+        <img src="{{ asset('storage/items/' . basename($item->item_img)) }}" alt="商品画像">
     </div>
 
     <div class="item__data-outer">

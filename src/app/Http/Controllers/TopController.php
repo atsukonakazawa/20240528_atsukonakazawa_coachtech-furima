@@ -28,22 +28,33 @@ class TopController extends Controller
         // キーワードを分割
         $keywordsArray = explode(' ', $keywords);
 
+        // itemsテーブルのクエリを作成
         $query1 = Item::query();
+
+        // colorsテーブルとjoin
+        $query1->join('colors', 'items.color_id', '=', 'colors.id');
 
         foreach($keywordsArray as $keyword){
             $query1->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
-                ->orWhere('item_price','like', '%'.$keyword.'%');
+                ->orWhere('item_price','like', '%'.$keyword.'%')
+                ->orWhere('colors.color', 'like', '%' . $keyword . '%');
         }
-        $items = $query1->get();
+        $items = $query1->get();// 必要なカラムだけを取得
 
+        // sold_itemsテーブルのクエリを作成
         $query2 = soldItem::query();
+
+        // colorsテーブルとjoin
+        $query2->join('colors', 'sold_items.color_id', '=', 'colors.id');
+
         foreach($keywordsArray as $keyword){
             $query2->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
-                ->orWhere('item_price','like', '%'.$keyword.'%');
+                ->orWhere('item_price','like', '%'.$keyword.'%')
+                ->orWhere('colors.color', 'like', '%' . $keyword . '%');
         }
         $soldItems = $query2->get();
 

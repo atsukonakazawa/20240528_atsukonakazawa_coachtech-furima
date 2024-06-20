@@ -55,7 +55,7 @@
 <div class="content__outer">
     @foreach($soldItems as $soldItem)
         <div class="img__outer">
-            <img src="{{ asset('storage/' . basename($soldItem->item_img)) }}" alt="商品画像">
+            <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
         </div>
 
         <div class="detail__outer">
@@ -92,7 +92,7 @@
             <div class="comment__list">
                 @foreach($comments as $comment)
                     <div class="comment__user-img">
-                    <img src="{{ asset('storage/' . basename($comment->user->profile->img)) }}" alt="user_img">
+                    <img src="{{ asset('storage/profiles/' . basename($comment->user->profile->img)) }}" alt="user_img">
                     </div>
                     <div class="comment__user">
                         {{ $comment->user->profile->nickname }}

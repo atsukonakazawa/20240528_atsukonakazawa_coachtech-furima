@@ -22,9 +22,44 @@ class FavoritesTableSeeder extends Seeder
         DB::table('favorites')->insert($param);
 
         $param = [
+            'item_id' => '1',
+            'sold_item_id' => null,
+            'user_id' => '3'
+        ];
+        DB::table('favorites')->insert($param);
+
+        $param = [
             'item_id' => '2',
             'sold_item_id' => null,
             'user_id' => '1'
+        ];
+        DB::table('favorites')->insert($param);
+
+        $param = [
+            'item_id' => '4',
+            'sold_item_id' => null,
+            'user_id' => '2'
+        ];
+        DB::table('favorites')->insert($param);
+
+        $param = [
+            'item_id' => '4',
+            'sold_item_id' => null,
+            'user_id' => '3'
+        ];
+        DB::table('favorites')->insert($param);
+
+        $param = [
+            'item_id' => '10',
+            'sold_item_id' => null,
+            'user_id' => '2'
+        ];
+        DB::table('favorites')->insert($param);
+
+        $param = [
+            'item_id' => '10',
+            'sold_item_id' => null,
+            'user_id' => '3'
         ];
         DB::table('favorites')->insert($param);
 
@@ -35,6 +70,11 @@ class FavoritesTableSeeder extends Seeder
         ];
         DB::table('favorites')->insert($param);
 
-
+        $param = [
+            'item_id' => null,
+            'sold_item_id' => '3',
+            'user_id' => '1'
+        ];
+        DB::table('favorites')->insert($param);
     }
 }

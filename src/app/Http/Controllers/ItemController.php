@@ -39,29 +39,43 @@ class ItemController extends Controller
         // キーワードを分割
         $keywordsArray = explode(' ', $keywords);
 
+        // itemsテーブルのクエリを作成
         $query1 = Item::query();
+
+        // colorsテーブルとjoin
+        $query1->join('colors', 'items.color_id', '=', 'colors.id');
 
         foreach($keywordsArray as $keyword){
             $query1->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
-                ->orWhere('item_color','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
-                ->orWhere('item_price','like', '%'.$keyword.'%');
+                ->orWhere('item_price','like', '%'.$keyword.'%')
+                ->orWhere('colors.color', 'like', '%' . $keyword . '%');
         }
-        $items = $query1->get();
+        $items = $query1->get();// 必要なカラムだけを取得
 
+        // sold_itemsテーブルのクエリを作成
         $query2 = soldItem::query();
+
+        // colorsテーブルとjoin
+        $query2->join('colors', 'sold_items.color_id', '=', 'colors.id');
+
         foreach($keywordsArray as $keyword){
             $query2->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
-                ->orWhere('item_color','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
-                ->orWhere('item_price','like', '%'.$keyword.'%');
+                ->orWhere('item_price','like', '%'.$keyword.'%')
+                ->orWhere('colors.color', 'like', '%' . $keyword . '%');
         }
         $soldItems = $query2->get();
 
+        // 検索結果が空の場合にフラッシュメッセージをセッションに保存
+        if ($items->isEmpty() && $soldItems->isEmpty()) {
+            session()->flash('search_message', '該当するものがありませんでした');
+        }
+
         //検索欄に入力されたキーワードを取得し、セッションに保存
-        $selectedKeyword = $keywordz;
+        $selectedKeyword = $keywords;
         session(['selected_keyword' => $selectedKeyword]);
 
         return view('home',compact('items','soldItems'));
@@ -129,16 +143,17 @@ class ItemController extends Controller
 
         //画像ファイルにitemsテーブルのidの名前をつけてstorage/app/publicに保存
         $item = Item::where('seller_id',$request->user_id)
-                        ->orderBy('updated_at','desc')
+                        ->orderBy('id','desc')
                         ->first();
         $itemId = $item->id;
         $file = $request->file('item_img');
         $filename = $itemId . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs('public', $filename);
+        $path = $file->storeAs('public/items/', $filename);
 
         //画像までのパスをstorage/...の形式でprofilesテーブルのimgカラムに保存
-        $publicPath = 'storage/' . $filename;
+        $publicPath = 'storage/items/' . $filename;
         $item->update(['item_img' => $publicPath]);
+
 
         return view('after-login/sell_done');
     }

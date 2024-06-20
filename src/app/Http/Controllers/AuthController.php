@@ -10,6 +10,7 @@ use App\Models\SoldItem;
 use App\Http\Requests\RegisterRequest;
 
 
+
 class AuthController extends Controller
 {
 
@@ -49,17 +50,19 @@ class AuthController extends Controller
         $email = $request->email;
         $file = $request->file('img');
         $filename = $email . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs('public', $filename);
+        $path = $file->storeAs('public/profiles/', $filename);
 
         //画像までのパスをstorage/...の形式でprofilesテーブルのimgカラムに保存
         $user=Profile::where('user_id',$user_id)->first();
-        $publicPath = 'storage/' . $filename;
+        $publicPath = 'storage/profiles/' . $filename;
         $user->update(['img' => $publicPath]);
 
         $items = Item::all();
         $soldItems = SoldItem::all();
 
-        return view('home',compact('items','soldItems'));
+        session()->flash('message','会員登録が完了しました!');
+
+        return view('auth.login');
     }
 
 

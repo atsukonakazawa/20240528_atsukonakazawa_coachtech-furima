@@ -76,8 +76,7 @@
                     <p class="register__box-p">
                         自己紹介文 <span class="required">※必須</span>
                     </p>
-                    <textarea class="register__box-input" name="introduction" cols="30" rows="10" value="{{ old('introduction') }}" placeholder="利用を始めたばかりです。慣れない部分もありますが、よろしくお願いいたします。">
-                    </textarea>
+                    <textarea class="register__box-input" name="introduction" cols="30" rows="10" placeholder="利用を始めたばかりです。慣れない部分もありますが、よろしくお願いいたします。">{{ old('introduction') }}</textarea>
                     <p class="limit__p">
                         ※最大300文字まで
                     </p>

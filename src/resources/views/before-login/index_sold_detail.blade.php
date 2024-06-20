@@ -24,7 +24,7 @@
 <div class="content__outer">
     @foreach($soldItems as $soldItem)
         <div class="img__outer">
-            <img src="{{ asset('storage/' . basename($soldItem->item_img)) }}">
+            <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}">
         </div>
         <p class="sold__mark">
             sold

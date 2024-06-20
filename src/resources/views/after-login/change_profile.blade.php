@@ -63,7 +63,7 @@
         @csrf
 
             <div class="input__group-row">
-                <img src="{{ asset('storage/' . basename($profile->img)) }}" alt="user_img">
+                <img src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
                 <input class="input__img" type="file" id="img" name="newImg" value="{{ old('img') }}" >
                 <p class="limit__p">
                     ※取扱可能な画像形式はjpeg,jpg,svgです。

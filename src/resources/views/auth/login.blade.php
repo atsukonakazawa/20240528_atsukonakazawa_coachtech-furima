@@ -7,6 +7,18 @@
 @section('content')
 <div class="content-outer">
     <div class="content">
+        <div class="message-outer">
+            <p class="message">
+            @if(session('message'))
+                {{ session('message')}}
+            @endif
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                {{ $error }}
+                @endforeach
+            @endif
+            </p>
+        </div>
         <form action="/login" method="post">
         @csrf
             <div class="login__box">

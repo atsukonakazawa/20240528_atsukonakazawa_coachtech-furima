@@ -23,7 +23,7 @@ class CommentController extends Controller
         $favorites = $user->favorites->pluck('item_id')->toArray();
 
         $comments = Comment::where('item_id',$itemId)
-                            ->orderBy('created_at','asc')
+                            ->orderBy('id','asc')
                             ->get();
 
         return view('comment.comment_list',compact('items','favorites','comments','user'));
@@ -38,7 +38,7 @@ class CommentController extends Controller
         $favorites = $user->favorites->pluck('sold_item_id')->toArray();
 
         $comments = Comment::where('sold_item_id',$soldItemId)
-                            ->orderBy('created_at','asc')
+                            ->orderBy('id','asc')
                             ->get();
 
         return view('comment.comment_list_sold',compact('soldItems','favorites','comments','user'));
@@ -60,7 +60,7 @@ class CommentController extends Controller
         $favorites = $user->favorites->pluck('item_id')->toArray();
 
         $comments = Comment::where('item_id',$itemId)
-                            ->orderBy('created_at','asc')
+                            ->orderBy('id','asc')
                             ->get();
 
         return view('comment.comment_list',compact('items','favorites','comments','user'));
@@ -99,7 +99,7 @@ class CommentController extends Controller
             $favorites = $user->favorites->pluck('item_id')->toArray();
 
             $comments = Comment::where('item_id',$itemId)
-                                ->orderBy('created_at','asc')
+                                ->orderBy('id','asc')
                                 ->get();
 
             return view('comment.comment_list',compact('items','favorites','comments','user'));
@@ -111,7 +111,7 @@ class CommentController extends Controller
             $favorites = $user->favorites->pluck('sold_item_id')->toArray();
 
             $comments = Comment::where('sold_item_id',$soldItemId)
-                                ->orderBy('created_at','asc')
+                                ->orderBy('id','asc')
                                 ->get();
 
             return view('comment.comment_list_sold',compact('soldItems','favorites','comments','user'));

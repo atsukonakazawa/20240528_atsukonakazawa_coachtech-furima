@@ -16,7 +16,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'name' => 'a',
+            'name' => 'a-admin',
+            'role' => 'admin',
             'email' => 'a@docomo.com',
             'password' => Hash::make('aaaaaaaa'), // パスワードをハッシュ化
         ];
@@ -26,6 +27,13 @@ class UsersTableSeeder extends Seeder
             'name' => 'b',
             'email' => 'b@docomo.com',
             'password' => Hash::make('bbbbbbbb'), // パスワードをハッシュ化
+        ];
+        DB::table('users')->insert($param);
+
+        $param = [
+            'name' => 'c',
+            'email' => 'c@docomo.com',
+            'password' => Hash::make('cccccccc'), // パスワードをハッシュ化
         ];
         DB::table('users')->insert($param);
 

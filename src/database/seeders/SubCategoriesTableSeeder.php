@@ -15,7 +15,7 @@ class SubCategoriesTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'sub_category' => 'レディス'
+            'sub_category' => 'レディース'
         ];
         DB::table('sub_categories')->insert($param);
 

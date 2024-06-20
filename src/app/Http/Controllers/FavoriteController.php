@@ -7,6 +7,8 @@ use App\Models\Favorite;
 use App\Models\Item;
 use App\Models\SoldItem;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
+
 
 
 
@@ -48,7 +50,11 @@ class FavoriteController extends Controller
         $items = Item::where('id',$itemId)
                     ->get();
 
-        return view('after-login.home_detail',compact('items','favorites'));
+        //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+        $favoritesCount = Favorite::where('item_id',$itemId)->count();
+        $commentsCount = Comment::where('item_id',$itemId)->count();
+
+        return view('after-login.home_detail',compact('items','favorites','favoritesCount','commentsCount'));
     }
 
     public function soldItemFavorite(Request $request){
