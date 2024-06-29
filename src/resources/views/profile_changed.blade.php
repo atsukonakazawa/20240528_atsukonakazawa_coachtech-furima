@@ -1,7 +1,19 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/after-login/sell_done.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile_changed.css') }}">
+@endsection
+
+@section('search')
+<div class="search__outer">
+    <form id="search" action="{{ route('mypage.search') }}" method="get">
+    @csrf
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+        @if (Auth::check())
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+        @endif
+    </form>
+</div>
 @endsection
 
 @section('logout')
@@ -30,10 +42,10 @@
 @endsection
 
 @section('home')
-<div class="home__outer">
+<div class="home__header-outer">
     <form action="{{ route('item.home') }}" method="get">
     @csrf
-        <button class="home__button" type="submit">
+        <button class="home__header-button" type="submit">
             ホーム
         </button>
     </form>
@@ -55,7 +67,7 @@
 <div class="content__outer">
     <div class="title__outer">
         <h2 class="title">
-            出品を完了しました
+            プロフィールを更新しました
         </h2>
     </div>
 </div>

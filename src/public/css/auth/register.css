@@ -1,0 +1,135 @@
+/* content */
+.content__outer {
+    width: 100%;
+    margin: 5px auto;
+}
+
+.content{
+    width: 100%;
+}
+
+.content form{
+    width: 100%;
+}
+
+.register__box{
+    width: 50%;
+    margin: 5px auto;
+}
+
+.title{
+    margin-top: 80px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.register__box-row{
+    width: 100%;
+    height: 120px;
+}
+
+.register__box-p{
+    width: 100%;
+    margin-top: 5%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.required{
+    color: red;
+}
+
+.register__box-row input{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 0;
+    font-size: 20px;
+    border-radius: 5px;
+    border: solid 2px gainsboro;
+}
+
+::placeholder{
+    color: silver;
+}
+
+.form__error{
+    width: 100%;
+    height: 40px;
+    margin: 0 auto auto auto;
+    font-size: 20px;
+    color: red;
+    font-style: italic;
+}
+
+.register__box-textarea-row,.register__box-img-row{
+    width: 100%;
+    height: 180px;
+}
+
+.register__box-textarea{
+    font-size: 25px;
+}
+
+.register__box-img-row {
+    width: 100%;
+    height: 150px;
+}
+
+.file__label{
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    width: 200px;
+    padding: 5px 10px;
+    color: red;
+    background-color: white;
+    border-radius: 5px;
+    border: solid 2px red;
+    cursor: pointer;
+}
+
+.file__label:hover {
+    opacity: 0.7;
+}
+
+.register__box-img-input{
+    display: none;
+    margin-bottom: 0;
+}
+
+.file__none {
+    font-size: 20px;
+    word-break: break-all;
+}
+
+.register__button-outer{
+    width: 100%;
+}
+
+.register__button{
+    width: 100%;
+    height: 50px;
+    margin-top: 50px;
+    background-color: red;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.to__login{
+    width: 40%;
+    margin: 5px auto;
+    padding-top: 10px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.to__login a{
+    text-decoration: none;
+    color: blue;
+    font-size: 20px;
+    cursor: pointer;
+}

@@ -54,7 +54,7 @@ class FavoriteController extends Controller
         $favoritesCount = Favorite::where('item_id',$itemId)->count();
         $commentsCount = Comment::where('item_id',$itemId)->count();
 
-        return view('after-login.home_detail',compact('items','favorites','favoritesCount','commentsCount'));
+        return view('home_detail',compact('items','favorites','favoritesCount','commentsCount'));
     }
 
     public function soldItemFavorite(Request $request){
@@ -79,12 +79,17 @@ class FavoriteController extends Controller
             Favorite::create($result);
         }
 
+        $soldItemId = $request->sold_item_id;
         $user = Auth::user();
         $favorites = $user->favorites->pluck('sold_item_id')->toArray();
         $soldItems = SoldItem::where('id',$soldItemId)
                     ->get();
 
-        return view('after-login.home_sold_detail',compact('soldItems','favorites'));
+        //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+        $favoritesCount = Favorite::where('sold_item_id',$soldItemId)->count();
+        $commentsCount = Comment::where('sold_item_id',$soldItemId)->count();
+
+        return view('home_sold_detail',compact('soldItems','favorites','favoritesCount','commentsCount'));
     }
 
 }

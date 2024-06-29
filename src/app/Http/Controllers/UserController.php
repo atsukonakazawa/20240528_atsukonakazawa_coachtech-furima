@@ -26,7 +26,7 @@ class UserController extends Controller
         $profile = Profile::where('user_id',$request->user_id)
                         ->first();
 
-        return view('after-login.mypage_sell_list',compact('items','soldItems','user','profile'));
+        return view('mypage_sell_list',compact('items','soldItems','user','profile'));
     }
 
     public function mypageSellList(Request $request){
@@ -37,7 +37,7 @@ class UserController extends Controller
                         ->get();
         $profile = Profile::where('user_id',$request->user_id)
                                 ->first();
-        return view('after-login.mypage_sell_list',compact('items','soldItems','profile'));
+        return view('mypage_sell_list',compact('items','soldItems','profile'));
     }
 
     public function mypagePurchasedList(Request $request){
@@ -47,7 +47,7 @@ class UserController extends Controller
         $profile = Profile::where('user_id',$request->user_id)
                                 ->first();
 
-        return view('after-login.mypage_purchased_list',compact('soldItems','profile'));
+        return view('mypage_purchased_list',compact('soldItems','profile'));
     }
 
     public function myapageSearch(Request $request){
@@ -73,7 +73,7 @@ class UserController extends Controller
         $selectedKeyword = $keyword;
         session(['selected_keyword' => $selectedKeyword]);
 
-        return view('after-login.mypage',compact('items','soldItems'));
+        return view('mypage',compact('items','soldItems'));
     }
 
     public function profileEdit(Request $request){
@@ -83,7 +83,7 @@ class UserController extends Controller
         $profile = Profile::where('user_id',$request->user_id)
                         ->first();
 
-        return view('after-login.change_profile',compact('user','profile'));
+        return view('change_profile',compact('user','profile'));
 
     }
 
@@ -176,7 +176,7 @@ class UserController extends Controller
         // ユーザーを再ログインさせる
         //Auth::login($user);
 
-        return view('after-login.profile_changed');
+        return view('profile_changed');
     }
 
     public function addressEdit(Request $request){

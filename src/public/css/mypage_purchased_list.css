@@ -69,31 +69,86 @@
     margin: 5px auto;
 }
 
-.content {
+.user__part {
     width: 100%;
+    height: 150px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.user__img-outer {
+    width: 35%;
+    height: 150px;
+    text-align: right;
+}
+
+.user__img-outer img {
+    width: 150px;
+    height: 150px;
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.user__nickname-outer {
+    width: 40%;
+    height: 150px;
+}
+
+.user__nickname {
+    width: 100%;
+    height: 150px;
+    padding-left: 50px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.to-profile__button-outer {
+    width: 25%;
+    height: 150px;
+}
+
+.to-profile__button {
+    width: 250px;
+    margin-top: 50px;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: red;
+    border-radius: 5px;
+    border: solid 2px red;
+    background-color: white;
+    cursor: pointer;
 }
 
 .title__outer {
     width: 100%;
+    height: 60px;
     border-bottom: solid 2px black;
     text-align: left;
     display: flex;
 }
 
-
-.home__form,.favorite__form{
-    width: 20%;
-    height: 100%;
-    margin-top: 3%;
-    margin-bottom: 1%;
+.sell__list-button {
+    width: 100%;
+    height: 50px;
+    margin: auto 50px 0 50px;
+    background-color: white;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    border: 0;
+    cursor: pointer;
 }
 
-.home__button,.favorite__list-button {
+.purchased__list-button {
     width: 100%;
-    font-size: 27px;
-    font-weight: bold;
+    height: 50px;
+    margin: auto 50px 0 50px;
     background-color: white;
-    margin-left: 5%;
+    font-size: 25px;
+    font-weight: bold;
+    color: red;
     border: 0;
     cursor: pointer;
 }

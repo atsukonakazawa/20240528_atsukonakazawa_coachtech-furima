@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(ConditionsTableSeeder::class);
         //$this->call(ColorsTableSeeder::class);
         //$this->call(PaymentWaysTableSeeder::class);
-
         //ユーザー
         //$this->call(UsersTableSeeder::class);
 

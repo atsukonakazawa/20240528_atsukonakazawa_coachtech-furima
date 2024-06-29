@@ -1,0 +1,188 @@
+/* header */
+.search__outer {
+    width: 100%;
+    height: 100%;
+}
+
+.search__input {
+    width: 100%;
+    height: 100%;
+    padding: 7px 10px 7px 25px;
+    border-radius: 7px;
+    font-size:120%;
+}
+
+.logout__outer {
+    width: 25%;
+    height: 100%;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.logout__button {
+    color: white;
+    background-color: black;
+    border: 0;
+    font-size: 110%;
+    cursor: pointer;
+}
+
+.mypage__button-outer,.home__header-outer{
+    width: 25%;
+    height: 100%;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.mypage__button,.home__header-button{
+    color: white;
+    background-color: black;
+    font-size: 120%;
+    border: 0;
+    cursor: pointer;
+}
+
+.create__link-outer {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+}
+
+.sell-create__button {
+    width: 60%;
+    height: 100%;
+    margin: 0 20%;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 120%;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+/* content */
+.content__outer {
+    width: 100%;
+    margin: 5px auto;
+}
+
+.title__outer {
+    width: 100%;
+    border-bottom: solid 2px black;
+    text-align: left;
+    display: flex;
+}
+
+
+.home__form,
+.favorite__form {
+    width: 20%;
+    height: 100%;
+    margin-top: 3%;
+    margin-bottom: 1%;
+}
+
+.home__button,
+.favorite__list-button {
+    width: 100%;
+    font-size: 27px;
+    font-weight: bold;
+    background-color: white;
+    margin-left: 5%;
+    border: 0;
+    cursor: pointer;
+}
+
+/*商品一覧*/
+.items__outer {
+    width: 100%;
+    padding: 2% 3%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.each__item {
+    border: 0;
+    background-color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.item__box {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    position: relative;
+    top: 0;
+    left: 0;
+
+}
+
+.item__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.item__img img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+}
+
+.price__outer {
+    position: absolute;
+    bottom: 3%;
+    left: 0;
+    z-index: 5px;
+    width: 50%;
+    height: 15%;
+}
+
+.price {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 7%;
+    color: white;
+    font-size: 23px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.item__img-group {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.item__img-group img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: auto;
+    border-radius: 5px;
+}
+
+.sold__mark {
+    position: absolute;
+    top: 0px;
+    border-top: 50px solid red;
+    border-right: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 50px solid red;
+    border-top-left-radius: 5px;
+}
+
+.sold {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 70px;
+    padding-top: 2px;
+    font-size: 20px;
+    color: white;
+    transform: rotate(-45deg);
+}

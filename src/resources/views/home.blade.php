@@ -38,6 +38,17 @@
 </div>
 @endsection
 
+@section('home')
+<div class="home__header-outer">
+    <form action="{{ route('item.home') }}" method="get">
+    @csrf
+        <button class="home__header-button" type="submit">
+            ホーム
+        </button>
+    </form>
+</div>
+@endsection
+
 @section('sell')
 <div class="create__link-outer">
     <form action="{{ route('item.create') }}" method="get">
@@ -52,14 +63,17 @@
 @section('content')
 <div class="content__outer">
     <div class="title__outer">
-        <h2 class="title">
-            おすすめ
-        </h2>
-        <form action="{{ route('favorite.list') }}" method="get">
+        <form class="home__form" action="{{ route('item.home') }}" method="get">
         @csrf
-            <button class="favorite__list-button" type="submit">
-                マイリスト
-            </button>
+        <button class="home__button" type="submit">
+            おすすめ
+        </button>
+        </form>
+        <form class="favorite__form" action="{{ route('favorite.list') }}" method="get">
+        @csrf
+        <button class="favorite__list-button" type="submit">
+            マイリスト
+        </button>
         </form>
     </div>
     <!--商品一覧-->
@@ -67,7 +81,7 @@
         @foreach($items as $item)
             <form action="{{ route('home.detail_item') }}" method="get">
             @csrf
-                <button type="submit">
+                <button class="each__item" type="submit">
                     <div class="item__box">
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <div class="item__img">
@@ -86,13 +100,13 @@
             <form action="{{ route('home.detail_sold') }}" method="get">
             @csrf
                 <div class="item__box">
-                    <button type="submit">
+                    <button class="each__item" type="submit">
                         <input type="hidden" name="soldItem_id" value="{{ $soldItem->id }}">
                         <div class="item__img-group">
                             <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
-                            <p class="sold__mark">
-                                sold
-                            </p>
+                            <div class="sold__mark">
+                                <p class="sold">SOLD</p>
+                            </div>
                         </div>
                         <div class="price__outer">
                             <p class="price">

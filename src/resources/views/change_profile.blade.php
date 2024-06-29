@@ -1,7 +1,19 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/after-login/change_profile.css') }}">
+<link rel="stylesheet" href="{{ asset('css/change_profile.css') }}">
+@endsection
+
+@section('search')
+<div class="search__outer">
+    <form id="search" action="{{ route('mypage.search') }}" method="get">
+    @csrf
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+        @if (Auth::check())
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+        @endif
+    </form>
+</div>
 @endsection
 
 @section('logout')
@@ -30,10 +42,10 @@
 @endsection
 
 @section('home')
-<div class="home__outer">
+<div class="home__header-outer">
     <form action="{{ route('item.home') }}" method="get">
     @csrf
-        <button class="home__button" type="submit">
+        <button class="home__header-button" type="submit">
             ホーム
         </button>
     </form>
@@ -62,20 +74,17 @@
         <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
         @csrf
 
-            <div class="input__group-row">
-                <img src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
-                <input class="input__img" type="file" id="img" name="newImg" value="{{ old('img') }}" >
-                <p class="limit__p">
-                    ※取扱可能な画像形式はjpeg,jpg,svgです。
-                </p>
-                <p class="limit__p">
-                    ※最大サイズは2048KBまでです。
-                </p>
-            </div>
-            <div class="form__error">
-            @error('img')
-                {{ $message }}
-            @enderror
+            <div class="input__group-img">
+                <img class="user__img" src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
+                <div class="img__div">
+                    <input class="input__img" type="file" id="img" name="newImg" value="{{ old('img') }}" >
+                    <p class="limit__p-img">
+                        ※取扱可能な画像形式はjpeg,jpg,svgです。
+                    </p>
+                    <p class="limit__p-img">
+                        ※最大サイズは2048KBまでです。
+                    </p>
+                </div>
             </div>
 
             <div class="input__group-row">
@@ -84,7 +93,7 @@
                 </p>
                 <input class="input__nickname" name="newNickname" value="{{ old('nickname') }}" type="text" placeholder="{{ $profile->nickname }}">
                 <p class="limit__p">
-                    ※アプリ上で公開される名前となります
+                    ※アプリ上で公開される名前となります。
                 </p>
             </div>
             <div class="form__error">

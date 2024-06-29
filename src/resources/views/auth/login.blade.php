@@ -27,10 +27,10 @@
                 </h2>
 
                 <div class="email__row">
-                    <p class="email">
+                    <p class="email__p">
                         メールアドレス
                     </p>
-                    <input class="email" type="text" name="email" value="{{ old('email') }}" placeholder="kouchi@example.com"/>
+                    <input class="email__input" type="text" name="email" value="{{ old('email') }}" placeholder="kouchi@example.com"/>
                 </div>
                 <div class="form__error">
                 @error('email')
@@ -39,10 +39,10 @@
                 </div>
 
                 <div class="password__row">
-                    <p class="password">
+                    <p class="password__p">
                         パスワード
                     </p>
-                    <input class="password" name="password" type="password" value="{{ old('password') }}" placeholder="kouchi123（8文字以上）">
+                    <input class="password__input" name="password" type="password" value="{{ old('password') }}" placeholder="kouchi123（8文字以上）">
                 </div>
                 <div class="form__error">
                 @error('password')
@@ -50,18 +50,18 @@
                 @enderror
                 </div>
 
-                <div class="login-button__outer">
-                    <button class="login-button" type="submit">
+                <div class="login__button-outer">
+                    <button class="login__button" type="submit">
                         ログイン
                     </button>
                 </div>
             </div>
+            <div class="to__register">
+                <a href="/register">
+                    会員登録はこちら
+                </a>
+            </div>
         </form>
-        <div class="to__register">
-            <a href="/register">
-                会員登録はこちら
-            </a>
-        </div>
     </div>
     @if (Auth::check())
         <li>

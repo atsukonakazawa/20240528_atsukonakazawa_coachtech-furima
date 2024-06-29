@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/before-login/sold_item.css') }}">
+<link rel="stylesheet" href="{{ asset('css/home_sold_detail.css') }}">
+@endsection
+
+@section('search')
+<div class="search__outer">
+    <form id="search" action="{{ route('item.search') }}" method="get">
+    @csrf
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+    </form>
+</div>
 @endsection
 
 @section('logout')
@@ -30,10 +39,10 @@
 @endsection
 
 @section('home')
-<div class="home__outer">
+<div class="home__header-outer">
     <form action="{{ route('item.home') }}" method="get">
     @csrf
-        <button class="home__button" type="submit">
+        <button class="home__header-button" type="submit">
             ホーム
         </button>
     </form>
@@ -52,21 +61,23 @@
 @endsection
 
 @section('content')
-<div class="content__outer">
+<div class="mylist__outer">
     <form action="{{ route('favorite.list') }}" method="get">
     @csrf
         <button class="favorite__list-button" type="submit">
-            マイリスト
+            ⭐️ マイリスト
         </button>
     </form>
+</div>
+
+<div class="content__outer">
     @foreach($soldItems as $soldItem)
         <div class="img__outer">
-            <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}">
+            <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
+            <div class="sold__mark">
+                <p class="sold">SOLD</p>
+            </div>
         </div>
-        <p class="sold__mark">
-            sold
-        </p>
-
         <div class="detail__outer">
             <h2 class="item__title">
                 {{ $soldItem->item_name }}
@@ -80,28 +91,27 @@
             <div class="icon__group">
                 <form action="{{ route('solditem.favorite') }}" method="get">
                 @csrf
-                    <button type="submit" onclick="toggleLike(this, {{ $soldItem->id }})" >
-                        <img src="{{ in_array($soldItem->id, $favorites) ? asset('img/yellow-star.jpeg') :  asset('img/white-star.jpeg')}}" alt="star">
+                    <button class="star__button"  type="submit" onclick="toggleLike(this, {{ $soldItem->id }})" >
+                        <img class="star__img" src="{{ in_array($soldItem->id, $favorites) ? asset('img/yellow-star.jpeg') :  asset('img/white-star.jpeg')}}" alt="star">
                     </button>
                     <input type="hidden" name="sold_item_id" value="{{ $soldItem->id }}">
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 </form>
-                <p>{{ $favoritesCount }}</p> <!-- お気に入り数を表示 -->
                 <form action="{{ route('comment.listSold') }}" method="get">
                 @csrf
-                    <button type="submit">
-                        <img src="{{ asset('img/comment.jpeg') }}" alt="comment">
+                    <button class="comment__button" type="submit">
+                        <img class="comment__img" src="{{ asset('img/comment.jpeg') }}" alt="comment">
                     </button>
                     <input type="hidden" name="sold_item_id" value="{{ $soldItem->id }}">
                 </form>
-                <p>{{ $commentsCount }}</p> <!-- コメント数を表示 -->
             </div>
-
-            <a class="purchase__button" href="/login">
-                <button type="button" disabled>
-                    購入する
-                </button>
-            </a>
+            <div class="counts">
+                <p class="favorites__counts">{{ $favoritesCount }}</p> <!-- お気に入り数を表示 -->
+                <p class="comments__counts">{{ $commentsCount }}</p> <!-- コメント数を表示 -->
+            </div>
+            <button class="purchase__button" type="button" disabled>
+                購入する
+            </button>
             <div class="detail__group">
                 <h3 class="detail__title">
                     商品説明

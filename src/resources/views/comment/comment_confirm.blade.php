@@ -4,6 +4,15 @@
 <link rel="stylesheet" href="{{ asset('css/comment/comment_confirm.css') }}">
 @endsection
 
+@section('search')
+<div class="search__outer">
+    <form id="search" action="{{ route('item.search') }}" method="get">
+    @csrf
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+    </form>
+</div>
+@endsection
+
 @section('logout')
 <div class="logout__outer">
     <form action="/logout" method="post">
@@ -30,10 +39,10 @@
 @endsection
 
 @section('home')
-<div class="home__outer">
+<div class="home__header-outer">
     <form action="{{ route('item.home') }}" method="get">
     @csrf
-        <button class="home__button" type="submit">
+        <button class="home__header-button" type="submit">
             ホーム
         </button>
     </form>

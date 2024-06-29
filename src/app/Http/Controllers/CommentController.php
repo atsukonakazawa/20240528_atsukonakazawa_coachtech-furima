@@ -26,7 +26,11 @@ class CommentController extends Controller
                             ->orderBy('id','asc')
                             ->get();
 
-        return view('comment.comment_list',compact('items','favorites','comments','user'));
+        //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+        $favoritesCount = Favorite::where('item_id',$itemId)->count();
+        $commentsCount = Comment::where('item_id',$itemId)->count();
+
+        return view('comment.comment_list',compact('items','favorites','comments','user','favoritesCount','commentsCount'));
     }
 
     public function commentListSold(Request $request){
@@ -41,7 +45,12 @@ class CommentController extends Controller
                             ->orderBy('id','asc')
                             ->get();
 
-        return view('comment.comment_list_sold',compact('soldItems','favorites','comments','user'));
+        //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+        $favoritesCount = Favorite::where('sold_item_id',$soldItemId)->count();
+        $commentsCount = Comment::where('sold_item_id',$soldItemId)->count();
+
+
+        return view('comment.comment_list_sold',compact('soldItems','favorites','comments','user','favoritesCount','commentsCount'));
     }
 
     public function commentSend(CommentRequest $request){
@@ -63,7 +72,11 @@ class CommentController extends Controller
                             ->orderBy('id','asc')
                             ->get();
 
-        return view('comment.comment_list',compact('items','favorites','comments','user'));
+        //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+        $favoritesCount = Favorite::where('item_id',$itemId)->count();
+        $commentsCount = Comment::where('item_id',$itemId)->count();
+
+        return view('comment.comment_list',compact('items','favorites','comments','user','favoritesCount','commentsCount'));
     }
 
     public function commentConfirm(Request $request){
@@ -102,7 +115,12 @@ class CommentController extends Controller
                                 ->orderBy('id','asc')
                                 ->get();
 
-            return view('comment.comment_list',compact('items','favorites','comments','user'));
+            //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+            $favoritesCount = Favorite::where('item_id',$itemId)->count();
+            $commentsCount = Comment::where('item_id',$itemId)->count();
+
+
+            return view('comment.comment_list',compact('items','favorites','comments','user','favoritesCount','commentsCount'));
         }else{
 
             $soldItems = SoldItem::where('id',$soldItemId)
@@ -114,7 +132,11 @@ class CommentController extends Controller
                                 ->orderBy('id','asc')
                                 ->get();
 
-            return view('comment.comment_list_sold',compact('soldItems','favorites','comments','user'));
+            //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+            $favoritesCount = Favorite::where('sold_item_id',$soldItemId)->count();
+            $commentsCount = Comment::where('sold_item_id',$soldItemId)->count();
+
+            return view('comment.comment_list_sold',compact('soldItems','favorites','comments','user','favoritesCount','commentsCount'));
         }
     }
 }

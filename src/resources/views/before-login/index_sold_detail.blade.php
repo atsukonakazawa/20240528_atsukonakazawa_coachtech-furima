@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/before-login/sold_item.css') }}">
+<link rel="stylesheet" href="{{ asset('css/before-login/index_sold_detail.css') }}">
+@endsection
+
+@section('search')
+<div class="search__outer">
+    <form id="search" action="{{ route('top.search') }}" method="get">
+    @csrf
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+    </form>
+</div>
 @endsection
 
 @section('login')
@@ -20,16 +29,43 @@
 </div>
 @endsection
 
+@section('sell')
+<div class="create__link-outer">
+    <form action="{{ route('item.create') }}" method="get">
+    @csrf
+        <button class="open-modal">
+            出品
+        </button>
+    </form>
+</div>
+<!--ここからモーダルウィンドウ-->
+<div id="modal" class="modal">
+    <!-- ここからモーダルコンテンツ -->
+    <div class="modal__content">
+        <div class="close-button__outer">
+            <button class="close">
+                &times;
+            </button>
+        </div>
+        <div class="modal__message-outer">
+            <p class="modal__message">
+                出品はログイン後にご利用いただけます
+            </p>
+        </div>
+    </div>
+</div>
+<!--ここまでモーダルウィンドウ-->
+@endsection
+
 @section('content')
 <div class="content__outer">
     @foreach($soldItems as $soldItem)
         <div class="img__outer">
             <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}">
+            <div class="sold__mark">
+                <p class="sold">SOLD</p>
+            </div>
         </div>
-        <p class="sold__mark">
-            sold
-        </p>
-
         <div class="detail__outer">
             <h2 class="item__title">
                 {{ $soldItem->item_name }}
@@ -40,38 +76,26 @@
             <p class="price">
                 ¥ {{ number_format($soldItem->item_price) }}
             </p>
-            <div class="icon__group">
-                <button type="button" class="open-modal">
-                    <img src="{{ asset('img/white-star.jpeg') }}" alt="star">
+            <a class="icon__group" href="/login">
+                <button class="star__button" type="button">
+                    <img class="star__img" src="{{ asset('img/white-star.jpeg') }}" alt="star">
                 </button>
-                <button type="button" class="open-modal">
-                    <img src="{{ asset('img/comment.jpeg') }}" alt="comment">
-                </button>
+                <button class="comment__button" type="button">
+                    <img class="comment__img" src="{{ asset('img/comment.jpeg') }}" alt="comment">
+                </button><br>
+            </a>
+            <div class="counts">
+                <p class="favorites__counts">{{ $favoritesCount }}</p> <!-- お気に入り数を表示 -->
+                <p class="comments__counts">{{ $commentsCount }}</p> <!-- コメント数を表示 -->
             </div>
-
-            <!--ここからモーダルウィンドウ-->
-            <div id="modal" class="modal">
-                <!-- ここからモーダルコンテンツ -->
-                <div class="modal__content">
-                    <div class="close-button__outer">
-                        <button class="close">
-                            &times;
-                        </button>
-                    </div>
-                    <div class="message__outer">
-                        <p class="message">
-                            お気に入り・コメントはログイン後にご利用いただけます
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!--ここまでモーダルウィンドウ-->
-
-            <a class="purchase__button" href="/login">
-                <button type="button" disabled>
+            <a class="purchase__button-outer" href="/login">
+                <button class="purchase__button" type="button" disabled>
                     購入する
                 </button>
             </a>
+            <p class="purchase__button-p">
+                ※お気に入り・コメント・購入はログイン後にご利用いただけます
+            </p>
             <div class="detail__group">
                 <h3 class="detail__title">
                     商品説明
@@ -95,5 +119,4 @@
         </div>
     @endforeach
 </div>
-<script src="{{ asset('js/item.js') }}"></script>
 @endsection

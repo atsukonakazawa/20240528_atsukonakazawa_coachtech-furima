@@ -28,12 +28,9 @@
 
                 <div class="register__box-row">
                     <p class="register__box-p">
-                        ユーザー名 <span class="required">※必須</span>
+                        ユーザー名(アプリ上で公開されます) <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" name="nickname" value="{{ old('nickname') }}" type="text" placeholder="こーち">
-                    <p class="limit__p">
-                        ※アプリ上で公開される名前となります
-                    </p>
                 </div>
                 <div class="form__error">
                 @error('nickname')
@@ -72,14 +69,11 @@
                     <input class="register__box-input" name="building" value="{{ old('building') }}" type="text" placeholder="東京マンション333">
                 </div>
 
-                <div class="register__box-row">
+                <div class="register__box-textarea-row">
                     <p class="register__box-p">
-                        自己紹介文 <span class="required">※必須</span>
+                        自己紹介文(最大300文字) <span class="required">※必須</span>
                     </p>
-                    <textarea class="register__box-input" name="introduction" cols="30" rows="10" placeholder="利用を始めたばかりです。慣れない部分もありますが、よろしくお願いいたします。">{{ old('introduction') }}</textarea>
-                    <p class="limit__p">
-                        ※最大300文字まで
-                    </p>
+                    <textarea class="register__box-textarea" name="introduction" cols="49" rows="3" placeholder="利用を始めたばかりです。慣れない部分もありますが、よろしくお願いいたします。">{{ old('introduction') }}</textarea>
                 </div>
                 <div class="form__error">
                 @error('introduction')
@@ -87,16 +81,16 @@
                 @enderror
                 </div>
 
-                <div class="register__box-row">
+                <div class="register__box-img-row">
                     <p class="register__box-p">
-                        プロフィール画像 <span class="required">※必須</span>
+                        プロフィール画像 (jpeg,jpg,svg・最大2048KBまで)<span class="required">※必須</span>
                     </p>
-                    <input class="register__box-input" type="file" id="img" name="img" value="{{ old('img') }}" >
-                    <p class="limit__p">
-                        ※取扱可能な画像形式はjpeg,jpg,svgです。
-                    </p>
-                    <p class="limit__p">
-                        ※最大サイズは2048KBまでです。
+                    <label class="file__label" for="img">
+                        ファイルを選択
+                        <input class="register__box-img-input" type="file" id="img" name="img">
+                    </label>
+                    <p class="file__none">
+                        選択されていません
                     </p>
                 </div>
                 <div class="form__error">
@@ -119,12 +113,9 @@
 
                 <div class="register__box-row">
                     <p class="register__box-p">
-                        パスワード <span class="required">※必須</span>
+                        パスワード(8文字以上) <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" name="password" type="password" value="{{ old('password') }}" placeholder="kouchi123（8文字以上）">
-                    <p class="limit__p">
-                        ※8文字以上
-                    </p>
                 </div>
                 <div class="form__error">
                 @error('password')
@@ -139,20 +130,28 @@
                     <input class="register__box-input" name="password_confirmation" type="password">
                 </div>
 
-                <div class="register-button__outer">
-                    <button class="register-button">
-                        登録
+                <div class="register__button-outer">
+                    <button class="register__button">
+                        登録する
                     </button>
                 </div>
             </div>
+            <div class="to__login">
+                <a href="/login">
+                    ログインはこちら
+                </a>
+            </div>
         </form>
-        <div class="to__login">
-            <a href="/login">
-                ログインはこちら
-            </a>
-        </div>
     </div>
 </div>
+<script>
+    $(function() {
+        $('.file__label input[type=file]').on('change', function () {
+            var file = $(this).prop('files')[0];
+            $('.file__none').text(file.name);
+        });
+    });
+</script>
 <script>
     async function fetchAddress() {
         const postcode = document.getElementById('postcode').value;

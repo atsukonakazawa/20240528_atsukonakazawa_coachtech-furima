@@ -39,10 +39,10 @@
 @endsection
 
 @section('home')
-<div class="home__outer">
+<div class="home__header-outer">
     <form action="{{ route('item.home') }}" method="get">
     @csrf
-        <button class="home__button" type="submit">
+        <button class="home__header-button" type="submit">
             ホーム
         </button>
     </form>
@@ -63,10 +63,13 @@
 @section('content')
 <div class="content__outer">
     <div class="title__outer">
-        <h2 class="title">
-            おすすめ
-        </h2>
-        <form action="{{ route('favorite.list') }}" method="get">
+        <form class="home__form" action="{{ route('item.home') }}" method="get">
+        @csrf
+            <button class="home__button" type="submit">
+                おすすめ
+            </button>
+        </form>
+        <form class="favorite__form" action="{{ route('favorite.list') }}" method="get">
         @csrf
             <button class="favorite__list-button" type="submit">
                 マイリスト
@@ -79,7 +82,7 @@
             @if($favorite->item_id)
                 <form action="{{ route('home.detail_item') }}" method="get">
                 @csrf
-                    <button type="submit">
+                    <button class="each__item" type="submit">
                         <div class="item__box">
                             <input type="hidden" name="item_id" value="{{ $favorite->item_id }}">
                             <div class="item__img">
@@ -96,19 +99,19 @@
             @elseif($favorite->sold_item_id)
                 <form action="{{ route('home.detail_sold') }}" method="get">
                 @csrf
-                    <button type="submit">
+                    <button class="each__item" type="submit">
                         <div class="item__box">
                             <input type="hidden" name="soldItem_id" value="{{ $favorite->sold_item_id }}">
-                            <div class="item__img">
+                            <div class="item__img-group">
                                 <img src="{{ asset('storage/sold_items/' . basename($favorite->soldItem->item_img)) }}" alt="商品画像">
+                                <div class="sold__mark">
+                                    <p class="sold">SOLD</p>
+                                </div>
                             </div>
                             <div class="price__outer">
-                                <div class="price">
-                                    <p class="sold__mark">
-                                        sold
-                                    </p>
+                                <p class="price">
                                     ¥ {{ number_format($favorite->soldItem->item_price) }}
-                                </div>
+                                </p>
                             </div>
                         </div>
                     </button>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\SoldItem;
+use App\Models\Color;
+use App\Models\Favorite;
+use App\Models\Comment;
 
 
 class TopController extends Controller
@@ -31,30 +34,22 @@ class TopController extends Controller
         // itemsテーブルのクエリを作成
         $query1 = Item::query();
 
-        // colorsテーブルとjoin
-        $query1->join('colors', 'items.color_id', '=', 'colors.id');
-
         foreach($keywordsArray as $keyword){
             $query1->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
-                ->orWhere('item_price','like', '%'.$keyword.'%')
-                ->orWhere('colors.color', 'like', '%' . $keyword . '%');
+                ->orWhere('item_price','like', '%'.$keyword.'%');
         }
         $items = $query1->get();// 必要なカラムだけを取得
 
         // sold_itemsテーブルのクエリを作成
-        $query2 = soldItem::query();
-
-        // colorsテーブルとjoin
-        $query2->join('colors', 'sold_items.color_id', '=', 'colors.id');
+        $query2 = SoldItem::query();
 
         foreach($keywordsArray as $keyword){
             $query2->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
-                ->orWhere('item_price','like', '%'.$keyword.'%')
-                ->orWhere('colors.color', 'like', '%' . $keyword . '%');
+                ->orWhere('item_price','like', '%'.$keyword.'%');
         }
         $soldItems = $query2->get();
 
@@ -76,7 +71,11 @@ class TopController extends Controller
         $items = Item::where('id',$itemId)
                     ->get();
 
-        return view('before-login.index_detail',compact('items'));
+        //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+        $favoritesCount = Favorite::where('item_id',$itemId)->count();
+        $commentsCount = Comment::where('item_id',$itemId)->count();
+
+        return view('before-login.index_detail',compact('items','favoritesCount','commentsCount'));
     }
 
     public function indexDetailSold(Request $request){
@@ -85,7 +84,11 @@ class TopController extends Controller
         $soldItems = SoldItem::where('id',$soldItemId)
                     ->get();
 
-        return view('before-login.index_sold_detail',compact('soldItems'));
+        //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
+        $favoritesCount = Favorite::where('sold_item_id',$soldItemId)->count();
+        $commentsCount = Comment::where('sold_item_id',$soldItemId)->count();
+
+        return view('before-login.index_sold_detail',compact('soldItems','favoritesCount','commentsCount'));
     }
 
 }

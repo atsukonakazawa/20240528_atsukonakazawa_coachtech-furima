@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/after-login/mypage_purchased_list.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mypage_sell_list.css') }}">
 @endsection
 
 @section('search')
@@ -42,10 +42,10 @@
 @endsection
 
 @section('home')
-<div class="home__outer">
+<div class="home__header-outer">
     <form action="{{ route('item.home') }}" method="get">
     @csrf
-        <button class="home__button" type="submit">
+        <button class="home__header-button" type="submit">
             ホーム
         </button>
     </form>
@@ -90,7 +90,7 @@
         <form action="{{ route('mypage.selllist') }}" method="get">
         @csrf
             <button class="sell__list-button" type="submit">
-                販売した商品
+                出品した商品
             </button>
             @if (Auth::check())
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -108,17 +108,35 @@
     </div>
     <!--商品一覧-->
     <div class="items__outer">
+        @foreach($items as $item)
+            <form action="{{ route('home.detail_item') }}" method="get">
+            @csrf
+                <button class="each__item" type="submit">
+                    <div class="item__box">
+                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                        <div class="item__img">
+                            <img src="{{ asset('storage/items/' . basename($item->item_img)) }}" alt="商品画像">
+                        </div>
+                        <div class="price__outer">
+                            <div class="price">
+                                ¥ {{ number_format($item->item_price) }}
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </form>
+        @endforeach
         @foreach($soldItems as $soldItem)
             <form action="{{ route('home.detail_sold') }}" method="get">
             @csrf
                 <div class="item__box">
-                    <button type="submit">
+                    <button class="each__item" type="submit">
                         <input type="hidden" name="soldItem_id" value="{{ $soldItem->id }}">
                         <div class="item__img-group">
                             <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
-                            <p class="sold__mark">
-                                sold
-                            </p>
+                            <div class="sold__mark">
+                                <p class="sold">SOLD</p>
+                            </div>
                         </div>
                         <div class="price__outer">
                             <div class="price">

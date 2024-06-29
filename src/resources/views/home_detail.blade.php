@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/after-login/home_item.css') }}">
+<link rel="stylesheet" href="{{ asset('css/home_detail.css') }}">
+@endsection
+
+@section('search')
+<div class="search__outer">
+    <form id="search" action="{{ route('item.search') }}" method="get">
+    @csrf
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+    </form>
+</div>
 @endsection
 
 @section('logout')
@@ -30,10 +39,10 @@
 @endsection
 
 @section('home')
-<div class="home__outer">
+<div class="home__header-outer">
     <form action="{{ route('item.home') }}" method="get">
     @csrf
-        <button class="home__button" type="submit">
+        <button class="home__header-button" type="submit">
             ホーム
         </button>
     </form>
@@ -52,16 +61,19 @@
 @endsection
 
 @section('content')
-<div class="content__outer">
+<div class="mylist__outer">
     <form action="{{ route('favorite.list') }}" method="get">
     @csrf
         <button class="favorite__list-button" type="submit">
-            マイリスト
+            ⭐️ マイリスト
         </button>
     </form>
+</div>
+
+<div class="content__outer">
     @foreach($items as $item)
         <div class="img__outer">
-        <img src="{{ asset('storage/items/' . basename($item->item_img)) }}" alt="商品画像">
+            <img src="{{ asset('storage/items/' . basename($item->item_img)) }}" alt="商品画像">
         </div>
 
         <div class="detail__outer">
@@ -77,27 +89,27 @@
             <div class="icon__group">
                 <form action="{{ route('item.favorite') }}" method="get">
                 @csrf
-                    <button type="submit" onclick="toggleLike(this, {{ $item->id }})">
-                        <img src="{{ in_array($item->id, $favorites) ? asset('img/yellow-star.jpeg') :  asset('img/white-star.jpeg')}}" alt="star">
-
+                    <button class="star__button" type="submit" onclick="toggleLike(this, {{ $item->id }})">
+                        <img class="star__img" src="{{ in_array($item->id, $favorites) ? asset('img/yellow-star.jpeg') :  asset('img/white-star.jpeg')}}" alt="star">
                     </button>
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 </form>
-                <p>{{ $favoritesCount }}</p> <!-- お気に入り数を表示 -->
                 <form action="{{ route('comment.list') }}" method="get">
                 @csrf
-                    <button type="submit">
-                        <img src="{{ asset('img/comment.jpeg') }}" alt="comment">
+                    <button class="comment__button" type="submit">
+                        <img class="comment__img" src="{{ asset('img/comment.jpeg') }}" alt="comment">
                     </button>
                     <input type="hidden" name="item_id" value="{{ $item->id }}">
                 </form>
-                <p>{{ $commentsCount }}</p> <!-- コメント数を表示 -->
             </div>
-
+            <div class="counts">
+                <p class="favorites__counts">{{ $favoritesCount }}</p> <!-- お気に入り数を表示 -->
+                <p class="comments__counts">{{ $commentsCount }}</p> <!-- コメント数を表示 -->
+            </div>
             <form action="{{ route('item.purchase') }}" method="get">
                 <div class="purchase__button-outer">
-                    <button type="purchase__button">
+                    <button class="purchase__button" type="submit">
                         購入する
                     </button>
                     <input type="hidden" name="item_id" value="{{ $item->id }}">

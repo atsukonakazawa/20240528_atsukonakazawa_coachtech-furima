@@ -52,7 +52,7 @@
 
 .sell-create__button {
     width: 60%;
-    height: 110%;
+    height: 100%;
     margin: 0 20%;
     border-radius: 5px;
     text-decoration: none;
@@ -64,6 +64,22 @@
 }
 
 /* content */
+.mylist__outer{
+    width: 100%;
+}
+
+.favorite__list-button {
+    width: 300px;
+    margin-left: 5%;
+    margin-top: 2%;
+    font-size: 22px;
+    background-color: lemonchiffon;
+    color: black;
+    border: solid 3px papayawhip;
+    border-radius: 5%;
+    cursor: pointer;
+}
+
 .content__outer {
     width: 100%;
     display: flex;
@@ -82,12 +98,8 @@
     border-radius: 5px;
 }
 
-.detail__outer-group{
-    width: 50%;
-}
-
 .detail__outer {
-    width: 100%;
+    width: 50%;
     padding-top: 50px;
 }
 
@@ -112,17 +124,13 @@
     font-size: 30px;
 }
 
-.icon__group {
+.icon__group{
     width: 200px;
     padding-top: 10px;
     display: flex;
 }
 
-.icon__group form{
-    width: 70px;
-}
-
-.star__button {
+.star__button{
     width: 60px;
     height: 60px;
     margin: 0 10px 0 0;
@@ -140,8 +148,7 @@
     cursor: pointer;
 }
 
-.star__img,
-.comment__img {
+.star__img,.comment__img{
     width: 40px;
     height: 40px;
 }
@@ -169,75 +176,42 @@
     border: 0;
 }
 
-/* comment */
-.comment__list-outer{
-    width: 100%;
+.purchase__button-outer{
+    width: 500px;
 }
 
-.comment__list{
-    width: 100%;
-}
-
-.comment-user__img-outer{
-    width: 60px;
-}
-
-.comment-user__img{
-    width: 50px;
-    height: 50px;
-}
-
-.comment__user{
-    height: 50px;
-    margin-left: 5px;
-    font-size: 20px;
-}
-
-.comment__content{
-    width: 80%;
-    font-size: 18px;
-}
-
-.comment-delete__button-outer{
-    width: 80%;
-    text-align: right;
-}
-
-.comment-delete__button{
-    width: 100px;
-    text-align: center;
-    margin-top: 0;
+.purchase__button{
+    width: 400px;
+    height: 45px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    font-size: 23px;
     cursor: pointer;
 }
 
-.comment__create-outer{
+.detail__group {
     width: 100%;
-    margin-top: 50px;
 }
 
-.comment__create-p{
+.detail__title {
     width: 100%;
-    font-size: 20px;
-    margin-bottom: 0;
-}
-
-.comment__create{
-    width: 70%;
-    height: 100px;
-    margin-top: 0;
+    margin-top: 20px;
     font-size: 25px;
+    font-weight: bold;
 }
 
-.comment-send__button-outer{
-    width: 80%;
-    text-align: right;
+.condition,
+.main__category,
+.sub__category,
+.color {
+    width: 100%;
+    font-size: 17px;
 }
 
-.comment-send__button{
-    width: 200px;
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 100px;
-    font-size: 20px;
-    cursor: pointer;
+.detail {
+    width: 70%;
+    font-size: 17px;
 }

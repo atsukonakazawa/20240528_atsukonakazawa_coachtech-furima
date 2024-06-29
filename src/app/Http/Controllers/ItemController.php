@@ -42,30 +42,22 @@ class ItemController extends Controller
         // itemsテーブルのクエリを作成
         $query1 = Item::query();
 
-        // colorsテーブルとjoin
-        $query1->join('colors', 'items.color_id', '=', 'colors.id');
-
         foreach($keywordsArray as $keyword){
             $query1->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
-                ->orWhere('item_price','like', '%'.$keyword.'%')
-                ->orWhere('colors.color', 'like', '%' . $keyword . '%');
+                ->orWhere('item_price','like', '%'.$keyword.'%');
         }
         $items = $query1->get();// 必要なカラムだけを取得
 
         // sold_itemsテーブルのクエリを作成
         $query2 = soldItem::query();
 
-        // colorsテーブルとjoin
-        $query2->join('colors', 'sold_items.color_id', '=', 'colors.id');
-
         foreach($keywordsArray as $keyword){
             $query2->orWhere('item_name','like', '%'.$keyword.'%')
                 ->orWhere('item_brand','like', '%'.$keyword.'%')
                 ->orWhere('item_detail','like', '%'.$keyword.'%')
-                ->orWhere('item_price','like', '%'.$keyword.'%')
-                ->orWhere('colors.color', 'like', '%' . $keyword . '%');
+                ->orWhere('item_price','like', '%'.$keyword.'%');
         }
         $soldItems = $query2->get();
 
@@ -93,7 +85,7 @@ class ItemController extends Controller
         $favoritesCount = Favorite::where('item_id',$itemId)->count();
         $commentsCount = Comment::where('item_id',$itemId)->count();
 
-        return view('after-login.home_detail',compact('items','favorites','favoritesCount','commentsCount'));
+        return view('home_detail',compact('items','favorites','favoritesCount','commentsCount'));
     }
 
     public function homeDetailSold(Request $request){
@@ -102,13 +94,13 @@ class ItemController extends Controller
         $soldItems = SoldItem::where('id',$soldItemId)
                     ->get();
         $user = Auth::user();
-        $favorites = $user->favorites->pluck('soldItem_id')->toArray();
+        $favorites = $user->favorites->pluck('sold_item_id')->toArray();
 
         //お気に入りの数とコメントの数をそれぞれのアイコンの下に表示するために
         $favoritesCount = Favorite::where('sold_item_id',$soldItemId)->count();
         $commentsCount = Comment::where('sold_item_id',$soldItemId)->count();
 
-        return view('after-login.home_sold_detail',compact('soldItems','favorites','favoritesCount','commentsCount'));
+        return view('home_sold_detail',compact('soldItems','favorites','favoritesCount','commentsCount'));
     }
 
     public function create(){
@@ -118,7 +110,7 @@ class ItemController extends Controller
         $conditions = Condition::all();
         $colors = Color::all();
 
-        return view('after-login.sell',compact('mainCategories','subCategories','conditions','colors'));
+        return view('sell',compact('mainCategories','subCategories','conditions','colors'));
     }
 
     public function store(SellRequest $request){
@@ -155,7 +147,7 @@ class ItemController extends Controller
         $item->update(['item_img' => $publicPath]);
 
 
-        return view('after-login/sell_done');
+        return view('sell_done');
     }
 
     public function purchase(Request $request){

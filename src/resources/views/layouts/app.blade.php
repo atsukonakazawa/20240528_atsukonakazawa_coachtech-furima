@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     @yield('css')
 </head>
-<body>
+<body class="body">
     <header class="header">
         <div class="header__inner">
             <div class="header__logo-outer">
@@ -16,16 +16,22 @@
                     <img class="header__logo-img" src="{{ asset('img/logo.svg') }}" alt="ヘッダーロゴ">
                 </a>
             </div>
+            <div class="options">
+                <div class="search__option">
             @yield('search')
-            @yield('login')
-            @yield('logout')
-            @yield('register')
-            @yield('mypage')
-            @yield('home')
-            @yield('sell')
+                </div>
+                <div class="other__options">
+                    @yield('login')
+                    @yield('register')
+                    @yield('mypage')
+                    @yield('home')
+                    @yield('logout')
+                    @yield('sell')
+                </div>
+            </div>
         </div>
     </header>
-    <main>
+    <main class="main">
         @yield('content')
     </main>
 </body>

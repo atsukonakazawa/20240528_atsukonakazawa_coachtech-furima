@@ -1,3 +1,63 @@
+/* モーダルウィンドウ全体 */
+.modal {
+    display: none;
+    /* 最初は非表示にする */
+    margin: auto;
+    position: fixed;
+    z-index: 5;
+    left: 30%;
+    top: 30%;
+    width: 40%;
+    height: 30%;
+    border-radius: 7px;
+    overflow: auto;
+    background-color: white;
+    border: solid 1px gainsboro;
+    box-shadow: 5px 5px 7px gainsboro;
+    /* モーダルの背景色 */
+}
+
+/* モーダルコンテンツ */
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.close-button__outer {
+    width: 100%;
+    height: 10%;
+    text-align: left;
+}
+
+/* 閉じるボタン */
+.close {
+    background-color: black;
+    border-radius: 5px;
+    border: 0;
+    margin: 3%;
+    width: 5%;
+    height: 5%;
+    color: white;
+    font-weight: 1;
+    font-size: 25px;
+    box-shadow: 3px 3px 3px gainsboro;
+    cursor: pointer;
+}
+
+.modal__message-outer {
+    width: 100%;
+    margin-top: 7%;
+}
+
+.modal__message {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+}
+
 /* header */
 .search__outer {
     width: 100%;
@@ -12,36 +72,32 @@
     font-size: 120%;
 }
 
-.logout__outer {
+.login__outer {
     width: 25%;
     height: 100%;
-    padding-top: 1%;
     text-align: center;
-}
-
-.logout__button {
-    color: white;
-    background-color: black;
-    border: 0;
-    font-size: 110%;
-    cursor: pointer;
-}
-
-.mypage__button-outer,
-.home__header-outer {
-    width: 25%;
-    height: 100%;
     padding-top: 1%;
-    text-align: center;
-}
-
-.mypage__button,
-.home__header-button {
-    color: white;
-    background-color: black;
     font-size: 120%;
-    border: 0;
     cursor: pointer;
+}
+
+.login__outer a {
+    text-decoration: none;
+    color: white;
+}
+
+.register__outer {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    padding-top: 1%;
+    font-size: 120%;
+    cursor: pointer;
+}
+
+.register__outer a {
+    text-decoration: none;
+    color: white;
 }
 
 .create__link-outer {
@@ -51,7 +107,7 @@
     cursor: pointer;
 }
 
-.sell-create__button {
+.open-modal {
     width: 60%;
     height: 110%;
     margin: 0 20%;
@@ -61,7 +117,6 @@
     background-color: white;
     font-size: 120%;
     padding: 5px 5px;
-    cursor: pointer;
 }
 
 /* content */
@@ -107,12 +162,8 @@
     transform: rotate(-45deg);
 }
 
-.detail__outer-group {
-    width: 50%;
-}
-
 .detail__outer {
-    width: 100%;
+    width: 50%;
     padding-top: 50px;
 }
 
@@ -137,19 +188,18 @@
     font-size: 30px;
 }
 
-.icon__group {
+.icon__group{
     width: 200px;
     padding-top: 10px;
     display: flex;
 }
 
-.star__button {
+.star__button{
     width: 60px;
     height: 60px;
     margin: 0 10px 0 0;
     background-color: white;
     border: 0;
-    cursor: pointer;
 }
 
 .comment__button {
@@ -158,11 +208,9 @@
     margin: 0 10px 0 10px;
     background-color: white;
     border: 0;
-    cursor: pointer;
 }
 
-.star__img,
-.comment__img {
+.star__img,.comment__img{
     width: 40px;
     height: 40px;
 }
@@ -180,6 +228,7 @@
     margin: 0 10px;
     background-color: white;
     border: 0;
+    cursor: pointer;
 }
 
 .comments__counts {
@@ -188,46 +237,50 @@
     margin: 0 10px;
     background-color: white;
     border: 0;
-}
-
-/* comment */
-.comment__list-outer {
-    width: 100%;
-}
-
-.comment__list {
-    width: 100%;
-}
-
-.comment-user__img-outer {
-    width: 60px;
-}
-
-.comment-user__img {
-    width: 50px;
-    height: 50px;
-}
-
-.comment__user {
-    height: 50px;
-    margin-left: 5px;
-    font-size: 20px;
-}
-
-.comment__content {
-    width: 80%;
-    font-size: 18px;
-}
-
-.comment-delete__button-outer {
-    width: 80%;
-    text-align: right;
-    border: solid 1px red;
-}
-
-.comment-delete__button {
-    width: 100px;
-    text-align: center;
-    margin-top: 0;
     cursor: pointer;
 }
+
+.purchase__button-outer{
+    width: 500px;
+}
+
+.purchase__button{
+    width: 400px;
+    height: 45px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    font-size: 23px;
+}
+
+.purchase__button-p {
+    margin-top: 1%;
+    width: 390px;
+}
+
+.detail__group {
+    width: 100%;
+}
+
+.detail__title {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.condition,
+.main__category,
+.sub__category,
+.color {
+    width: 100%;
+    font-size: 17px;
+}
+
+.detail {
+    width: 70%;
+    font-size: 17px;
+}
+

@@ -1,0 +1,60 @@
+.body {
+    width: 100%;
+    margin: 5px auto;
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    margin: 5px auto;
+}
+
+.header__inner {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    background-color: black;
+    color: white;
+}
+
+.header__logo-outer {
+    width: 30%;
+    height: 100%;
+}
+
+.header__logo-a {
+    width: 30%;
+    height: 100%;
+}
+
+.header__logo-img {
+    width: 75%;
+    height: 75%;
+    margin: 2% auto auto 5%;
+}
+
+.options {
+    width: 70%;
+    height: 100%;
+    display: flex;
+}
+
+.search__option {
+    width: 40%;
+    height: 70%;
+    margin: 1% auto auto auto;
+    justify-content: center;
+}
+
+.other__options {
+    width: 60%;
+    height: 70%;
+    margin: 1% auto auto auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main {
+    width: 100%;
+    height: 70px;
+}
