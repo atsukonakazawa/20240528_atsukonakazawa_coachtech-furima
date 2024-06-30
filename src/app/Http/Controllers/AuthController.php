@@ -49,7 +49,7 @@ class AuthController extends Controller
         //画像ファイルにemailの名前をつけてstorage/app/publicに保存
         $email = $request->email;
         $file = $request->file('img');
-        $filename = $email . '.' . $file->getClientOriginalExtension();
+        $filename = $email . '.jpg';
         $path = $file->storeAs('public/profiles/', $filename);
 
         //画像までのパスをstorage/...の形式でprofilesテーブルのimgカラムに保存

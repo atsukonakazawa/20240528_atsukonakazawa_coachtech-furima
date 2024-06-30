@@ -139,10 +139,10 @@ class ItemController extends Controller
                         ->first();
         $itemId = $item->id;
         $file = $request->file('item_img');
-        $filename = $itemId . '.' . $file->getClientOriginalExtension();
+        $filename = $itemId . '.jpg';
         $path = $file->storeAs('public/items/', $filename);
 
-        //画像までのパスをstorage/...の形式でprofilesテーブルのimgカラムに保存
+        //画像までのパスをstorage/...の形式でitemsテーブルのimgカラムに保存
         $publicPath = 'storage/items/' . $filename;
         $item->update(['item_img' => $publicPath]);
 
@@ -161,31 +161,5 @@ class ItemController extends Controller
         $paymentWays = PaymentWay::all();
 
         return view('purchase.purchase',compact('item','profile','paymentWays'));
-    }
-
-    public function purchasePayment(Request $request){
-
-        $itemId = $request->item_id;
-        $item = Item::where('id',$itemId)
-                        ->first();
-        $userId = $request->user_id;
-        $user = User::where('id',$userId)
-                        ->first();
-        $profile = Profile::where('user_id',$userId)
-                            ->first();
-        $paymentWayId = $request->payment_way_id;
-
-        if($paymentWayId == '1'){
-
-            return view('purchase.payment_credit',compact('item','user','profile'));
-
-        }elseif($paymentWayId == '2'){
-
-            return view('purchase.payment_conbini',compact('item','user','profile'));
-
-        }else{
-
-            return view('purchase.payment_transfer',compact('item','user','profile'));
-        }
     }
 }

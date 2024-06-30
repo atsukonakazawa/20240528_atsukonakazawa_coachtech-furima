@@ -107,7 +107,7 @@ class UserController extends Controller
                                 ->first();
 
             //既存の画像ファイルをstorage/app/publicから削除
-            $filename = $email . '.' . pathinfo($profile->img, PATHINFO_EXTENSION);
+            $filename = $email . '.jpg';
             $filePath = 'public/profiles/' . $filename;
 
             Storage::delete($filePath);

@@ -7,6 +7,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/home/detail',[ItemController::class,'homeDetailItem'])->name("home.detail_item");
     Route::get('/home/sold/detail',[ItemController::class,'homeDetailSold'])->name("home.detail_sold");
     Route::get('/purchase',[ItemController::class,'purchase'])->name("item.purchase");
-    Route::get('/purchase/payment',[ItemController::class,'purchasePayment'])->name("item.payment");
-    Route::post('/purchase/complete',[ItemController::class,'purchaseComplete'])->name("item.purchased");
 });
 
 /* ログイン後 */
@@ -74,5 +74,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile/edit',[UserController::class,'profileEdit'])->name("profile.edit");
     Route::post('/mypage/profile/update',[UserController::class,'profileUpdate'])->name("profile.update");
 
+});
+
+/* ログイン後 */
+/* 支払い */
+Route::middleware('auth')->group(function () {
+    Route::get('/purchase/payment',[PaymentController::class,'purchasePayment'])->name("item.payment");
+    Route::post('/purchase/complete',[PaymentController::class,'purchaseComplete'])->name("item.purchased");
+    Route::post('/pay/credit',[PaymentController::class,'payCredit']);
 });
 

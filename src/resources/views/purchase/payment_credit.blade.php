@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    <form class="pay-form" action="/pay" method="POST">
+<div class="content__outer">
+    <form class="pay-form" action="/pay/credit" method="POST">
         @csrf
         <div class="payment__title-outer">
             <h2 class="payment__title">
@@ -14,11 +15,10 @@
             <p class="name">
                 {{ $user->name }}　さま
             </p>
+            <p class="price" name="itemPrice">
+                ¥ {{ number_format($item->item_price) }}
+            </p>
         </div>
-        <p class="price" name="itemPrice">
-            ¥ {{ number_format($item->item_price) }}
-        </p>
-
         <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="{{ env('STRIPE_KEY') }}"
@@ -29,6 +29,11 @@
             data-locale="auto"
             data-currency="JPY">
         </script>
+        <input type="hidden" name="item_price" value="{{ $item->item_price }}">
+        <input type="hidden" name="item_id" value="{{ $item->id }}">
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+        <input type="hidden" name="payment_way_id" value="1">
     </form>
+</div>
 @endsection
 

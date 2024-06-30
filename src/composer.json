@@ -10,6 +10,7 @@
         "guzzlehttp/guzzle": "^7.4.5",
         "guzzlehttp/promises": "^1.5.3",
         "guzzlehttp/psr7": "^2.4.5",
+        "laravel/cashier": "^13.17",
         "laravel/fortify": "^1.19",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",

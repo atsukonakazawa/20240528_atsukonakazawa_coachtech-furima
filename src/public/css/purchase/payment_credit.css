@@ -1,0 +1,29 @@
+/* content */
+.content__outer {
+    width: 100%;
+    margin: 5px auto;
+    text-align: center;
+}
+
+.payment__title-outer {
+    width: 100%;
+    margin: 50px auto 50px;
+}
+
+.payment__title{
+    width: 500px;
+    font-size: 35px;
+    margin: 50px auto 50px;
+}
+
+.name{
+    font-size: 30px;
+}
+
+.price{
+    width: 300px;
+    margin: 30px auto 50px;
+    font-size: 40px;
+    border-bottom: double 5px black;
+}
+
