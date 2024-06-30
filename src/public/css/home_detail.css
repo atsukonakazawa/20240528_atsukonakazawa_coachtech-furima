@@ -88,14 +88,18 @@
 }
 
 .img__outer {
-    width: 50%;
-    padding-top: 100px;
+    width: 400px;
+    margin: 100px 50px 0;
     text-align: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .img__outer img {
-    width: 70%;
+    width: 400px;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .detail__outer {

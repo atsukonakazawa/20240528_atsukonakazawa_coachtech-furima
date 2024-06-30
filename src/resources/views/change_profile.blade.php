@@ -73,11 +73,16 @@
     <div class="input__group">
         <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
         @csrf
-
             <div class="input__group-img">
                 <img class="user__img" src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
                 <div class="img__div">
-                    <input class="input__img" type="file" id="img" name="newImg" value="{{ old('img') }}" >
+                    <label class="file__label" for="img">
+                        ファイルを選択
+                        <input class="input__img" type="file" id="img" name="newImg" value="{{ old('img') }}" >
+                    </label>
+                    <p class="file__none">
+                        選択されていません
+                    </p>
                     <p class="limit__p-img">
                         ※取扱可能な画像形式はjpeg,jpg,svgです。
                     </p>
@@ -85,6 +90,19 @@
                         ※最大サイズは2048KBまでです。
                     </p>
                 </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(function() {
+                        $('.file__label input[type=file]').on('change', function () {
+                            var file = $(this).prop('files')[0];
+                            if (file) {
+                                $('.file__none').text(file.name);
+                            } else {
+                                $('.file__none').text('選択されていません');
+                            }
+                        });
+                    });
+                </script>
             </div>
 
             <div class="input__group-row">

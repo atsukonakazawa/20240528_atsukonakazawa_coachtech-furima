@@ -73,13 +73,18 @@
     <div class="input__group">
         <form action="{{ route('item.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-
             <div class="input__group-img">
                 <p class="input__group-p">
                     商品画像
                 </p>
                 <div class="group__img">
-                    <input class="input__img" type="file" name="item_img" value="{{ old('item_img') }}" >
+                    <label class="file__label" for="item_img">
+                        ファイルを選択
+                        <input class="input__img" type="file" id="item_img"  name="item_img" value="{{ old('item_img') }}" >
+                    </label>
+                    <p class="file__none">
+                        選択されていません
+                    </p>
                     <p class="limit__p">
                         ※取扱可能な画像形式はjpeg,jpg,svgです。
                     </p>
@@ -87,6 +92,19 @@
                         ※最大サイズは2048KBまでです。
                     </p>
                 </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(function() {
+                        $('.file__label input[type=file]').on('change', function () {
+                            var file = $(this).prop('files')[0];
+                            if (file) {
+                                $('.file__none').text(file.name);
+                            } else {
+                                $('.file__none').text('選択されていません');
+                            }
+                        });
+                    });
+                </script>
             </div>
             <div class="form__error">
             @error('item_img')

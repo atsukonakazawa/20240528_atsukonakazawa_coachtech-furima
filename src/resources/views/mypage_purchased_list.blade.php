@@ -67,7 +67,7 @@
 <div class="content__outer">
     <div class="user__part">
         <div class="user__img-outer">
-            <img src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
+            <img class="user__img" src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
         </div>
         <div class="user__nickname-outer">
             <p class="user__nickname">
@@ -111,8 +111,8 @@
         @foreach($soldItems as $soldItem)
             <form action="{{ route('home.detail_sold') }}" method="get">
             @csrf
-                <div class="item__box">
-                    <button class="each__item" type="submit">
+                <button class="each__item" type="submit">
+                    <div class="item__box">
                         <input type="hidden" name="soldItem_id" value="{{ $soldItem->id }}">
                         <div class="item__img-group">
                             <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
@@ -125,8 +125,8 @@
                                 ¥ {{ number_format($soldItem->item_price) }}
                             </div>
                         </div>
-                    </button>
-                </div>
+                    </div>
+                </button>
             </form>
         @endforeach
     </div>

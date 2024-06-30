@@ -1,0 +1,216 @@
+/* header */
+.search__outer {
+    width: 100%;
+    height: 100%;
+}
+
+.search__input {
+    width: 100%;
+    height: 100%;
+    padding: 7px 10px 7px 25px;
+    border-radius: 7px;
+    font-size: 120%;
+}
+
+.logout__outer {
+    width: 25%;
+    height: 100%;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.logout__button {
+    color: white;
+    background-color: black;
+    border: 0;
+    font-size: 110%;
+    cursor: pointer;
+}
+
+.mypage__button-outer,
+.home__header-outer {
+    width: 25%;
+    height: 100%;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.mypage__button,
+.home__header-button {
+    color: white;
+    background-color: black;
+    font-size: 120%;
+    border: 0;
+    cursor: pointer;
+}
+
+.create__link-outer {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+}
+
+.sell-create__button {
+    width: 60%;
+    height: 100%;
+    margin: 0 20%;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    font-size: 120%;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+/* content */
+.content__outer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 5px auto;
+}
+
+.item__data-outer{
+    width: 600px;
+}
+
+.upper__part{
+    width: 600px;
+    height: 200px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.img__outer{
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img__outer-img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.item__data{
+    width: 450px;
+    height: 300px;
+    margin-left: 50px;
+}
+
+.item__title{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.item__price{
+    font-size: 25px;
+}
+
+.change__address-outer,
+.payment__way-outer{
+    width: 600px;
+}
+
+.change__address-title,
+.payment__way-title{
+    width: 600px;
+    font-size: 25px;
+}
+
+.profile__address-outer{
+    width: 550px;
+    margin-left: 50px;
+}
+
+.profile__postcode,
+.profile__address,
+.profile__building{
+    width: 550px;
+    font-size: 20px;
+}
+
+.change-address__button-outer{
+    width: 600px;
+    text-align: right;
+}
+
+.change-address__button{
+    width: 250px;
+    margin-top: 50px;
+    padding: 5px 10px;
+    border: solid 1px rgb(15, 118, 152);
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(15, 118, 152);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.payment__way-select-outer{
+    width: 600px;
+    text-align: right;
+}
+
+.payment__way-select{
+    width: 250px;
+    margin-top: 20px;
+    padding: 5px 10px;
+    border: solid 1px rgb(15, 118, 152);
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(15, 118, 152);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.confirm__box {
+    width: 450px;
+}
+
+.confirm__table{
+    width: 400px;
+    height: 300px;
+    margin-top: 100px;
+    border: solid 1px black;
+}
+
+.confirm__table th{
+    width: 150px;
+    padding-left: 30px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.confirm__table td{
+    width: 200px;
+    padding-left: 10px;
+    text-align: left;
+    font-size: 25px;
+}
+
+.purchase__button-outer {
+    width: 500px;
+}
+
+.purchase__button {
+    width: 400px;
+    height: 45px;
+    margin-top: 80px;
+    border: 0;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.purchase__button-p{
+    color: red;
+}

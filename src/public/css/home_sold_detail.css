@@ -94,11 +94,15 @@
     position: relative;
     top: 0;
     left: 0;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .img__outer img {
     width: 400px;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .sold__mark {

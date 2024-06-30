@@ -39,10 +39,10 @@
 @endsection
 
 @section('home')
-<div class="home__header-outer">
+<div class="home__outer">
     <form action="{{ route('item.home') }}" method="get">
     @csrf
-        <button class="home__header-button" type="submit">
+        <button class="home__button" type="submit">
             ホーム
         </button>
     </form>

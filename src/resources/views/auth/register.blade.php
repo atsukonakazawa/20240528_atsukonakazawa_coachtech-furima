@@ -93,6 +93,19 @@
                         選択されていません
                     </p>
                 </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(function() {
+                        $('.file__label input[type=file]').on('change', function () {
+                            var file = $(this).prop('files')[0];
+                            if (file) {
+                                $('.file__none').text(file.name);
+                            } else {
+                                $('.file__none').text('選択されていません');
+                            }
+                        });
+                    });
+                </script>
                 <div class="form__error">
                 @error('img')
                     {{ $message }}
@@ -144,14 +157,6 @@
         </form>
     </div>
 </div>
-<script>
-    $(function() {
-        $('.file__label input[type=file]').on('change', function () {
-            var file = $(this).prop('files')[0];
-            $('.file__none').text(file.name);
-        });
-    });
-</script>
 <script>
     async function fetchAddress() {
         const postcode = document.getElementById('postcode').value;

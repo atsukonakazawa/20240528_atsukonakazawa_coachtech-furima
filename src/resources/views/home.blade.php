@@ -99,8 +99,8 @@
         @foreach($soldItems as $soldItem)
             <form action="{{ route('home.detail_sold') }}" method="get">
             @csrf
-                <div class="item__box">
-                    <button class="each__item" type="submit">
+                <button class="each__item" type="submit">
+                    <div class="item__box">
                         <input type="hidden" name="soldItem_id" value="{{ $soldItem->id }}">
                         <div class="item__img-group">
                             <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
@@ -113,8 +113,8 @@
                                 ¥ {{ number_format($soldItem->item_price) }}
                             </p>
                         </div>
-                    </button>
-                </div>
+                    </div>
+                </button>
             </form>
         @endforeach
     </div>
