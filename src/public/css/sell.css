@@ -1,72 +1,133 @@
 /* header */
 .search__outer {
     width: 100%;
-    height: 100%;
+    height: 50%;
+    padding-top: 7px;
+}
+
+@media screen and (max-width:768px) {
+    .search__outer {
+        width: 100%;
+        height: 50%;
+        padding-top: 2px;
+    }
 }
 
 .search__input {
     width: 100%;
-    height: 100%;
+    margin-top: 5px;
     padding: 7px 10px 7px 25px;
     border-radius: 7px;
-    font-size: 120%;
+    font-size: 90%;
 }
 
-.logout__outer {
-    width: 25%;
-    height: 100%;
-    padding-top: 1%;
-    text-align: center;
+@media screen and (max-width:768px) {
+    .search__input {
+        width: 100%;
+        margin-top: 9px;
+        padding: 4px 5px 4px 5px;
+        border-radius: 7px;
+        font-size: 7px;
+    }
 }
 
-.logout__button {
-    color: white;
-    background-color: black;
-    border: 0;
-    font-size: 110%;
-    cursor: pointer;
-}
-
+.logout__outer,
 .mypage__button-outer,
 .home__header-outer {
     width: 25%;
-    height: 100%;
-    padding-top: 1%;
+    height: 50%;
+    margin-top: 0px;
     text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .logout__outer,
+    .mypage__button-outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+}
+
+.logout__button,
 .mypage__button,
 .home__header-button {
     color: white;
     background-color: black;
     border: 0;
-    font-size: 120%;
+    font-size: 90%;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .logout__button,
+    .mypage__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
 }
 
 .create__link-outer {
     width: 25%;
-    height: 100%;
+    height: 50%;
+    margin-top: 5px;
+    padding-top: 6px;
     text-align: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .create__link-outer {
+        width: 30%;
+        height: 50%;
+        margin-top: 3px;
+        padding-top: 1px;
+        text-align: center;
+        cursor: pointer;
+    }
 }
 
 .sell-create__button {
     width: 60%;
-    height: 100%;
+    height: 110%;
     margin: 0 20%;
+    padding-top: 100px;
     border-radius: 5px;
     text-decoration: none;
     color: black;
     background-color: white;
-    font-size: 120%;
+    font-size: 90%;
     padding: 5px 5px;
-    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .sell-create__button {
+        width: 60%;
+        height: 20px;
+        margin: 0 20%;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        font-size: 6px;
+        padding: 3px 3px;
+    }
 }
 
 /* content */
 .content__outer {
     width: 100%;
-    margin: 5px auto;
+    margin: 5px auto 50px;
 }
 
 .title__outer {
@@ -76,21 +137,38 @@
     font-size: 25px;
 }
 
+@media screen and (max-width:768px) {
+    .title__outer {
+        width: 100%;
+        height: 50px;
+        margin: 25px auto;
+        text-align: center;
+        font-size: 13px;
+    }
+}
+
 .input__group {
     width: 100%;
     text-align: center;
 }
 
 .input__group-img{
-    width: 700px;
+    width: 95%;
     margin: 10px auto;
+}
+
+@media screen and (max-width:768px) {
+    .input__group-img {
+        width: 95%;
+        margin: 5px auto;
+    }
 }
 
 .file__label {
     display: block;
     font-size: 20px;
     text-align: center;
-    width: 200px;
+    width: 30%;
     margin: 0 auto;
     padding: 5px 10px;
     color: red;
@@ -98,6 +176,22 @@
     border-radius: 5px;
     border: solid 2px red;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .file__label {
+        display: block;
+        font-size: 10px;
+        text-align: center;
+        width: 30%;
+        margin: 0 auto;
+        padding: 3px 5px;
+        color: red;
+        background-color: white;
+        border-radius: 5px;
+        border: solid 1px red;
+        cursor: pointer;
+    }
 }
 
 .file__label:hover {
@@ -114,12 +208,29 @@
     word-break: break-all;
 }
 
+@media screen and (max-width:768px) {
+    .file__none {
+        font-size: 10px;
+        word-break: break-all;
+    }
+}
+
 .input__group-p{
-    width: 700px;
+    width: 95%;
     margin: 20px auto 5px;
     text-align: left;
     font-size: 20px;
     font-weight: bold;
+}
+
+@media screen and (max-width:768px) {
+    .input__group-p {
+        width: 95%;
+        margin: 10px auto 3px;
+        text-align: left;
+        font-size: 10px;
+        font-weight: bold;
+    }
 }
 
 .group__img{
@@ -129,40 +240,79 @@
     border-radius: 5px;
 }
 
+@media screen and (max-width:768px) {
+    .group__img {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        border: dashed 1px black;
+        border-radius: 5px;
+    }
+}
+
 .limit__p{
-    width: 700px;
+    width: 95%;
     margin: 0;
-    padding-left: 220px;
-    text-align: left;
+    text-align: center;
     color: red;
     font-size: 15px;
 }
 
+@media screen and (max-width:768px) {
+    .limit__p {
+        width: 95%;
+        margin: 0;
+        text-align: center;
+        color: red;
+        font-size: 8px;
+    }
+}
+
 .subtitle__outer{
-    width: 700px;
+    width: 95%;
     margin: 5px auto;
 }
 
+@media screen and (max-width:768px) {
+    .subtitle__outer {
+        width: 95%;
+        margin: 3px auto;
+    }
+}
+
 .subtitle{
-    width: 700px;
+    width: 95%;
     font-size: 30px;
     font-weight: bold;
     text-align: left;
     border-bottom: solid 1px black;
 }
 
-.input__group-row select{
-    width: 700px;
+@media screen and (max-width:768px) {
+    .subtitle {
+        width: 95%;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+        border-bottom: solid 1px black;
+    }
+}
+
+.input__group-row select,
+.input__group-row input{
+    width: 95%;
     height: 40px;
 }
 
-.input__group-row input{
-    width: 700px;
-    height: 40px;
+@media screen and (max-width:768px) {
+    .input__group-row select,
+    .input__group-row input {
+        width: 95%;
+        height: 20px;
+    }
 }
 
 .sell__button {
-    width: 700px;
+    width: 95%;
     height: 45px;
     margin-top: 80px;
     margin-bottom: 100px;
@@ -174,14 +324,49 @@
     cursor: pointer;
 }
 
-::placeholder{
-    font-size: 20px;
+@media screen and (max-width:768px) {
+    .sell__button {
+        width: 95%;
+        height: 23px;
+        margin-top: 40px;
+        margin-bottom: 500px;
+        border: 0;
+        border-radius: 5px;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        cursor: pointer;
+    }
 }
 
-select{
-    font-size: 20px;
-}
-
+::placeholder,
+select,
 input{
     font-size: 20px;
+}
+
+@media screen and (max-width:768px) {
+    ::placeholder,
+    select,
+    input {
+        font-size: 10px;
+    }
+}
+
+.form__error{
+    width: 95%;
+    margin: 1px auto;
+    text-align: left;
+    font-size: 20px;
+    color: red;
+}
+
+@media screen and (max-width:768px) {
+    .form__error {
+        width: 95%;
+        margin: 1px auto;
+        text-align: left;
+        font-size: 10px;
+        color: red;
+    }
 }

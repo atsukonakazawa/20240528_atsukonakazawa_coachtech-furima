@@ -118,5 +118,21 @@
             </form>
         @endforeach
     </div>
+    <!--管理者画面はこちら-->
+    <div class="admin__button-outer">
+        <form action="{{ route('admin.menu') }}" method="get">
+            <button class="admin__button" type="submit">
+                管理者画面はこちら
+            </button>
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+        </form>
+        <div class="message__outer">
+            <p class="message">
+            @if(session('message'))
+                {{ session('message')}}
+            @endif
+            </p>
+        </div>
+    </div>
 </div>
 @endsection

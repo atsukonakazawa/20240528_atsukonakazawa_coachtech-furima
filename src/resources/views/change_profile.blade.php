@@ -151,19 +151,10 @@
                 <input class="input__building" name="newBuilding" value="{{ old('building') }}" type="text" placeholder="{{ $profile->building }}">
             </div>
 
-            <div class="input__group-row">
-                <p class="input__group-p">
-                    自己紹介文
-                </p>
-                <input class="input__introduction" name="newIntroduction" type="text" value="{{ old('introduction') }}" placeholder="{{ $profile->introduction }}">
-            </div>
-            <div class="form__error">
-            @error('introduction')
-                {{ $message }}
-            @enderror
-            </div>
-
             <div class="update__button-outer">
+                <div class="form__error">
+                    {{ $errors->first('at_least_one') }}
+                </div>
                 <button class="update__button" type="submit">
                     更新する
                 </button>

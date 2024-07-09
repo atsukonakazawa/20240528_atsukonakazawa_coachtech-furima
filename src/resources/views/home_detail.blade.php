@@ -61,15 +61,6 @@
 @endsection
 
 @section('content')
-<div class="mylist__outer">
-    <form action="{{ route('favorite.list') }}" method="get">
-    @csrf
-        <button class="favorite__list-button" type="submit">
-            ⭐️ マイリスト
-        </button>
-    </form>
-</div>
-
 <div class="content__outer">
     @foreach($items as $item)
         <div class="img__outer">
@@ -135,6 +126,17 @@
                 <p class="detail">
                     説明：{{ $item->item_detail }}
                 </p>
+                <div class="seller__outer">
+                    <p class="seller">
+                        出品者
+                    </p>
+                    <div class="user__img-outer">
+                        <img class="user__img" src="{{ asset('storage/profiles/' . basename($item->user->profile->img)) }}" alt="user_img">
+                    </div>
+                    <p class="seller__name">
+                        {{ $item->user->profile->nickname }}
+                    </p>
+                </div>
             </div>
         </div>
     @endforeach

@@ -1,7 +1,7 @@
 /* content */
 .content__outer {
     width: 100%;
-    margin: 5px auto;
+    margin: 5px auto 50px;
     text-align: center;
 }
 
@@ -10,20 +10,49 @@
     margin: 50px auto 50px;
 }
 
-.payment__title{
+@media screen and (max-width:768px) {
+    .payment__title-outer {
+        width: 100%;
+        margin: 25px auto 25px;
+    }
+}
+
+.payment__title {
     width: 500px;
     font-size: 35px;
     margin: 50px auto 50px;
 }
 
-.name{
+@media screen and (max-width:768px) {
+    .payment__title {
+        width: 250px;
+        font-size: 18px;
+        margin: 25px auto 25px;
+    }
+}
+
+.name {
     font-size: 30px;
 }
 
-.price{
+@media screen and (max-width:768px) {
+    .name {
+        font-size: 15px;
+    }
+}
+
+.price {
     width: 300px;
     margin: 30px auto 50px;
     font-size: 40px;
     border-bottom: double 5px black;
 }
 
+@media screen and (max-width:768px) {
+    .price {
+        width: 150px;
+        margin: 15px auto 25px;
+        font-size: 20px;
+        border-bottom: double 5px black;
+    }
+}

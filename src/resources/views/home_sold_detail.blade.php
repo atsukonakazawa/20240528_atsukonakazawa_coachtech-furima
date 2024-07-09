@@ -61,15 +61,6 @@
 @endsection
 
 @section('content')
-<div class="mylist__outer">
-    <form action="{{ route('favorite.list') }}" method="get">
-    @csrf
-        <button class="favorite__list-button" type="submit">
-            ⭐️ マイリスト
-        </button>
-    </form>
-</div>
-
 <div class="content__outer">
     @foreach($soldItems as $soldItem)
         <div class="img__outer">
@@ -110,7 +101,7 @@
                 <p class="comments__counts">{{ $commentsCount }}</p> <!-- コメント数を表示 -->
             </div>
             <button class="purchase__button" type="button" disabled>
-                購入する
+                SOLD
             </button>
             <div class="detail__group">
                 <h3 class="detail__title">
@@ -119,10 +110,10 @@
                 <p class="condition">
                     商品の状態：{{ $soldItem->condition->condition }}
                 </p>
-                <p class="main__catogory">
-                    メインカテゴリー：{{ $soldItem->mainCategory->mian_category }}
+                <p class="main__category">
+                    メインカテゴリー：{{ $soldItem->mainCategory->main_category }}
                 </p>
-                <p class="sub__catogory">
+                <p class="sub__category">
                     サブカテゴリー：{{ $soldItem->subCategory->sub_category }}
                 </p>
                 <p class="color">

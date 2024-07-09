@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="content__outer">
-    <form class="pay-form" action="/pay/credit" method="POST">
+    <form class="pay__form" action="{{ route('pay.credit') }}" method="POST">
         @csrf
         <div class="payment__title-outer">
             <h2 class="payment__title">
@@ -22,8 +22,9 @@
         <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="{{ env('STRIPE_KEY') }}"
+            data-amount="{{ $item->item_price }}"
             data-name="Stripe決済デモ"
-            data-label="支払い情報を入力する"
+            data-label="決済をする"
             data-description="これはデモ決済です"
             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
             data-locale="auto"
@@ -36,4 +37,3 @@
     </form>
 </div>
 @endsection
-

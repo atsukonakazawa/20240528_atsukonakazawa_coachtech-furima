@@ -1,7 +1,14 @@
 /* content */
 .content__outer {
-    width: 100%;
-    margin: 5px auto;
+    width: 95%;
+    margin: 5px auto 50px;
+}
+
+@media screen and (max-width:768px) {
+    .content__outer {
+        width: 95%;
+        margin: 5px auto 50px;
+    }
 }
 
 .content{
@@ -13,7 +20,7 @@
 }
 
 .register__box{
-    width: 50%;
+    width: 80%;
     margin: 5px auto;
 }
 
@@ -24,9 +31,25 @@
     font-size: 40px;
 }
 
+@media screen and (max-width:768px) {
+    .title {
+        margin-top: 40px;
+        margin-bottom: 25px;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
 .register__box-row{
     width: 100%;
-    height: 120px;
+    height: 200px;
+}
+
+@media screen and (max-width:768px) {
+    .register__box-row {
+        width: 100%;
+        height: 100px;
+    }
 }
 
 .register__box-p{
@@ -34,6 +57,15 @@
     margin-top: 5%;
     font-size: 25px;
     font-weight: bold;
+}
+
+@media screen and (max-width:768px) {
+    .register__box-p {
+        width: 100%;
+        margin-top: 3%;
+        font-size: 13px;
+        font-weight: bold;
+    }
 }
 
 .required{
@@ -49,6 +81,17 @@
     border: solid 2px gainsboro;
 }
 
+@media screen and (max-width:768px) {
+    .register__box-row input {
+        width: 100%;
+        height: 25px;
+        margin-bottom: 0;
+        font-size: 10px;
+        border-radius: 5px;
+        border: solid 1px gainsboro;
+    }
+}
+
 ::placeholder{
     color: silver;
 }
@@ -62,18 +105,34 @@
     font-style: italic;
 }
 
-.register__box-textarea-row,.register__box-img-row{
-    width: 100%;
-    height: 180px;
+@media screen and (max-width:768px) {
+    .form__error {
+        width: 100%;
+        height: 20px;
+        margin: 0 auto auto auto;
+        font-size: 10px;
+        color: red;
+        font-style: italic;
+    }
 }
 
-.register__box-textarea{
-    font-size: 25px;
+.register__box-img-row{
+    width: 100%;
+    height: 250px;
+    margin-top: 50px;
 }
 
-.register__box-img-row {
-    width: 100%;
-    height: 150px;
+@media screen and (max-width:768px) {
+    .register__box-img-row {
+        width: 100%;
+        height: 125px;
+        margin-top: 30px;
+        margin-bottom: 0%;
+    }
+}
+
+.flex__group{
+    display: flex;
 }
 
 .file__label{
@@ -89,6 +148,21 @@
     cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .file__label {
+        display: block;
+        font-size: 13px;
+        text-align: center;
+        width: 150px;
+        padding: 3px 10px;
+        color: red;
+        background-color: white;
+        border-radius: 5px;
+        border: solid 1px red;
+        cursor: pointer;
+    }
+}
+
 .file__label:hover {
     opacity: 0.7;
 }
@@ -100,23 +174,51 @@
 
 .file__none {
     font-size: 20px;
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 20px;
     word-break: break-all;
+}
+
+@media screen and (max-width:768px) {
+    .file__none {
+        font-size: 10px;
+        margin: 0;
+        padding-top: 5px;
+        padding-left: 10px;
+        word-break: break-all;
+    }
 }
 
 .register__button-outer{
     width: 100%;
+    text-align: center;
 }
 
 .register__button{
-    width: 100%;
+    width: 70%;
     height: 50px;
-    margin-top: 50px;
+    margin: 50px;
     background-color: red;
     color: white;
     border: 0;
     border-radius: 5px;
     font-size: 20px;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .register__button {
+        width: 70%;
+        height: 25px;
+        margin: 25px;
+        background-color: red;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        font-size: 10px;
+        cursor: pointer;
+    }
 }
 
 .to__login{
@@ -127,9 +229,28 @@
     text-align: center;
 }
 
+@media screen and (max-width:768px) {
+    .to__login {
+        width: 40%;
+        margin: 3px auto;
+        padding-top: 5px;
+        padding-bottom: 100px;
+        text-align: center;
+    }
+}
+
 .to__login a{
     text-decoration: none;
     color: blue;
     font-size: 20px;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .to__login a {
+        text-decoration: none;
+        color: blue;
+        font-size: 10px;
+        cursor: pointer;
+    }
 }

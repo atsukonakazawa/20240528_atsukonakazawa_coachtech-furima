@@ -89,14 +89,15 @@
                 {{ $commentsCount }}
             </p> <!-- コメント数を表示 -->
         </div>
+        <p class="purchase__button-p">
+            ※お気に入り登録・コメント・購入は
+            ログイン後にご利用いただけます
+        </p>
         <a class="purchase__button-outer" href="/login">
             <button class="purchase__button" type="button">
                 購入する
             </button>
         </a>
-        <p class="purchase__button-p">
-            ※お気に入り・コメント・購入はログイン後にご利用いただけます
-        </p>
         <div class="detail__group">
             <h3 class="detail__title">
                 商品説明

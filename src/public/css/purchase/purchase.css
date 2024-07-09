@@ -1,66 +1,129 @@
 /* header */
 .search__outer {
     width: 100%;
-    height: 100%;
+    height: 50%;
+    padding-top: 7px;
+}
+
+@media screen and (max-width:768px) {
+    .search__outer {
+        width: 100%;
+        height: 50%;
+        padding-top: 2px;
+    }
 }
 
 .search__input {
     width: 100%;
-    height: 100%;
+    margin-top: 5px;
     padding: 7px 10px 7px 25px;
     border-radius: 7px;
-    font-size: 120%;
+    font-size: 90%;
 }
 
-.logout__outer {
-    width: 25%;
-    height: 100%;
-    padding-top: 1%;
-    text-align: center;
+@media screen and (max-width:768px) {
+    .search__input {
+        width: 100%;
+        margin-top: 9px;
+        padding: 4px 5px 4px 5px;
+        border-radius: 7px;
+        font-size: 7px;
+    }
 }
 
-.logout__button {
-    color: white;
-    background-color: black;
-    border: 0;
-    font-size: 110%;
-    cursor: pointer;
-}
-
+.logout__outer,
 .mypage__button-outer,
 .home__header-outer {
     width: 25%;
-    height: 100%;
-    padding-top: 1%;
+    height: 50%;
+    margin-top: 0px;
     text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+
+    .logout__outer,
+    .mypage__button-outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+}
+
+.logout__button,
 .mypage__button,
 .home__header-button {
     color: white;
     background-color: black;
-    font-size: 120%;
     border: 0;
+    font-size: 90%;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+
+    .logout__button,
+    .mypage__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
 }
 
 .create__link-outer {
     width: 25%;
-    height: 100%;
+    height: 50%;
+    margin-top: 5px;
+    padding-top: 6px;
     text-align: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .create__link-outer {
+        width: 30%;
+        height: 50%;
+        margin-top: 3px;
+        padding-top: 1px;
+        text-align: center;
+        cursor: pointer;
+    }
 }
 
 .sell-create__button {
     width: 60%;
-    height: 100%;
+    height: 110%;
     margin: 0 20%;
+    padding-top: 100px;
     border-radius: 5px;
     text-decoration: none;
     color: black;
     background-color: white;
-    font-size: 120%;
+    font-size: 90%;
     padding: 5px 5px;
-    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .sell-create__button {
+        width: 60%;
+        height: 20px;
+        margin: 0 20%;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        font-size: 6px;
+        padding: 3px 3px;
+    }
 }
 
 /* content */
@@ -68,149 +131,371 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    margin: 5px auto;
+    margin: 5px auto 50px;
 }
 
-.item__data-outer{
-    width: 600px;
+@media screen and (max-width:768px) {
+    .content__outer {
+        width: 100%;
+        margin: 5px auto 50px;
+    }
 }
 
-.upper__part{
-    width: 600px;
+.item__data-outer {
+    width: 50%;
+    margin-right: 4%;
+    margin-left: 3%;
+}
+
+@media screen and (max-width:768px) {
+    .item__data-outer {
+        width: 80%;
+        position: relative;
+    }
+}
+
+.upper__part {
+    width: 100%;
     height: 200px;
     margin-top: 100px;
     display: flex;
     justify-content: flex-start;
 }
 
-.img__outer{
-    width: 200px;
+@media screen and (max-width:768px) {
+    .upper__part {
+        width: 100%;
+        height: 100px;
+        margin-top: 50px;
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+.img__outer {
+    width: 50%;
     height: 200px;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
-.img__outer-img{
-    width: 200px;
+@media screen and (max-width:768px) {
+    .img__outer {
+        width: 50%;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+}
+
+.img__outer-img {
+    width: 100%;
     height: 200px;
     object-fit: contain;
 }
 
-.item__data{
-    width: 450px;
+@media screen and (max-width:768px) {
+    .img__outer-img {
+        width: 100%;
+        height: 100px;
+        object-fit: contain;
+    }
+}
+
+.item__data {
+    width: 50%;
     height: 300px;
     margin-left: 50px;
 }
 
-.item__title{
+@media screen and (max-width:768px) {
+    .item__data {
+        width: 50%;
+        height: 150px;
+        margin-left: 25px;
+    }
+}
+
+.item__title {
     font-size: 30px;
     font-weight: bold;
 }
 
-.item__price{
+@media screen and (max-width:768px) {
+    .item__title {
+        font-size: 15px;
+        font-weight: bold;
+    }
+}
+
+.item__price {
     font-size: 25px;
+}
+
+@media screen and (max-width:768px) {
+    .item__price {
+        font-size: 13px;
+    }
 }
 
 .change__address-outer,
-.payment__way-outer{
-    width: 600px;
+.payment__way-outer {
+    width: 100%;
 }
 
 .change__address-title,
-.payment__way-title{
-    width: 600px;
+.payment__way-title {
+    width: 100%;
     font-size: 25px;
 }
 
-.profile__address-outer{
-    width: 550px;
-    margin-left: 50px;
+@media screen and (max-width:768px) {
+    .change__address-title,
+    .payment__way-title {
+        font-size: 13px;
+    }
+}
+
+.profile__address-outer {
+    width: 90%;
+    margin-left: 10%;
+}
+
+@media screen and (max-width:768px) {
+    .profile__address-outer {
+        width: 90%;
+        margin-left: 10%;
+    }
 }
 
 .profile__postcode,
 .profile__address,
-.profile__building{
-    width: 550px;
+.profile__building {
+    width: 100%;
     font-size: 20px;
 }
 
-.change-address__button-outer{
-    width: 600px;
+@media screen and (max-width:768px) {
+    .profile__postcode,
+    .profile__address,
+    .profile__building {
+        width: 100%;
+        font-size: 10px;
+    }
+}
+
+.change-address__button-outer {
+    width: 100%;
     text-align: right;
 }
 
-.change-address__button{
-    width: 250px;
+@media screen and (max-width:768px) {
+    .change-address__button-outer {
+        width: 100%;
+        text-align: right;
+    }
+}
+
+.change-address__button {
+    width: 50%;
     margin-top: 50px;
     padding: 5px 10px;
     border: solid 1px rgb(15, 118, 152);
     border-radius: 5px;
     background-color: white;
     color: rgb(15, 118, 152);
-    font-size: 20px;
+    font-size: 80%;
     cursor: pointer;
 }
 
-.payment__way-select-outer{
-    width: 600px;
+@media screen and (max-width:768px) {
+    .change-address__button {
+        width: 50%;
+        margin-top: 25px;
+        padding: 3px 5px;
+        border: solid 1px rgb(15, 118, 152);
+        border-radius: 5px;
+        background-color: white;
+        color: rgb(15, 118, 152);
+        font-size: 90%;
+        cursor: pointer;
+    }
+}
+
+.payment__way-select-outer {
+    width: 100%;
     text-align: right;
 }
 
-.payment__way-select{
-    width: 250px;
+@media screen and (max-width:768px) {
+    .payment__way-select-outer {
+        width: 100%;
+        text-align: right;
+    }
+}
+
+.payment__way-select {
+    width: 50%;
     margin-top: 20px;
     padding: 5px 10px;
     border: solid 1px rgb(15, 118, 152);
     border-radius: 5px;
     background-color: white;
     color: rgb(15, 118, 152);
-    font-size: 20px;
+    font-size: 90%;
     cursor: pointer;
 }
 
-.confirm__box {
-    width: 450px;
+@media screen and (max-width:768px) {
+    .payment__way-select {
+        width: 50%;
+        margin-top: 10px;
+        padding: 3px 5px;
+        border: solid 1px rgb(15, 118, 152);
+        border-radius: 5px;
+        background-color: white;
+        color: rgb(15, 118, 152);
+        font-size: 90%;
+        cursor: pointer;
+    }
 }
 
-.confirm__table{
-    width: 400px;
-    height: 300px;
+.payment__p{
+    color: red;
+    margin-bottom: 100px;
+    font-size: 20px;
+}
+
+@media screen and (max-width:768px) {
+    .payment__p {
+        color: red;
+        margin-bottom: 50px;
+        font-size: 70%;
+    }
+}
+
+.confirm__box {
+    width: 40%;
+    margin-right: 3%;
+}
+
+@media screen and (max-width:768px) {
+    .confirm__box {
+        width: 80%;
+        position: absolute;
+        top: 450px;
+        left: 10%;
+    }
+}
+
+.confirm__table {
+    width: 80%;
+    height: 250px;
     margin-top: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
     border: solid 1px black;
 }
 
-.confirm__table th{
-    width: 150px;
+@media screen and (max-width:768px) {
+    .confirm__table {
+        width: 80%;
+        height: 150px;
+        margin-top: 50px;
+        margin-left: 10%;
+        margin-right: 10%;
+        border: solid 1px black;
+    }
+}
+
+.confirm__table th {
+    width: 47%;
     padding-left: 30px;
     text-align: left;
-    font-size: 25px;
+    font-size: 100%;
     font-weight: bold;
 }
 
-.confirm__table td{
-    width: 200px;
+@media screen and (max-width:768px) {
+    .confirm__table th {
+        width: 47%;
+        padding-left: 15px;
+        text-align: left;
+        font-size: 100%;
+        font-weight: bold;
+    }
+}
+
+.confirm__table td {
+    width: 53%;
     padding-left: 10px;
     text-align: left;
-    font-size: 25px;
+    font-size: 100%;
+}
+
+@media screen and (max-width:768px) {
+    .confirm__table td {
+        width: 53%;
+        padding-left: 5px;
+        text-align: left;
+        font-size: 100%;
+    }
 }
 
 .purchase__button-outer {
-    width: 500px;
+    width: 100%;
+}
+
+@media screen and (max-width:768px) {
+    .purchase__button-outer {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
 }
 
 .purchase__button {
-    width: 400px;
+    width: 80%;
     height: 45px;
     margin-top: 80px;
+    margin-right: 10%;
+    margin-left: 10%;
     border: 0;
     border-radius: 5px;
     background-color: red;
     color: white;
-    font-size: 23px;
+    font-size: 25px;
     cursor: pointer;
 }
 
-.purchase__button-p{
+@media screen and (max-width:768px) {
+    .purchase__button {
+        width: 90%;
+        height: 23px;
+        margin-top: 40px;
+        margin-right: 5%;
+        margin-left: 5%;
+        border: 0;
+        border-radius: 5px;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        cursor: pointer;
+    }
+}
+
+.purchase__button-p {
     color: red;
+    text-align: center;
+    font-size: 23px;
+}
+
+@media screen and (max-width:768px) {
+    .purchase__button-p {
+        color: red;
+        text-align: center;
+        font-size: 12px;
+    }
 }

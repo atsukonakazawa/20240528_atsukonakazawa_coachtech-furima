@@ -1,66 +1,127 @@
 /* header */
 .search__outer {
     width: 100%;
-    height: 100%;
+    height: 50%;
+    padding-top: 7px;
+}
+
+@media screen and (max-width:768px) {
+    .search__outer {
+        width: 100%;
+        height: 50%;
+        padding-top: 2px;
+    }
 }
 
 .search__input {
     width: 100%;
-    height: 100%;
+    margin-top: 5px;
     padding: 7px 10px 7px 25px;
     border-radius: 7px;
-    font-size: 120%;
+    font-size: 90%;
 }
 
-.logout__outer {
-    width: 25%;
-    height: 100%;
-    padding-top: 1%;
-    text-align: center;
+@media screen and (max-width:768px) {
+    .search__input {
+        width: 100%;
+        margin-top: 9px;
+        padding: 4px 5px 4px 5px;
+        border-radius: 7px;
+        font-size: 7px;
+    }
 }
 
-.logout__button {
-    color: white;
-    background-color: black;
-    border: 0;
-    font-size: 110%;
-    cursor: pointer;
-}
-
+.logout__outer,
 .mypage__button-outer,
 .home__header-outer {
     width: 25%;
-    height: 100%;
-    padding-top: 1%;
+    height: 50%;
+    margin-top: 0px;
     text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .logout__outer,
+    .mypage__button-outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+}
+
+.logout__button,
 .mypage__button,
 .home__header-button {
     color: white;
     background-color: black;
-    font-size: 120%;
     border: 0;
+    font-size: 90%;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .logout__button,
+    .mypage__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
 }
 
 .create__link-outer {
     width: 25%;
-    height: 100%;
+    height: 50%;
+    margin-top: 5px;
+    padding-top: 6px;
     text-align: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .create__link-outer {
+        width: 30%;
+        height: 50%;
+        margin-top: 3px;
+        padding-top: 1px;
+        text-align: center;
+        cursor: pointer;
+    }
 }
 
 .sell-create__button {
     width: 60%;
     height: 110%;
     margin: 0 20%;
+    padding-top: 100px;
     border-radius: 5px;
     text-decoration: none;
     color: black;
     background-color: white;
-    font-size: 120%;
+    font-size: 90%;
     padding: 5px 5px;
-    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .sell-create__button {
+        width: 60%;
+        height: 20px;
+        margin: 0 20%;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        font-size: 6px;
+        padding: 3px 3px;
+    }
 }
 
 /* content */
@@ -68,22 +129,42 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    margin: 5px auto;
+    margin: 5px auto 50px;
 }
 
 .img__outer {
     width: 400px;
     margin: 100px 50px 0;
     text-align: center;
-    justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+@media screen and (max-width:768px) {
+    .img__outer {
+        width: 150px;
+        margin: 25px 13px 0;
+        text-align: center;
+        position: relative;
+        top: 0;
+        left: 0;
+        align-items: center;
+        overflow: hidden;
+    }
 }
 
 .img__outer img {
     width: 400px;
     border-radius: 5px;
     object-fit: cover;
+}
+
+@media screen and (max-width:768px) {
+    .img__outer img {
+        width: 150px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
 }
 
 .detail__outer-group{
@@ -95,11 +176,27 @@
     padding-top: 50px;
 }
 
+@media screen and (max-width:768px) {
+    .detail__outer {
+        width: 50%;
+        padding-top: 25px;
+    }
+}
+
 .item__title {
     width: 100%;
     margin: 0;
     font-size: 35px;
     font-weight: bold;
+}
+
+@media screen and (max-width:768px) {
+    .item__title {
+        width: 100%;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
 }
 
 .brand {
@@ -109,6 +206,15 @@
     font-size: 20px;
 }
 
+@media screen and (max-width:768px) {
+    .brand {
+        width: 100%;
+        margin: 0;
+        padding-top: 5px;
+        font-size: 10px;
+    }
+}
+
 .price {
     width: 100%;
     margin: 0;
@@ -116,14 +222,27 @@
     font-size: 30px;
 }
 
+@media screen and (max-width:768px) {
+    .price {
+        width: 100%;
+        margin: 0;
+        padding-top: 8px;
+        font-size: 15px;
+    }
+}
+
 .icon__group {
-    width: 200px;
+    width: 50%;
     padding-top: 10px;
     display: flex;
 }
 
-.icon__group form{
-    width: 70px;
+@media screen and (max-width:768px) {
+    .icon__group {
+        width: 50%;
+        padding-top: 5px;
+        display: flex;
+    }
 }
 
 .star__button {
@@ -135,6 +254,17 @@
     cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .star__button {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px 0 0;
+        background-color: white;
+        border: 0;
+        cursor: pointer;
+    }
+}
+
 .comment__button {
     width: 60px;
     height: 60px;
@@ -144,10 +274,29 @@
     cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .comment__button {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px 0 5px;
+        background-color: white;
+        border: 0;
+        cursor: pointer;
+    }
+}
+
 .star__img,
 .comment__img {
     width: 40px;
     height: 40px;
+}
+
+@media screen and (max-width:768px) {
+    .star__img,
+    .comment__img {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 .counts {
@@ -155,6 +304,15 @@
     padding-top: 10px;
     padding-left: 15px;
     display: flex;
+}
+
+@media screen and (max-width:768px) {
+    .counts {
+        width: 100px;
+        padding-top: 5px;
+        padding-left: 8px;
+        display: flex;
+    }
 }
 
 .favorites__counts {
@@ -165,12 +323,34 @@
     border: 0;
 }
 
+@media screen and (max-width:768px) {
+    .favorites__counts {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        background-color: white;
+        border: 0;
+        font-size: 35%;
+    }
+}
+
 .comments__counts {
     width: 60px;
     height: 60px;
     margin: 0 10px;
     background-color: white;
     border: 0;
+}
+
+@media screen and (max-width:768px) {
+    .comments__counts {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        background-color: white;
+        border: 0;
+        font-size: 35%;
+    }
 }
 
 /* comment */
@@ -186,34 +366,76 @@
     width: 60px;
 }
 
-.comment-user__img{
+@media screen and (max-width:768px) {
+    .comment-user__img-outer {
+        width: 30px;
+    }
+}
+
+.comment-user__img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.comment__user{
+@media screen and (max-width:768px) {
+    .comment-user__img {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+.comment__user {
     height: 50px;
     margin-left: 5px;
     font-size: 20px;
 }
 
-.comment__content{
+@media screen and (max-width:768px) {
+    .comment__user {
+        height: 25px;
+        margin-left: 3px;
+        font-size: 10px;
+    }
+}
+
+.comment__content {
     width: 80%;
+    margin: 10px;
     font-size: 18px;
 }
 
-.comment-delete__button-outer{
+@media screen and (max-width:768px) {
+    .comment__content {
+        width: 80%;
+        margin: 5px;
+        font-size: 9px;
+    }
+}
+
+.comment-delete__button-outer {
     width: 80%;
     text-align: right;
 }
 
-.comment-delete__button{
+.comment-delete__button {
     width: 100px;
     text-align: center;
     margin-top: 0;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .comment-delete__button {
+        width: 50px;
+        text-align: center;
+        margin-top: 0;
+        font-size: 10px;
+        cursor: pointer;
+    }
 }
 
 .comment__create-outer{
@@ -221,10 +443,25 @@
     margin-top: 50px;
 }
 
+@media screen and (max-width:768px) {
+    .comment__create-outer {
+        width: 100%;
+        margin-top: 25px;
+    }
+}
+
 .comment__create-p{
     width: 100%;
     font-size: 20px;
     margin-bottom: 0;
+}
+
+@media screen and (max-width:768px) {
+    .comment__create-p {
+        width: 100%;
+        font-size: 10px;
+        margin-bottom: 0;
+    }
 }
 
 .comment__create{
@@ -234,16 +471,36 @@
     font-size: 25px;
 }
 
+@media screen and (max-width:768px) {
+    .comment__create {
+        width: 70%;
+        height: 50px;
+        margin-top: 0;
+        font-size: 10px;
+    }
+}
+
 .comment-send__button-outer{
     width: 80%;
     text-align: right;
 }
 
 .comment-send__button{
-    width: 200px;
+    width: 250px;
     text-align: center;
     margin-top: 30px;
     margin-bottom: 100px;
     font-size: 20px;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .comment-send__button {
+        width: 125px;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 50px;
+        font-size: 10px;
+        cursor: pointer;
+    }
 }

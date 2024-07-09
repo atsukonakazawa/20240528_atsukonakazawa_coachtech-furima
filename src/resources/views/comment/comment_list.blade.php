@@ -7,13 +7,37 @@
         width: 80%;
         display: flex;
         margin-top: 30px;
+        border-top: solid 1px silver;
     }
+
+    @media screen and (max-width:768px) {
+        .user__row {
+            width: 80%;
+            display: flex;
+            margin-top: 15px;
+            border-top: solid 1px silver;
+        }
+    }
+
     .user__row-right{
         width: 80%;
         display: flex;
         justify-content:flex-end;
         margin-top: 30px;
+        border-top: solid 1px silver;
     }
+
+
+    @media screen and (max-width:768px) {
+        .user__row-right{
+            width: 80%;
+            display: flex;
+            justify-content:flex-end;
+            margin-top: 15px;
+            border-top: solid 1px silver;
+        }
+    }
+
 </style>
 @endsection
 
@@ -113,6 +137,9 @@
                 </div>
             </div>
             <div class="comment__list-outer">
+                <p>
+                    コメント一覧
+                </p>
                 <div class="comment__list">
                     @foreach($comments as $comment)
                         <div class="{{ $comment->user_id == $user->id ? 'user__row-right' : 'user__row' }}">

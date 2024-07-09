@@ -30,7 +30,6 @@ class RegisterRequest extends FormRequest
             'address' => 'required',
             'email' => 'required|email|unique:users,email',
             'img' => 'required|image|mimes:jpeg,jpg,svg|max:2048KB',
-            'introduction' => 'required|max:300',
             'password' => 'required|min:8|max:12'
         ];
     }
@@ -50,8 +49,6 @@ class RegisterRequest extends FormRequest
             'img.image' => '画像ファイルを選択してください',
             'img.mimes' => 'ファイル形式はjpeg,png,jpg,gif,svgのいずれかです',
             'img.max' => '最大ファイルサイズは2048KBまでです',
-            'introduction.required' => '自己紹介文を入力してください',
-            'introduction.max:300' => '自己紹介文は300文字以内で入力してください',
             'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードは8〜12文字で入力してください',
         ];

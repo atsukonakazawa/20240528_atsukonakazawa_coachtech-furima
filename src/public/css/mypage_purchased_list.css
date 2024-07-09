@@ -1,89 +1,170 @@
 /* header */
 .search__outer {
     width: 100%;
-    height: 100%;
+    height: 50%;
+    padding-top: 7px;
+}
+
+@media screen and (max-width:768px) {
+    .search__outer {
+        width: 100%;
+        height: 50%;
+        padding-top: 2px;
+    }
 }
 
 .search__input {
     width: 100%;
-    height: 100%;
     padding: 7px 10px 7px 25px;
     border-radius: 7px;
-    font-size: 120%;
+    font-size: 90%;
 }
 
-.logout__outer {
-    width: 25%;
-    height: 100%;
-    padding-top: 1%;
-    text-align: center;
+@media screen and (max-width:768px) {
+    .search__input {
+        width: 100%;
+        margin-top: 9px;
+        padding: 4px 5px 4px 5px;
+        border-radius: 7px;
+        font-size: 7px;
+    }
 }
 
-.logout__button {
-    color: white;
-    background-color: black;
-    border: 0;
-    font-size: 110%;
-    cursor: pointer;
-}
-
+.logout__outer,
 .mypage__button-outer,
 .home__header-outer {
     width: 25%;
-    height: 100%;
-    padding-top: 1%;
+    height: 50%;
+    margin-top: 0px;
     text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .logout__outer,
+    .mypage__button-outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+}
+
+.logout__button,
 .mypage__button,
 .home__header-button {
     color: white;
     background-color: black;
     border: 0;
-    font-size: 120%;
+    font-size: 90%;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .logout__button,
+    .mypage__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
 }
 
 .create__link-outer {
     width: 25%;
-    height: 100%;
+    height: 50%;
+    margin-top: 5px;
+    padding-top: 6px;
     text-align: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .create__link-outer {
+        width: 30%;
+        height: 50%;
+        margin-top: 3px;
+        padding-top: 1px;
+        text-align: center;
+        cursor: pointer;
+    }
 }
 
 .sell-create__button {
     width: 60%;
-    height: 100%;
+    height: 110%;
     margin: 0 20%;
+    padding-top: 100px;
     border-radius: 5px;
     text-decoration: none;
     color: black;
     background-color: white;
-    font-size: 120%;
+    font-size: 90%;
     padding: 5px 5px;
-    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .sell-create__button {
+        width: 60%;
+        height: 20px;
+        margin: 0 20%;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        font-size: 6px;
+        padding: 3px 3px;
+    }
 }
 
 /* content */
 .content__outer {
     width: 100%;
-    margin: 5px auto;
+    margin: 5px auto 50px;
 }
 
 .user__part {
-    width: 100%;
+    width: 85%;
     height: 150px;
     margin-bottom: 30px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+@media screen and (max-width:768px) {
+    .user__part {
+        width: 85%;
+        height: 75px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+    }
 }
 
 .user__img-outer {
-    width: 35%;
+    width: 20%;
     height: 150px;
     text-align: right;
     justify-content: cneter;
     align-items: center;
     overflow: hidden;
+}
+
+@media screen and (max-width:768px) {
+    .user__img-outer {
+        width: 20%;
+        height: 75px;
+        text-align: right;
+        justify-content: cneter;
+        align-items: center;
+        overflow: hidden;
+    }
 }
 
 .user__img {
@@ -95,9 +176,27 @@
     object-fit: cover;
 }
 
+@media screen and (max-width:768px) {
+    .user__img {
+        width: 60px;
+        height: 60px;
+        margin: 0;
+        padding: 0;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
 .user__nickname-outer {
-    width: 40%;
+    width: 60%;
     height: 150px;
+}
+
+@media screen and (max-width:768px) {
+    .user__nickname-outer {
+        width: 60%;
+        height: 75px;
+    }
 }
 
 .user__nickname {
@@ -108,9 +207,26 @@
     font-weight: bold;
 }
 
+@media screen and (max-width:768px) {
+    .user__nickname {
+        width: 100%;
+        height: 75px;
+        padding-left: 10px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
 .to-profile__button-outer {
-    width: 25%;
+    width: 20%;
     height: 150px;
+}
+
+@media screen and (max-width:768px) {
+    .to-profile__button-outer {
+        width: 20%;
+        height: 75px;
+    }
 }
 
 .to-profile__button {
@@ -125,12 +241,36 @@
     cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .to-profile__button {
+        width: 110px;
+        margin-top: 25px;
+        padding: 3px 5px;
+        font-size: 7px;
+        color: red;
+        border-radius: 5px;
+        border: solid 1px red;
+        background-color: white;
+        cursor: pointer;
+    }
+}
+
 .title__outer {
     width: 100%;
     height: 60px;
     border-bottom: solid 2px black;
     text-align: left;
     display: flex;
+}
+
+@media screen and (max-width:768px) {
+    .title__outer {
+        width: 100%;
+        height: 30px;
+        border-bottom: solid 1px black;
+        text-align: left;
+        display: flex;
+    }
 }
 
 .sell__list-button {
@@ -145,6 +285,20 @@
     cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .sell__list-button {
+        width: 100%;
+        height: 25px;
+        margin: auto 25px 0 25px;
+        background-color: white;
+        font-size: 13px;
+        font-weight: bold;
+        color: black;
+        border: 0;
+        cursor: pointer;
+    }
+}
+
 .purchased__list-button {
     width: 100%;
     height: 50px;
@@ -155,6 +309,20 @@
     color: red;
     border: 0;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .purchased__list-button {
+        width: 100%;
+        height: 25px;
+        margin: auto 25px 0 25px;
+        background-color: white;
+        font-size: 13px;
+        font-weight: bold;
+        color: red;
+        border: 0;
+        cursor: pointer;
+    }
 }
 
 /*商品一覧*/
@@ -180,21 +348,28 @@
     position: relative;
     top: 0;
     left: 0;
+}
 
+@media screen and (max-width:768px) {
+    .item__box {
+        width: 150px;
+        height: 150px;
+        border-radius: 5px;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
 }
 
 .item__img {
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    justify-content: cneter;
-    align-items: center;
-    overflow: hidden;
 }
 
 .item__img img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
     object-fit: cover;
 }
@@ -204,7 +379,7 @@
     bottom: 3%;
     left: 0;
     z-index: 5px;
-    width: 50%;
+    width: 70%;
     height: 15%;
 }
 
@@ -220,17 +395,35 @@
     border-bottom-right-radius: 50px;
 }
 
+@media screen and (max-width:768px) {
+    .price {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 7%;
+        color: white;
+        font-size: 12px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+    }
+}
+
 .item__img-group {
     width: 100%;
     height: 100%;
     border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .item__img-group img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     padding: auto;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .sold__mark {
@@ -243,6 +436,18 @@
     border-top-left-radius: 5px;
 }
 
+@media screen and (max-width:768px) {
+    .sold__mark {
+        position: absolute;
+        top: 0px;
+        border-top: 25px solid red;
+        border-right: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 25px solid red;
+        border-top-left-radius: 5px;
+    }
+}
+
 .sold {
     position: absolute;
     top: -50px;
@@ -252,4 +457,17 @@
     font-size: 20px;
     color: white;
     transform: rotate(-45deg);
+}
+
+@media screen and (max-width:768px) {
+    .sold {
+        position: absolute;
+        top: -25px;
+        left: -25px;
+        width: 35px;
+        padding-top: 1px;
+        font-size: 10px;
+        color: white;
+        transform: rotate(-45deg);
+    }
 }

@@ -21,7 +21,6 @@ class CreateProfilesTable extends Migration
             $table->string('address');
             $table->string('building')->nullable();;
             $table->string('img')->nullable();
-            $table->text('introduction')->nullable();
             $table->timestamps();
         });
     }

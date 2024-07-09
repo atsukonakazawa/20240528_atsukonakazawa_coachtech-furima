@@ -1,79 +1,152 @@
 /* header */
 .search__outer {
     width: 100%;
-    height: 100%;
+    height: 50%;
+    padding-top: 7px;
+}
+
+@media screen and (max-width:768px) {
+    .search__outer {
+        width: 100%;
+        height: 50%;
+        padding-top: 2px;
+    }
 }
 
 .search__input {
     width: 100%;
-    height: 100%;
+    margin-top: 5px;
     padding: 7px 10px 7px 25px;
     border-radius: 7px;
-    font-size: 120%;
+    font-size: 90%;
 }
 
-.logout__outer {
-    width: 25%;
-    height: 100%;
-    padding-top: 1%;
-    text-align: center;
+@media screen and (max-width:768px) {
+    .search__input {
+        width: 100%;
+        margin-top: 9px;
+        padding: 4px 5px 4px 5px;
+        border-radius: 7px;
+        font-size: 7px;
+    }
 }
 
-.logout__button {
-    color: white;
-    background-color: black;
-    border: 0;
-    font-size: 110%;
-    cursor: pointer;
-}
-
+.logout__outer,
 .mypage__button-outer,
 .home__header-outer {
     width: 25%;
-    height: 100%;
-    padding-top: 1%;
+    height: 50%;
+    margin-top: 0px;
     text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .logout__outer,
+    .mypage__button-outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+}
+
+.logout__button,
 .mypage__button,
 .home__header-button {
     color: white;
     background-color: black;
     border: 0;
-    font-size: 120%;
+    font-size: 90%;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .logout__button,
+    .mypage__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
 }
 
 .create__link-outer {
     width: 25%;
-    height: 100%;
+    height: 50%;
+    margin-top: 5px;
+    padding-top: 6px;
     text-align: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .create__link-outer {
+        width: 30%;
+        height: 50%;
+        margin-top: 3px;
+        padding-top: 1px;
+        text-align: center;
+        cursor: pointer;
+    }
 }
 
 .sell-create__button {
     width: 60%;
-    height: 100%;
+    height: 110%;
     margin: 0 20%;
+    padding-top: 100px;
     border-radius: 5px;
     text-decoration: none;
     color: black;
     background-color: white;
-    font-size: 120%;
+    font-size: 90%;
     padding: 5px 5px;
-    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .sell-create__button {
+        width: 60%;
+        height: 20px;
+        margin: 0 20%;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        font-size: 6px;
+        padding: 3px 3px;
+    }
 }
 
 /* content */
 .content__outer {
     width: 100%;
-    margin: 5px auto;
+    margin: 5px auto 50px;
+    text-align: center;
 }
 
 .title__outer {
     width: 100%;
     height: 100px;
+    margin: 50px auto;
     text-align: center;
     font-size: 25px;
+}
+
+@media screen and (max-width:768px) {
+    .title__outer {
+        width: 100%;
+        height: 50px;
+        margin: 25px auto;
+        text-align: center;
+        font-size: 13px;
+    }
 }
 
 .input__group {
@@ -83,7 +156,14 @@
 
 .input__group-row {
     width: 550px;
-    margin: 30px auto 40px auto;
+    margin: 30px auto 5px auto;
+}
+
+@media screen and (max-width:768px) {
+    .input__group-row {
+        width: 275px;
+        margin: 15px auto 3px auto;
+    }
 }
 
 .input__group-p {
@@ -94,22 +174,54 @@
     font-weight: bold;
 }
 
+@media screen and (max-width:768px) {
+    .input__group-p {
+        width: 275px;
+        margin: 0;
+        text-align: left;
+        font-size: 13px;
+        font-weight: bold;
+    }
+}
+
 .input__group-row input {
     width: 550px;
     height: 40px;
     margin-top: 10px;
-    font-weight: 20px;
     font-size: 20px;
+}
+
+@media screen and (max-width:768px) {
+    .input__group-row input {
+        width: 275px;
+        height: 20px;
+        margin-top: 5px;
+        font-size: 10px;
+    }
 }
 
 ::placeholder {
     font-size: 20px;
 }
 
+@media screen and (max-width:768px) {
+    ::placeholder {
+        font-size: 10px;
+    }
+}
+
 .input__group-row:last-child {
     width: 550px;
     height: 50px;
     font-weight: 25px;
+}
+
+@media screen and (max-width:768px) {
+    .input__group-row:last-child {
+        width: 275px;
+        height: 25px;
+        font-weight: 13px;
+    }
 }
 
 .update__button {
@@ -123,4 +235,33 @@
     color: white;
     font-size: 23px;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .update__button {
+        width: 275px;
+        height: 23px;
+        margin-top: 15px;
+        margin-bottom: 50px;
+        border: 0;
+        border-radius: 5px;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        cursor: pointer;
+    }
+}
+
+.form__error{
+    text-align: left;
+    color: red;
+    font-size: 20px;
+}
+
+@media screen and (max-width:768px) {
+    .form__error {
+        text-align: left;
+        color: red;
+        font-size: 10px;
+    }
 }

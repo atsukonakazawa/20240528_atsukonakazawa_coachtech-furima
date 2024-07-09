@@ -4,6 +4,15 @@
 <link rel="stylesheet" href="{{ asset('css/purchase/purchase.css') }}">
 @endsection
 
+@section('search')
+<div class="search__outer">
+    <form id="search" action="{{ route('item.search') }}" method="get">
+    @csrf
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+    </form>
+</div>
+@endsection
+
 @section('logout')
 <div class="logout__outer">
     <form action="/logout" method="post">
@@ -73,7 +82,7 @@
             </h3>
             <div class="profile__address-outer">
                 <div class="profile__postcode">
-                    {{ $profile->postcode }}
+                    〒{{ $profile->postcode }}
                 </div>
                 <div class="profile__address">
                     {{ $profile->address }}
@@ -112,6 +121,9 @@
                         </option>
                     @endforeach
                 </select>
+                <p class="payment__p">
+                    ※コンビニ払いと銀行振込はご入金確認後に商品発送となります
+                </p>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@
 @endsection
 
 @section('sell')
-<div class="create__link-outer">
+<div class="create__button-outer">
     <form action="{{ route('item.create') }}" method="get">
     @csrf
         <button class="open-modal">
@@ -88,14 +88,15 @@
                 <p class="favorites__counts">{{ $favoritesCount }}</p> <!-- お気に入り数を表示 -->
                 <p class="comments__counts">{{ $commentsCount }}</p> <!-- コメント数を表示 -->
             </div>
+            <p class="purchase__button-p">
+                ※お気に入り登録・コメント・購入はログイン後に<br>
+                ご利用いただけます
+            </p>
             <a class="purchase__button-outer" href="/login">
                 <button class="purchase__button" type="button" disabled>
-                    購入する
+                    SOLD
                 </button>
             </a>
-            <p class="purchase__button-p">
-                ※お気に入り・コメント・購入はログイン後にご利用いただけます
-            </p>
             <div class="detail__group">
                 <h3 class="detail__title">
                     商品説明
@@ -103,10 +104,10 @@
                 <p class="condition">
                     商品の状態：{{ $soldItem->condition->condition }}
                 </p>
-                <p class="main__catogory">
+                <p class="main__category">
                     メインカテゴリー：{{ $soldItem->mainCategory->mian_category }}
                 </p>
-                <p class="sub__catogory">
+                <p class="sub__category">
                     サブカテゴリー：{{ $soldItem->subCategory->sub_category }}
                 </p>
                 <p class="color">
@@ -119,4 +120,5 @@
         </div>
     @endforeach
 </div>
+<script src="{{ asset('js/index.js') }}"></script>
 @endsection

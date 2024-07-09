@@ -4,6 +4,16 @@
 <link rel="stylesheet" href="{{ asset('css/purchase/change_address.css') }}">
 @endsection
 
+@section('search')
+<div class="search__outer">
+    <form id="search" action="{{ route('item.search') }}" method="get">
+    @csrf
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+    </form>
+</div>
+@endsection
+
+
 @section('logout')
 <div class="logout__outer">
     <form action="/logout" method="post">
@@ -66,25 +76,23 @@
                     郵便番号(半角・数字・ハイフンなし)
                 </p>
                 <input class="input__postcode" id="postcode" name="newPostcode" value="{{ old('postcode') }}" type="text" placeholder="{{ $profile->postcode }}" onblur="fetchAddress()">
+                <div class="form__error">
+                @error('newPostcode')
+                    {{ $message }}
+                @enderror
+                </div>
             </div>
-            <div class="form__error">
-            @error('newPostcode')
-                {{ $message }}
-            @enderror
-            </div>
-
             <div class="input__group-row">
                 <p class="input__group-p">
                     住所(番地まで)
                 </p>
                 <input class="input__address" id="address" name="newAddress" value="{{ old('address') }}" type="text" placeholder="{{ $profile->address }}">
+                <div class="form__error">
+                @error('newAddress')
+                    {{ $message }}
+                @enderror
+                </div>
             </div>
-            <div class="form__error">
-            @error('newAddress')
-                {{ $message }}
-            @enderror
-            </div>
-
             <div class="input__group-row">
                 <p class="input__group-p">
                     建物名

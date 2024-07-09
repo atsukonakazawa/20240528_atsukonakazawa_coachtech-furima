@@ -1,73 +1,134 @@
 /* header */
 .search__outer {
     width: 100%;
-    height: 100%;
+    height: 50%;
+    padding-top: 7px;
+}
+
+@media screen and (max-width:768px) {
+    .search__outer {
+        width: 100%;
+        height: 50%;
+        padding-top: 2px;
+    }
 }
 
 .search__input {
     width: 100%;
-    height: 100%;
+    margin-top: 5px;
     padding: 7px 10px 7px 25px;
     border-radius: 7px;
-    font-size: 120%;
+    font-size: 90%;
 }
 
-.logout__outer {
-    width: 25%;
-    height: 100%;
-    padding-top: 1%;
-    text-align: center;
+@media screen and (max-width:768px) {
+    .search__input {
+        width: 100%;
+        margin-top: 9px;
+        padding: 4px 5px 4px 5px;
+        border-radius: 7px;
+        font-size: 7px;
+    }
 }
 
-.logout__button {
-    color: white;
-    background-color: black;
-    border: 0;
-    font-size: 110%;
-    cursor: pointer;
-}
-
+.logout__outer,
 .mypage__button-outer,
 .home__header-outer {
     width: 25%;
-    height: 100%;
-    padding-top: 1%;
+    height: 50%;
+    margin-top: 0px;
     text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
 }
 
+@media screen and (max-width:768px) {
+    .logout__outer,
+    .mypage__button-outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+}
+
+.logout__button,
 .mypage__button,
 .home__header-button {
     color: white;
     background-color: black;
-    font-size: 120%;
     border: 0;
+    font-size: 90%;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .logout__button,
+    .mypage__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
 }
 
 .create__link-outer {
     width: 25%;
-    height: 100%;
+    height: 50%;
+    margin-top: 5px;
+    padding-top: 6px;
     text-align: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .create__link-outer {
+        width: 30%;
+        height: 50%;
+        margin-top: 3px;
+        padding-top: 1px;
+        text-align: center;
+        cursor: pointer;
+    }
 }
 
 .sell-create__button {
     width: 60%;
-    height: 100%;
+    height: 110%;
     margin: 0 20%;
+    padding-top: 100px;
     border-radius: 5px;
     text-decoration: none;
     color: black;
     background-color: white;
-    font-size: 120%;
+    font-size: 90%;
     padding: 5px 5px;
-    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .sell-create__button {
+        width: 60%;
+        height: 20px;
+        margin: 0 20%;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        font-size: 6px;
+        padding: 3px 3px;
+    }
 }
 
 /* content */
 .content__outer,
 .back__button-outer {
     width: 100%;
-    margin: 5px auto;
+    margin: 5px auto 50px;
     text-align: center;
 }
 
@@ -77,13 +138,39 @@
     margin-bottom: 100px;
 }
 
+@media screen and (max-width:768px) {
+    .title__outer {
+        width: 100%;
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+}
+
 .title {
     width: 100%;
     font-size: 35px;
     margin-bottom: 10px;
 }
 
-.purchased__list-button{
+@media screen and (max-width:768px) {
+    .title {
+        width: 100%;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+}
+
+.back__button-outer{
+    width: 100%;
+}
+
+@media screen and (max-width:768px) {
+    .back__button-outer{
+        width: 100%;
+        }
+}
+
+.purchased__list-button {
     width: 300px;
     height: 70px;
     background-color: white;
@@ -91,4 +178,16 @@
     border-radius: 5px;
     font-size: 20px;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .purchased__list-button {
+        width: 70%;
+        height: 35px;
+        background-color: white;
+        border: solid 1px black;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
 }

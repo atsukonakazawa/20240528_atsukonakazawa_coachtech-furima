@@ -34,9 +34,113 @@ class PaymentController extends Controller
 
         }elseif($paymentWayId == '2'){
 
+            //該当商品の取得
+            $itemId = $request->item_id;
+            $item = Item::where('id',$itemId)->first();
+
+            //該当商品をsoldItemsテーブルに登録
+            $result = [
+                'seller_id' => $item->seller_id,
+                'buyer_id' => $request->user_id,
+                'main_category_id' => $item->main_category_id,
+                'sub_category_id' => $item->sub_category_id,
+                'condition_id' => $item->condition_id,
+                'color_id' => $item->color_id,
+                'payment_way_id' => '1',
+                'item_name' => $item->item_name,
+                'item_detail' => $item->item_detail,
+                'item_price' => $item->item_price
+            ];
+            //brandが入力されている場合のみresultに追加
+            $brand = $item->item_brand;
+            if($brand !== null){
+
+                $result['item_brand'] = $request->item_brand;
+            }
+            SoldItem::create($result);
+
+            //soldItemsテーブルに保存した該当商品を取得
+            $soldItem = SoldItem::where('buyer_id',$request->user_id)
+                        ->orderby('id','desc')
+                        ->first();
+
+            //元々の画像ファイル名とパスを取得
+            $originalFilename = $item->id . '.jpg';
+            $originalFilePath = 'public/items/' . $originalFilename;
+
+            //新しい画像ファイル名とパス
+            $newFilename = $soldItem->id . '.jpg';
+            $newFilePath = 'public/sold_items/' . $newFilename;
+
+            //storage内でファイルを移動
+            if (Storage::exists($originalFilePath)) {
+                Storage::move($originalFilePath, $newFilePath);
+            } else {
+                return response()->json(['error' => 'File not found'], 404);
+            }
+
+            // soldItemsテーブルのitem_imgカラムに新しいパスを保存
+            $soldItem->item_img = 'storage/sold_items/' . $newFilename;
+            $soldItem->save();
+
+            //該当商品をitemsテーブルから削除
+            Item::where('id',$itemId)->delete();
+
             return view('purchase.payment_conbini',compact('item','user','profile'));
 
         }else{
+
+            //該当商品の取得
+            $itemId = $request->item_id;
+            $item = Item::where('id',$itemId)->first();
+
+            //該当商品をsoldItemsテーブルに登録
+            $result = [
+                'seller_id' => $item->seller_id,
+                'buyer_id' => $request->user_id,
+                'main_category_id' => $item->main_category_id,
+                'sub_category_id' => $item->sub_category_id,
+                'condition_id' => $item->condition_id,
+                'color_id' => $item->color_id,
+                'payment_way_id' => '1',
+                'item_name' => $item->item_name,
+                'item_detail' => $item->item_detail,
+                'item_price' => $item->item_price
+            ];
+            //brandが入力されている場合のみresultに追加
+            $brand = $item->item_brand;
+            if($brand !== null){
+
+                $result['item_brand'] = $request->item_brand;
+            }
+            SoldItem::create($result);
+
+            //soldItemsテーブルに保存した該当商品を取得
+            $soldItem = SoldItem::where('buyer_id',$request->user_id)
+                        ->orderby('id','desc')
+                        ->first();
+
+            //元々の画像ファイル名とパスを取得
+            $originalFilename = $item->id . '.jpg';
+            $originalFilePath = 'public/items/' . $originalFilename;
+
+            //新しい画像ファイル名とパス
+            $newFilename = $soldItem->id . '.jpg';
+            $newFilePath = 'public/sold_items/' . $newFilename;
+
+            //storage内でファイルを移動
+            if (Storage::exists($originalFilePath)) {
+                Storage::move($originalFilePath, $newFilePath);
+            } else {
+                return response()->json(['error' => 'File not found'], 404);
+            }
+
+            // soldItemsテーブルのitem_imgカラムに新しいパスを保存
+            $soldItem->item_img = 'storage/sold_items/' . $newFilename;
+            $soldItem->save();
+
+            //該当商品をitemsテーブルから削除
+            Item::where('id',$itemId)->delete();
 
             return view('purchase.payment_transfer',compact('item','user','profile'));
         }

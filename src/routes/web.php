@@ -8,6 +8,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -77,10 +78,18 @@ Route::middleware('auth')->group(function () {
 });
 
 /* ログイン後 */
-/* 支払い */
+/* 支払い関連 */
 Route::middleware('auth')->group(function () {
     Route::get('/purchase/payment',[PaymentController::class,'purchasePayment'])->name("item.payment");
-    Route::post('/purchase/complete',[PaymentController::class,'purchaseComplete'])->name("item.purchased");
-    Route::post('/pay/credit',[PaymentController::class,'payCredit']);
+    Route::post('/pay/credit',[PaymentController::class,'payCredit'])->name("pay.credit");
 });
 
+/* ログイン後 */
+/* 管理者関連 */
+Route::middleware('auth')->group(function () {
+    Route::get('/admin',[AdminController::class,'admin'])->name("admin.menu");
+    Route::get('/admin/users',[AdminController::class,'usersList'])->name("admin.users");
+    Route::post('/admin/users/delete',[AdminController::class,'usersRemove'])->name("admin.usersRemove");
+    Route::get('/admin/comments',[AdminController::class,'commentsList'])->name("admin.comments");
+    Route::post('/admin/comments/delete',[AdminController::class,'commentsRemove'])->name("admin.commentsRemove");
+});

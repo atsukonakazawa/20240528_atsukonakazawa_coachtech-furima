@@ -19,11 +19,11 @@
                         お名前 <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" name="name" value="{{ old('name') }}" type="text" placeholder="高地　哲子">
-                </div>
-                <div class="form__error">
-                @error('name')
-                    {{ $message }}
-                @enderror
+                    <div class="form__error">
+                    @error('name')
+                        {{ $message }}
+                    @enderror
+                    </div>
                 </div>
 
                 <div class="register__box-row">
@@ -31,11 +31,11 @@
                         ユーザー名(アプリ上で公開されます) <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" name="nickname" value="{{ old('nickname') }}" type="text" placeholder="こーち">
-                </div>
-                <div class="form__error">
-                @error('nickname')
-                    {{ $message }}
-                @enderror
+                    <div class="form__error">
+                    @error('nickname')
+                        {{ $message }}
+                    @enderror
+                    </div>
                 </div>
 
                 <div class="register__box-row">
@@ -43,11 +43,11 @@
                         郵便番号(半角・数字・ハイフンなし) <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" id="postcode" name="postcode" value="{{ old('postcode') }}" type="text" placeholder="1231234" onblur="fetchAddress()">
-                </div>
-                <div class="form__error">
-                @error('postcode')
-                    {{ $message }}
-                @enderror
+                    <div class="form__error">
+                    @error('postcode')
+                        {{ $message }}
+                    @enderror
+                    </div>
                 </div>
 
                 <div class="register__box-row">
@@ -55,11 +55,11 @@
                         住所(番地まで) <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" id="address" name="address" value="{{ old('address') }}" type="text" placeholder="東京都港区芝公園4-2-8">
-                </div>
-                <div class="form__error">
-                @error('address')
-                    {{ $message }}
-                @enderror
+                    <div class="form__error">
+                    @error('address')
+                        {{ $message }}
+                    @enderror
+                    </div>
                 </div>
 
                 <div class="register__box-row">
@@ -69,29 +69,25 @@
                     <input class="register__box-input" name="building" value="{{ old('building') }}" type="text" placeholder="東京マンション333">
                 </div>
 
-                <div class="register__box-textarea-row">
-                    <p class="register__box-p">
-                        自己紹介文(最大300文字) <span class="required">※必須</span>
-                    </p>
-                    <textarea class="register__box-textarea" name="introduction" cols="49" rows="3" placeholder="利用を始めたばかりです。慣れない部分もありますが、よろしくお願いいたします。">{{ old('introduction') }}</textarea>
-                </div>
-                <div class="form__error">
-                @error('introduction')
-                    {{ $message }}
-                @enderror
-                </div>
-
                 <div class="register__box-img-row">
                     <p class="register__box-p">
-                        プロフィール画像 (jpeg,jpg,svg・最大2048KBまで)<span class="required">※必須</span>
+                        プロフィール画像<span class="required">※必須</span><br>
+                        (jpeg,jpg,svg・最大2048KBまで)
                     </p>
-                    <label class="file__label" for="img">
-                        ファイルを選択
-                        <input class="register__box-img-input" type="file" id="img" name="img">
-                    </label>
-                    <p class="file__none">
-                        選択されていません
-                    </p>
+                    <div class="flex__group">
+                        <label class="file__label" for="img">
+                            ファイルを選択
+                            <input class="register__box-img-input" type="file" id="img" name="img">
+                        </label>
+                        <p class="file__none">
+                            選択されていません
+                        </p>
+                    </div>
+                    <div class="form__error">
+                    @error('img')
+                        {{ $message }}
+                    @enderror
+                    </div>
                 </div>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
@@ -106,22 +102,17 @@
                         });
                     });
                 </script>
-                <div class="form__error">
-                @error('img')
-                    {{ $message }}
-                @enderror
-                </div>
 
                 <div class="register__box-row">
                     <p class="register__box-p">
                         メールアドレス <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" type="email" name="email" value="{{ old('email') }}" placeholder="kouchi@example.com">
-                </div>
-                <div class="form__error">
-                @error('email')
-                    {{ $message }}
-                @enderror
+                    <div class="form__error">
+                    @error('email')
+                        {{ $message }}
+                    @enderror
+                    </div>
                 </div>
 
                 <div class="register__box-row">
@@ -129,11 +120,11 @@
                         パスワード(8文字以上) <span class="required">※必須</span>
                     </p>
                     <input class="register__box-input" name="password" type="password" value="{{ old('password') }}" placeholder="kouchi123（8文字以上）">
-                </div>
-                <div class="form__error">
-                @error('password')
-                    {{ $message }}
-                @enderror
+                    <div class="form__error">
+                    @error('password')
+                        {{ $message }}
+                    @enderror
+                    </div>
                 </div>
 
                 <div class="register__box-row">

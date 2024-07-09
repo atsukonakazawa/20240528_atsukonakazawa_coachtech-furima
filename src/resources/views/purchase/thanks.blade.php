@@ -67,7 +67,7 @@
 <div class="content__outer">
     <div class="title__outer">
         <h2 class="title">
-            購入が完了しました！😊
+            購入が完了しました！
         </h2>
     </div>
     <div class="back__button-outer">

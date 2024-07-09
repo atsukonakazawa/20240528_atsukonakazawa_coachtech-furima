@@ -10,6 +10,7 @@ use App\Models\Profile;
 use App\Models\PaymentWay;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\ProfileRequest;
 
 
 
@@ -87,7 +88,7 @@ class UserController extends Controller
 
     }
 
-    public function profileUpdate(Request $request){
+    public function profileUpdate(ProfileRequest $request){
 
         $newImg = $request->newImg;
         $newNickname = $request->newNickname;

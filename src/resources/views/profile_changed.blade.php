@@ -70,5 +70,13 @@
             プロフィールを更新しました
         </h2>
     </div>
+    <div class="">
+        <form action="{{ route('item.home') }}" method="get">
+        @csrf
+            <button class="back__button" type="submit">
+                ホームへ戻る
+            </button>
+        </form>
+    </div>
 </div>
 @endsection

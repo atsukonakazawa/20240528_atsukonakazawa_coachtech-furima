@@ -30,7 +30,7 @@
 @endsection
 
 @section('sell')
-<div class="create__link-outer">
+<div class="create__button-outer">
     <form action="{{ route('item.create') }}" method="get">
     @csrf
         <button class="open-modal">

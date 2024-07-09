@@ -1,64 +1,129 @@
 /* header */
 .search__outer {
     width: 100%;
-    height: 100%;
+    height: 50%;
+    padding-top: 7px;
+}
+
+@media screen and (max-width:768px) {
+    .search__outer {
+        width: 100%;
+        height: 50%;
+        padding-top: 2px;
+    }
 }
 
 .search__input {
     width: 100%;
-    height: 100%;
+    margin-top: 5px;
     padding: 7px 10px 7px 25px;
     border-radius: 7px;
-    font-size:120%;
+    font-size: 90%;
 }
 
-.logout__outer {
+@media screen and (max-width:768px) {
+    .search__input {
+        width: 100%;
+        margin-top: 9px;
+        padding: 4px 5px 4px 5px;
+        border-radius: 7px;
+        font-size: 7px;
+    }
+}
+
+.logout__outer,
+.mypage__button-outer,
+.home__header-outer {
     width: 25%;
-    height: 100%;
-    padding-top: 1%;
+    height: 50%;
+    margin-top: 0px;
     text-align: center;
-}
-
-.logout__button {
-    color: white;
-    background-color: black;
-    border: 0;
-    font-size: 110%;
+    padding-top: 10px;
     cursor: pointer;
 }
 
-.mypage__button-outer,.home__header-outer{
-    width: 25%;
-    height: 100%;
-    padding-top: 1%;
-    text-align: center;
+@media screen and (max-width:768px) {
+
+    .logout__outer,
+    .mypage__button-outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
 }
 
-.mypage__button,.home__header-button{
+.logout__button,
+.mypage__button,
+.home__header-button {
     color: white;
     background-color: black;
-    font-size: 120%;
     border: 0;
+    font-size: 90%;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+
+    .logout__button,
+    .mypage__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
 }
 
 .create__link-outer {
     width: 25%;
-    height: 100%;
+    height: 50%;
+    margin-top: 5px;
+    padding-top: 6px;
     text-align: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .create__link-outer {
+        width: 30%;
+        height: 50%;
+        margin-top: 3px;
+        padding-top: 1px;
+        text-align: center;
+        cursor: pointer;
+    }
 }
 
 .sell-create__button {
     width: 60%;
-    height: 100%;
+    height: 110%;
     margin: 0 20%;
+    padding-top: 100px;
     border-radius: 5px;
     text-decoration: none;
     color: black;
     background-color: white;
-    font-size: 120%;
+    font-size: 90%;
     padding: 5px 5px;
-    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .sell-create__button {
+        width: 60%;
+        height: 20px;
+        margin: 0 20%;
+        border-radius: 5px;
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        font-size: 6px;
+        padding: 3px 3px;
+    }
 }
 
 /* content */
@@ -74,10 +139,9 @@
     display: flex;
 }
 
-
 .home__form,
 .favorite__form {
-    width: 20%;
+    width: 30%;
     height: 100%;
     margin-top: 3%;
     margin-bottom: 1%;
@@ -92,6 +156,19 @@
     margin-left: 5%;
     border: 0;
     cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .home__button,
+    .favorite__list-button {
+        width: 100%;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: white;
+        margin-left: 5%;
+        border: 0;
+        cursor: pointer;
+    }
 }
 
 /*商品一覧*/
@@ -117,7 +194,17 @@
     position: relative;
     top: 0;
     left: 0;
+}
 
+@media screen and (max-width:768px) {
+    .item__box {
+        width: 150px;
+        height: 150px;
+        border-radius: 5px;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
 }
 
 .item__img {
@@ -153,17 +240,35 @@
     border-bottom-right-radius: 50px;
 }
 
+@media screen and (max-width:768px) {
+    .price {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 7%;
+        color: white;
+        font-size: 12px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+    }
+}
+
 .item__img-group {
     width: 100%;
     height: 100%;
     border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .item__img-group img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     padding: auto;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .sold__mark {
@@ -176,6 +281,18 @@
     border-top-left-radius: 5px;
 }
 
+@media screen and (max-width:768px) {
+    .sold__mark {
+        position: absolute;
+        top: 0px;
+        border-top: 25px solid red;
+        border-right: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 25px solid red;
+        border-top-left-radius: 5px;
+    }
+}
+
 .sold {
     position: absolute;
     top: -50px;
@@ -185,4 +302,17 @@
     font-size: 20px;
     color: white;
     transform: rotate(-45deg);
+}
+
+@media screen and (max-width:768px) {
+    .sold {
+        position: absolute;
+        top: -25px;
+        left: -25px;
+        width: 35px;
+        padding-top: 1px;
+        font-size: 10px;
+        color: white;
+        transform: rotate(-45deg);
+    }
 }

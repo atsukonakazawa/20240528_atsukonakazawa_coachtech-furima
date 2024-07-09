@@ -75,19 +75,35 @@
             {{ $comment->comment }}
         </div>
     </div>
-    <form action="{{ route('comment.remove') }}" method="post">
-    @csrf
-        <div class="remove__button-outer">
-            <button class="remove__button" type="submit">
-                コメントを削除する
-            </button>
-            <input type="hidden" name="comment_id" value="{{ $comment->id }}">
-            @if($itemId)
-            <input type="hidden" name="item_id" value="{{ $itemId }}">
-            @elseif($soldItemId)
-            <input type="hidden" name="sold_item_id" value="{{ $soldItemId }}">
-            @endif
-        </div>
-    </form>
+    <div class="button__outer">
+        <form action="{{ route('comment.remove') }}" method="post">
+        @csrf
+            <div class="remove__button-outer">
+                <button class="remove__button" type="submit">
+                    コメントを削除する
+                </button>
+                <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                @if($itemId)
+                <input type="hidden" name="item_id" value="{{ $itemId }}">
+                @elseif($soldItemId)
+                <input type="hidden" name="sold_item_id" value="{{ $soldItemId }}">
+                @endif
+            </div>
+        </form>
+        <form action="{{ route('comment.back') }}" method="get">
+        @csrf
+            <div class="back__button-outer">
+                <button class="back__button" type="submit">
+                    戻る
+                </button>
+                @if($itemId)
+                <input type="hidden" name="item_id" value="{{ $itemId }}">
+                @elseif($soldItemId)
+                <input type="hidden" name="sold_item_id" value="{{ $soldItemId }}">
+                @endif
+            </div>
+        </form>
+    </div>
+
 </div>
 @endsection

@@ -33,7 +33,6 @@ class AuthController extends Controller
             'nickname' => $request->nickname,
             'postcode' => $request->postcode,
             'address' => $request->address,
-            'introduction' => $request->introduction,
         ];
 
         //buildingが入力されている場合のみresult2に追加

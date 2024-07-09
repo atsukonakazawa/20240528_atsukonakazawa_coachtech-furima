@@ -1,6 +1,6 @@
 .body {
     width: 100%;
-    margin: 5px auto;
+    margin: 0px auto;
 }
 
 .header {
@@ -9,12 +9,30 @@
     margin: 5px auto;
 }
 
+@media screen and (max-width:768px) {
+    .header {
+        width: 100%;
+        height: 50px;
+        margin: 5px auto;
+    }
+}
+
 .header__inner {
     width: 100%;
     height: 70px;
     display: flex;
     background-color: black;
     color: white;
+}
+
+@media screen and (max-width:768px) {
+    .header__inner {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        background-color: black;
+        color: white;
+    }
 }
 
 .header__logo-outer {
@@ -56,5 +74,4 @@
 
 .main {
     width: 100%;
-    height: 70px;
 }

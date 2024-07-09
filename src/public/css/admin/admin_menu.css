@@ -1,0 +1,97 @@
+/* header */
+.logout__outer,
+.home__header-outer {
+    width: 25%;
+    height: 50%;
+    margin-top: 0px;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .logout__outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+}
+
+.logout__button,
+.home__header-button {
+    color: white;
+    background-color: black;
+    border: 0;
+    font-size: 90%;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .logout__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
+}
+
+/* content */
+.content__outer {
+    width: 100%;
+    margin: 5px auto 50px;
+}
+
+.title__outer {
+    width: 100%;
+    height: 100px;
+    margin: 50px auto 10px;
+    text-align: center;
+    font-size: 25px;
+}
+
+@media screen and (max-width:768px) {
+    .title__outer {
+        width: 100%;
+        height: 50px;
+        margin: 25px auto 5px;
+        text-align: center;
+        font-size: 13px;
+    }
+}
+
+.menu__button-outer{
+    width: 100%;
+    text-align: center;
+}
+
+.menu__button{
+    width: 400px;
+    height: 70px;
+    margin-top: 30px;
+    padding: 10px 30px;
+    background-color: ivory;
+    border: solid 3px black;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .menu__button {
+        width: 200px;
+        height: 35px;
+        margin-top: 15px;
+        padding: 5px 15px;
+        background-color: ivory;
+        border: solid 2px black;
+        border-radius: 5px;
+        font-size: 10px;
+        cursor: pointer;
+    }
+}
