@@ -84,8 +84,17 @@
                                 削除
                             </button>
                         </td>
+                    </form>
+                    <form action="{{ route('admin.email') }}" method="post">
+                    @csrf
+                        <td class="email">
+                            <button class="email__button">
+                                メール
+                            </button>
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                        </td>
+                    </form>
                     </tr>
-                </form>
                 @endforeach
             </table>
         </div>

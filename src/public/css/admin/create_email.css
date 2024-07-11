@@ -1,0 +1,167 @@
+/* header */
+.logout__outer,
+.home__header-outer {
+    width: 25%;
+    height: 50%;
+    margin-top: 0px;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+
+    .logout__outer,
+    .home__header-outer {
+        width: 25%;
+        height: 50%;
+        margin-top: 0px;
+        text-align: center;
+        padding-top: 5px;
+        cursor: pointer;
+    }
+}
+
+.logout__button,
+.home__header-button {
+    color: white;
+    background-color: black;
+    border: 0;
+    font-size: 90%;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+
+    .logout__button,
+    .home__header-button {
+        color: white;
+        background-color: black;
+        border: 0;
+        font-size: 7px;
+        cursor: pointer;
+    }
+}
+
+/* content */
+.content__outer {
+    width: 100%;
+    margin: 5px auto 50px;
+}
+
+.title__outer {
+    width: 100%;
+    height: 100px;
+    margin: 50px auto 10px;
+    text-align: center;
+    font-size: 25px;
+}
+
+@media screen and (max-width:768px) {
+    .title__outer {
+        width: 100%;
+        height: 50px;
+        margin: 25px auto 5px;
+        text-align: center;
+        font-size: 13px;
+    }
+}
+
+.create__outer{
+    width: 70%;
+    margin: 50px auto 10px;
+    text-align: left;
+    font-size: 30px;
+}
+
+@media screen and (max-width:768px) {
+    .create__outer {
+        width: 70%;
+        margin: 50px auto 10px;
+        text-align: left;
+        font-size: 15px;
+    }
+}
+
+.row{
+    width: 90%;
+    margin: 50px auto 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width:768px) {
+    .row {
+        width: 90%;
+        margin: 25px auto 25px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.row label{
+    width: 40%;
+}
+
+.row p,
+.row input,
+.row textarea{
+    width: 60%;
+    margin: 0;
+}
+
+.email__title-input{
+    height: 50px;
+    font-size: 20px;
+}
+
+@media screen and (max-width:768px) {
+    .email__title-input {
+        height: 25px;
+        font-size: 10px;
+    }
+}
+
+.email__body-textarea{
+    height: 150px;
+    font-size: 20px;
+}
+
+@media screen and (max-width:768px) {
+    .email__body-textarea {
+        height: 75px;
+        font-size: 10px;
+    }
+}
+
+.send__button-outer{
+    width: 100%;
+    margin-top: 100px;
+    text-align: center;
+}
+
+@media screen and (max-width:768px) {
+    .send__button-outer {
+        width: 100%;
+        margin-top: 50px;
+        text-align: center;
+    }
+}
+
+.send__button{
+    width: 50%;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .send__button {
+        width: 50%;
+        height: 25px;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+}

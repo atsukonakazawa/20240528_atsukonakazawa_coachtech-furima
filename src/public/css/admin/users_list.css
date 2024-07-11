@@ -132,13 +132,17 @@
 
 .name,
 .nickname{
-    width: 15%;
+    width: 13%;
 }
 
 .email,
 .address{
-    width: 30%;
+    width: 28%;
     word-break: break-all;
+}
+
+.email{
+    width: 8%;
 }
 
 .each__row{
@@ -170,6 +174,26 @@
         background: red;
         color: white;
         border: 0;
+        font-size: 8px;
+        cursor: pointer;
+    }
+}
+
+.email__button{
+    background: gainsboro;
+    color: black;
+    border-radius: 5px;
+    border: solid 1px black;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .email__button {
+        background: gainsboro;
+        color: black;
+        border-radius: 5px;
+        border: solid 1px black;
         font-size: 8px;
         cursor: pointer;
     }

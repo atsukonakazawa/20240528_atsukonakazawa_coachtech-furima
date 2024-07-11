@@ -37,19 +37,13 @@
             <form action="{{ route('admin.users') }}" method="get">
             @csrf
                 <button class="menu__button" type="submit">
-                    会員管理画面へ
+                    会員管理画面へ(会員さまへのメールもこちら)
                 </button>
             </form>
             <form action="{{ route('admin.comments') }}" method="get">
             @csrf
                 <button class="menu__button" type="submit">
                     コメント管理画面へ
-                </button>
-            </form>
-            <form action="" method="get">
-            @csrf
-                <button class="menu__button" type="submit">
-                    利用者にメールを送る
                 </button>
             </form>
         </div>

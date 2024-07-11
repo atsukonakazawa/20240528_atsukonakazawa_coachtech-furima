@@ -7,8 +7,7 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Item;
 use App\Models\SoldItem;
-
-
+use Mail;
 
 
 class AdminController extends Controller
@@ -75,5 +74,30 @@ class AdminController extends Controller
         return view('admin.comments_list',compact('comments'));
     }
 
+    public function emailCreate(Request $request){
 
+        $user = User::where('id',$request->user_id)
+                    ->first();
+
+        return view('admin.create_email',compact('user'));
+    }
+
+    public function emailSend(Request $request){
+
+        $name = $request->user_name;
+        $email = $request->user_email;
+        $title = $request->email_title;
+        $body = $request->email_body;
+
+        $data = [];
+
+        // 本文を担当者が入力した文章に設定
+        Mail::send([], [], function($message) use ($email, $name, $title, $body) {
+            $message->to($email, $name)
+                ->subject($title)
+                ->setBody($body);
+        });
+
+        return view('admin.email_sent');
+    }
 }

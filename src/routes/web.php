@@ -85,11 +85,18 @@ Route::middleware('auth')->group(function () {
 });
 
 /* ログイン後 */
-/* 管理者関連 */
+/* 管理者専用画面の表示、ユーザー一覧表示と削除、コメント一覧表示と削除 */
 Route::middleware('auth')->group(function () {
     Route::get('/admin',[AdminController::class,'admin'])->name("admin.menu");
     Route::get('/admin/users',[AdminController::class,'usersList'])->name("admin.users");
     Route::post('/admin/users/delete',[AdminController::class,'usersRemove'])->name("admin.usersRemove");
     Route::get('/admin/comments',[AdminController::class,'commentsList'])->name("admin.comments");
     Route::post('/admin/comments/delete',[AdminController::class,'commentsRemove'])->name("admin.commentsRemove");
+});
+
+/* ログイン後 */
+/* 管理者から利用者にメールの送信 */
+Route::middleware('auth')->group(function () {
+    Route::post('/admin/users/email/create',[AdminController::class,'emailCreate'])->name("admin.email");
+    Route::post('/admin/users/email/send',[AdminController::class,'emailSend'])->name("admin.send");
 });
