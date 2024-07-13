@@ -16,20 +16,6 @@ use App\Http\Requests\ProfileRequest;
 
 class UserController extends Controller
 {
-    public function mypageShow(Request $request){
-
-        $items = Item::where('seller_id',$request->user_id)
-                        ->get();
-        $soldItems = SoldItem::where('seller_id',$request->user_id)
-                        ->get();
-        $user = User::where('id',$request->user_id)
-                        ->first();
-        $profile = Profile::where('user_id',$request->user_id)
-                        ->first();
-
-        return view('mypage_sell_list',compact('items','soldItems','user','profile'));
-    }
-
     public function mypageSellList(Request $request){
 
         $items = Item::where('seller_id',$request->user_id)
@@ -51,31 +37,53 @@ class UserController extends Controller
         return view('mypage_purchased_list',compact('soldItems','profile'));
     }
 
-    public function myapageSearch(Request $request){
+    public function mypageSearch(Request $request){
 
-        //検索欄に入力されたキーワードをitemsテーブルのitem_nameの中で探す
+        //検索欄に入力されたキーワードをitemsテーブルの中で探す
         $keyword = $request->search;
         $items = Item::where('seller_id',$request->user_id)
                         ->where('item_name','like', '%'.$keyword.'%')
                         ->orWhere('item_brand','like', '%'.$keyword.'%')
-                        ->orWhere('item_color','like', '%'.$keyword.'%')
                         ->orWhere('item_detail','like', '%'.$keyword.'%')
                         ->orWhere('item_price','like', '%'.$keyword.'%')
                         ->get();
+        //検索欄に入力されたキーワードをsold_itemsテーブルの中で探す
         $soldItems = SoldItem::where('seller_id',$request->user_id)
                         ->where('item_name','like', '%'.$keyword.'%')
                         ->orWhere('item_brand','like', '%'.$keyword.'%')
-                        ->orWhere('item_color','like', '%'.$keyword.'%')
                         ->orWhere('item_detail','like', '%'.$keyword.'%')
                         ->orWhere('item_price','like', '%'.$keyword.'%')
                         ->get();
+        $profile = Profile::where('user_id',$request->user_id)
+                                ->first();
 
         //検索欄に入力されたキーワードを取得し、セッションに保存
         $selectedKeyword = $keyword;
         session(['selected_keyword' => $selectedKeyword]);
 
-        return view('mypage',compact('items','soldItems'));
+        return view('mypage_sell_list',compact('items','soldItems','profile'));
     }
+
+    public function mypageSearchSold(Request $request){
+
+        //検索欄に入力されたキーワードをsold_itemsの中で探す
+        $keyword = $request->search;
+        $soldItems = SoldItem::where('buyer_id',$request->user_id)
+                        ->where('item_name','like', '%'.$keyword.'%')
+                        ->orWhere('item_brand','like', '%'.$keyword.'%')
+                        ->orWhere('item_detail','like', '%'.$keyword.'%')
+                        ->orWhere('item_price','like', '%'.$keyword.'%')
+                        ->get();
+        $profile = Profile::where('user_id',$request->user_id)
+                                ->first();
+
+        //検索欄に入力されたキーワードを取得し、セッションに保存
+        $selectedKeyword = $keyword;
+        session(['selected_keyword' => $selectedKeyword]);
+
+        return view('mypage_purchased_list',compact('soldItems','profile'));
+    }
+
 
     public function profileEdit(Request $request){
 

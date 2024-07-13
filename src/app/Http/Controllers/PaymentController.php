@@ -12,11 +12,11 @@ use Stripe\Customer;
 use Stripe\Charge;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Requests\PurchaseRequest;
 
 class PaymentController extends Controller
 {
-    public function purchasePayment(Request $request){
+    public function purchasePayment(PurchaseRequest $request){
 
         $itemId = $request->item_id;
         $item = Item::where('id',$itemId)

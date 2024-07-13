@@ -8,7 +8,7 @@
 <div class="search__outer">
     <form id="search" action="{{ route('mypage.search') }}" method="get">
     @csrf
-        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="なにをお探しですか？" value="{{ session('selected_keyword') }}">
+        <input class="search__input" type="text" name="search" onchange="submit(this.form)" placeholder="販売した商品から検索" value="{{ session('selected_keyword') }}">
         @if (Auth::check())
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
         @endif

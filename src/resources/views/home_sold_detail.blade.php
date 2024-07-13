@@ -122,6 +122,17 @@
                 <p class="detail">
                     説明：{{ $soldItem->item_detail }}
                 </p>
+                                <div class="seller__outer">
+                    <p class="seller">
+                        出品者
+                    </p>
+                    <div class="user__img-outer">
+                        <img class="user__img" src="{{ asset('storage/profiles/' . basename($soldItem->seller->profile->img)) }}" alt="user_img">
+                    </div>
+                    <p class="seller__name">
+                        {{ $soldItem->seller->profile->nickname }}
+                    </p>
+                </div>
             </div>
         </div>
     @endforeach

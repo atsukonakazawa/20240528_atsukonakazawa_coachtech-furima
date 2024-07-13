@@ -29,7 +29,7 @@ class RegisterRequest extends FormRequest
             'postcode' => 'required',
             'address' => 'required',
             'email' => 'required|email|unique:users,email',
-            'img' => 'required|image|mimes:jpeg,jpg,svg|max:2048KB',
+            'img' => 'required|image|max:2048KB',
             'password' => 'required|min:8|max:12'
         ];
     }
@@ -47,7 +47,6 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'このメールアドレスはすでに使われています',
             'img.required' => 'プロフィール画像を選択してください',
             'img.image' => '画像ファイルを選択してください',
-            'img.mimes' => 'ファイル形式はjpeg,png,jpg,gif,svgのいずれかです',
             'img.max' => '最大ファイルサイズは2048KBまでです',
             'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードは8〜12文字で入力してください',

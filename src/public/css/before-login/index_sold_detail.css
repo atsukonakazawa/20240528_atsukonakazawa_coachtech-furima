@@ -220,6 +220,7 @@
     background-color: white;
     font-size: 90%;
     padding: 5px 5px;
+    cursor: pointer;
 }
 
 @media screen and (max-width:768px) {
@@ -233,6 +234,7 @@
         background-color: white;
         font-size: 6px;
         padding: 3px 3px;
+        cursor: pointer;
     }
 }
 

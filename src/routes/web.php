@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/sell/list',[UserController::class,'mypageSellList'])->name("mypage.selllist");
     Route::get('/mypage/purchased/list',[UserController::class,'mypagePurchasedList'])->name("mypage.purchasedlist");
     Route::get('/mypage/search',[UserController::class,'mypageSearch'])->name("mypage.search");
+    Route::get('/mypage/search/sold',[UserController::class,'mypageSearchSold'])->name("mypage.searchSold");
     Route::get('/mypage/profile/edit',[UserController::class,'profileEdit'])->name("profile.edit");
     Route::post('/mypage/profile/update',[UserController::class,'profileUpdate'])->name("profile.update");
 

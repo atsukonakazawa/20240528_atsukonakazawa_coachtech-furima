@@ -63,15 +63,5 @@
             </div>
         </form>
     </div>
-    @if (Auth::check())
-        <li>
-            <form class="logout-form" action="/logout" method="post">
-                @csrf
-                <button class="logout-button">
-                    ログアウト
-                </button>
-            </form>
-        </li>
-    @endif
 </div>
 @endsection

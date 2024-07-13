@@ -155,13 +155,18 @@
             </tr>
         </table>
         <div class="purchase__button-outer">
+            <div class="form__error">
+            @error('payment_way_id')
+                {{ $message }}
+            @enderror
+            </div>
             <button class="purchase__button" type="submit">
                 購入を確定する
             </button>
             <p class="purchase__button-p">
                 ※決済画面に移ります
             </p>
-                <input type="hidden" name="item_id" value="{{ $item->id }}">
+            <input type="hidden" name="item_id" value="{{ $item->id }}">
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
         </div>
         </form>

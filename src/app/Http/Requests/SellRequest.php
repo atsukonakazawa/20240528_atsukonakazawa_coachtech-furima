@@ -30,7 +30,7 @@ class SellRequest extends FormRequest
             'color_id' => 'required',
             'item_name' => 'required|string',
             'item_detail' => 'required|string|max:500',
-            'item_img' => 'required|image|mimes:jpeg,JPEG,jpg,svg|max:2048',
+            'item_img' => 'required|image|max:2048KB',
             'item_price' => 'required|integer|min:300',
         ];
     }
@@ -49,7 +49,6 @@ class SellRequest extends FormRequest
             'item_detail.max' => '商品の説明は500文字以内で入力してください',
             'item_img.required' => '商品画像を選択してください',
             'item_img.image' => '最大ファイルサイズは2048KBまでです',
-            'item_img.mimes' => '対象のファイル形式はjpeg,jpg,svgのいずれかです',
             'item_price.required' => '販売価格を入力してください',
             'item_price.integer' => '販売価格は半角・整数で入力してください',
             'item_price.min' => '販売価格は300円以上で入力してください',

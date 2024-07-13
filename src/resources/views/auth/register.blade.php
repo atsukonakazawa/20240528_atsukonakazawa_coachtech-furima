@@ -72,7 +72,7 @@
                 <div class="register__box-img-row">
                     <p class="register__box-p">
                         プロフィール画像<span class="required">※必須</span><br>
-                        (jpeg,jpg,svg・最大2048KBまで)
+                        (最大2048KBまで)
                     </p>
                     <div class="flex__group">
                         <label class="file__label" for="img">

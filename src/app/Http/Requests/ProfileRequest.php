@@ -42,7 +42,7 @@ class ProfileRequest extends FormRequest
             }
 
             if (!$hasAtLeastOneInput) {
-                $validator->errors()->add('at_least_one', '少なくとも1つの入力フィールドに値を入力してください。');
+                $validator->errors()->add('at_least_one', '少なくとも1つの入力フィールドに変更内容を入力してください。');
             }
         });
     }
@@ -51,7 +51,7 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'at_least_one' => '少なくとも1つの入力フィールドに値を入力してください。',
+            'at_least_one' => '少なくとも1つの入力フィールドに変更内容を入力してください。',
         ];
     }
 }

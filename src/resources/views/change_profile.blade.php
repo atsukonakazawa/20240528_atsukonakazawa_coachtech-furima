@@ -84,9 +84,6 @@
                         選択されていません
                     </p>
                     <p class="limit__p-img">
-                        ※取扱可能な画像形式はjpeg,jpg,svgです。
-                    </p>
-                    <p class="limit__p-img">
                         ※最大サイズは2048KBまでです。
                     </p>
                 </div>
