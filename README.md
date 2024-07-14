@@ -77,10 +77,10 @@
      MAIL_FROM_ADDRESS=info@coachtechfurima.com  
      MAIL_FROM_NAME="${APP_NAME}"  
 
-     ・STRIPEに関する記述を以下の通り追加  
-       STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
-       STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
-      CASHIER_CURRENCY=jpy  
+    ・STRIPEに関する記述を以下の通り追加  
+      STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
+      STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
+     CASHIER_CURRENCY=jpy  
    4 docker-compose.ymlを以下の通り編集  
      ・versionの下に以下のvolumesを追加  
        volumes:  
