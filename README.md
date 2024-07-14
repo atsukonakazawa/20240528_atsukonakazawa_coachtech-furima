@@ -67,15 +67,15 @@
        DB_USERNAME=laravel_user  
        DB_PASSWORD=laravel_pass  
       
-      ・MAILの部分を以下の通りに編集  
-       MAIL_MAILER=smtp  
-       MAIL_HOST=mail  
-       MAIL_PORT=1025  
-       MAIL_USERNAME=null  
-       MAIL_PASSWORD=null  
-       MAIL_ENCRYPTION=null  
-       MAIL_FROM_ADDRESS=info@coachtechfurima.com  
-       MAIL_FROM_NAME="${APP_NAME}"  
+     ・MAILの部分を以下の通りに編集  
+      MAIL_MAILER=smtp  
+      MAIL_HOST=mail  
+      MAIL_PORT=1025  
+      MAIL_USERNAME=null  
+      MAIL_PASSWORD=null  
+      MAIL_ENCRYPTION=null  
+      MAIL_FROM_ADDRESS=info@coachtechfurima.com  
+      MAIL_FROM_NAME="${APP_NAME}"  
  
       ・STRIPEに関する記述を以下の通り追加  
         STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
@@ -87,18 +87,18 @@
         db-volume:  
         maildir: {}  
          
-     ・services:に以下のmailhogの内容を追加  
-       mail:  
-         image: mailhog/mailhog  
-         container_name: mailhog  
-         ports:  
-           - 1025:1025  
-           - 8025:8025  
-         environment:  
-           MH_STORAGE: maildir  
-           MH_MAILDIR_PATH: /tmp  
-         volumes:  
-           - maildir:/tmp  
+    ・services:に以下のmailhogの内容を追加  
+      mail:  
+        image: mailhog/mailhog  
+        container_name: mailhog  
+        ports:  
+          - 1025:1025  
+          - 8025:8025  
+        environment:  
+          MH_STORAGE: maildir  
+          MH_MAILDIR_PATH: /tmp  
+        volumes:  
+          - maildir:/tmp  
 
      ・servicesのmysqlとphpmyadminに以下の内容を追加  
        image:の次の行に  
