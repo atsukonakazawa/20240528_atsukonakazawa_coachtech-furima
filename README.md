@@ -137,12 +137,12 @@
       npm install sass-loader@^12.1.0 sass resolve-url-loader@^5.0.0 --save-dev --legacy-peer-deps  
       mkdir resources/sass  
       touch resources/sass/app.scss  
-     ・npm run dev　　
+     ・npm run dev  
    10 Laravel Cashierのインストール  
-      ・composer require laravel/cashier
-      ・php artisan migrate:fresh
+      ・composer require laravel/cashier  
+      ・php artisan migrate:fresh  
       ・ダミーデータを再度５回に分けてシードする  
-
+ 
     ##テストユーザー情報(ダミーデータに登録済のためシード後にログイン可能になります）  
     1 name: a-admin(管理者)  
       email: a@docomo.com  
