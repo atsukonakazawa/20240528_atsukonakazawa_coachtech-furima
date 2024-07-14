@@ -59,28 +59,28 @@
    2 docker compose up -d --build  
      ※MySQLは、OSによっては起動しない場合があるのでそれぞれのPCに合わせてdocker-compose.ymlファイルを編集してください。  
    3 cp .env.example .env  
-      ・DBの部分を以下の通りに編集  
-       DB_CONNECTION=mysql  
-       DB_HOST=mysql  
-       DB_PORT=3306  
-       DB_DATABASE=laravel_db  
-       DB_USERNAME=laravel_user  
-       DB_PASSWORD=laravel_pass  
+    ・DBの部分を以下の通りに編集  
+     DB_CONNECTION=mysql  
+     DB_HOST=mysql  
+     DB_PORT=3306  
+     DB_DATABASE=laravel_db  
+     DB_USERNAME=laravel_user  
+     DB_PASSWORD=laravel_pass  
       
-     ・MAILの部分を以下の通りに編集  
-      MAIL_MAILER=smtp  
-      MAIL_HOST=mail  
-      MAIL_PORT=1025  
-      MAIL_USERNAME=null  
-      MAIL_PASSWORD=null  
-      MAIL_ENCRYPTION=null  
-      MAIL_FROM_ADDRESS=info@coachtechfurima.com  
-      MAIL_FROM_NAME="${APP_NAME}"  
- 
-      ・STRIPEに関する記述を以下の通り追加  
-        STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
-        STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
-       CASHIER_CURRENCY=jpy  
+    ・MAILの部分を以下の通りに編集  
+     MAIL_MAILER=smtp  
+     MAIL_HOST=mail  
+     MAIL_PORT=1025  
+     MAIL_USERNAME=null  
+     MAIL_PASSWORD=null  
+     MAIL_ENCRYPTION=null  
+     MAIL_FROM_ADDRESS=info@coachtechfurima.com  
+     MAIL_FROM_NAME="${APP_NAME}"  
+
+     ・STRIPEに関する記述を以下の通り追加  
+       STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
+       STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
+      CASHIER_CURRENCY=jpy  
    4 docker-compose.ymlを以下の通り編集  
      ・versionの下に以下のvolumesを追加  
        volumes:  
