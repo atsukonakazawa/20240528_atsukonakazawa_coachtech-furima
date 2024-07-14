@@ -100,9 +100,9 @@
        volumes:  
          - maildir:/tmp  
  
-    ・servicesのmysqlとphpmyadminに以下の内容を追加  
-      image:の次の行に  
-        platform: linux/x86_64  
+   ・servicesのmysqlとphpmyadminに以下の内容を追加  
+     image:の次の行に  
+       platform: linux/x86_64  
 
    5 再度docker compose up -d --build  
 
@@ -143,16 +143,16 @@
       ・php artisan migrate:fresh  
       ・ダミーデータを再度５回に分けてシードする  
  
-    ##テストユーザー情報(ダミーデータに登録済のためシード後にログイン可能になります）  
-    1 name: a-admin(管理者)  
-      email: a@docomo.com  
-      password: aaaaaaaa  
-    2 name: b(一般ユーザー)    
-      email: b@docomo.com  
-      password: bbbbbbbb
-    3 name: c(一般ユーザー)  
-      email: c@docomo.com  
-      password: cccccccc  
+   ##テストユーザー情報(ダミーデータに登録済のためシード後にログイン可能になります）  
+   1 name: a-admin(管理者)  
+     email: a@docomo.com  
+     password: aaaaaaaa  
+   2 name: b(一般ユーザー)    
+     email: b@docomo.com  
+     password: bbbbbbbb
+   3 name: c(一般ユーザー)  
+     email: c@docomo.com  
+     password: cccccccc  
 
-    ##デプロイ
+   ##デプロイ
    
