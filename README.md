@@ -154,25 +154,25 @@
    9 画像ファイルアップロードの見た目をカスタマイズするために  
      ・jQueryをインストール  srcに移動し　npm install jquery  
       
-     ・webpack.mix.jsに以下の内容を追加  
-       .sass('resources/sass/app.scss', 'public/css')
-       .autoload({
-           jquery: ['$', 'window.jQuery', 'jQuery'],
-       })  
-        
-     ・resources/js/app.jsに以下の内容を追加  
-       import $ from 'jquery';　　
-       window.$ = window.jQuery = $;  
-        
-     ・npm install  
-      
-     ・（npm run devを実行時に指示が出たため）  
-      npm install sass-loader@^12.1.0 sass resolve-url-loader@^5.0.0 --save-dev --legacy-peer-deps  
-      mkdir resources/sass  
-      touch resources/sass/app.scss  
+    ・webpack.mix.jsに以下の内容を追加  
+      .sass('resources/sass/app.scss', 'public/css')
+      .autoload({
+          jquery: ['$', 'window.jQuery', 'jQuery'],
+      })  
        
-     ・npm run dev  
+    ・resources/js/app.jsに以下の内容を追加  
+      import $ from 'jquery';　　
+      window.$ = window.jQuery = $;  
+       
+    ・npm install  
+     
+    ・（npm run devを実行時に指示が出たため）  
+     npm install sass-loader@^12.1.0 sass resolve-url-loader@^5.0.0 --save-dev --legacy-peer-deps  
+     mkdir resources/sass  
+     touch resources/sass/app.scss  
       
+    ・npm run dev  
+     
    10 Laravel Cashierのインストール  
       ・composer require laravel/cashier  
        
