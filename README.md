@@ -82,27 +82,27 @@
      STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
     CASHIER_CURRENCY=jpy  
    4 docker-compose.ymlを以下の通り編集  
-     ・versionの下に以下のvolumesを追加  
-       volumes:  
-        db-volume:  
-        maildir: {}  
+   ・versionの下に以下のvolumesを追加  
+     volumes:  
+      db-volume:  
+      maildir: {}  
          
-    ・services:に以下のmailhogの内容を追加  
-      mail:  
-        image: mailhog/mailhog  
-        container_name: mailhog  
-        ports:  
-          - 1025:1025  
-          - 8025:8025  
-        environment:  
-          MH_STORAGE: maildir  
-          MH_MAILDIR_PATH: /tmp  
-        volumes:  
-          - maildir:/tmp  
-
-     ・servicesのmysqlとphpmyadminに以下の内容を追加  
-       image:の次の行に  
-         platform: linux/x86_64  
+   ・services:に以下のmailhogの内容を追加  
+     mail:  
+       image: mailhog/mailhog  
+       container_name: mailhog  
+       ports:  
+         - 1025:1025  
+         - 8025:8025  
+       environment:  
+         MH_STORAGE: maildir  
+         MH_MAILDIR_PATH: /tmp  
+       volumes:  
+         - maildir:/tmp  
+ 
+    ・servicesのmysqlとphpmyadminに以下の内容を追加  
+      image:の次の行に  
+        platform: linux/x86_64  
 
    5 再度docker compose up -d --build  
 
@@ -131,8 +131,8 @@
        })  
      ・resources/js/app.jsに以下の内容を追加  
        import $ from 'jquery';　　
-       window.$ = window.jQuery = $;　　
-     ・npm install　　
+       window.$ = window.jQuery = $;  
+     ・npm install  
      ・（npm run devを実行時に指示が出たため）  
       npm install sass-loader@^12.1.0 sass resolve-url-loader@^5.0.0 --save-dev --legacy-peer-deps  
       mkdir resources/sass  
