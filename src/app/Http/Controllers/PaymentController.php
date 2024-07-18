@@ -10,7 +10,6 @@ use App\Models\Profile;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PurchaseRequest;
 

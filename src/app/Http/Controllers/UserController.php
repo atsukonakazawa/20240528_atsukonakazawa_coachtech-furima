@@ -93,7 +93,6 @@ class UserController extends Controller
                         ->first();
 
         return view('change_profile',compact('user','profile'));
-
     }
 
     public function profileUpdate(ProfileRequest $request){

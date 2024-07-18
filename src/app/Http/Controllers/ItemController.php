@@ -11,7 +11,6 @@ use App\Models\Condition;
 use App\Models\Color;
 use App\Models\Profile;
 use App\Models\PaymentWay;
-use App\Models\User;
 use App\Models\Favorite;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -145,7 +144,6 @@ class ItemController extends Controller
         //画像までのパスをstorage/...の形式でitemsテーブルのimgカラムに保存
         $publicPath = 'storage/items/' . $filename;
         $item->update(['item_img' => $publicPath]);
-
 
         return view('sell_done');
     }

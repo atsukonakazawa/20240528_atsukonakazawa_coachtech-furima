@@ -44,6 +44,5 @@
             @endif
         </form>
     </div>
-
 </div>
 @endsection
