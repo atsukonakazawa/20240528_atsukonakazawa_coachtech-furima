@@ -180,6 +180,46 @@
     
    ・ダミーデータを再度５回に分けてシードする  
 
+    11 PHPunitでテスト  
+    ・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
+
+    ・CREATE DATABASE demo_test;  
+
+    ・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
+
+    ・ペーストした部分の以下4箇所を変更する  
+      a.変更前　mysql 変更後　mysql_test  
+      b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
+      c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
+      d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
+
+    ・PHPコンテナに入り、以下を実行  
+
+    ・cp .env .env.testing  
+
+    ・src/.env.testingを編集する  
+      a.　変更前　APP_ENV=local　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
+      b.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
+      c. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
+      d.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
+
+    ・php artisan key:generate --env=testing  
+
+    ・php artisan config:clear　　
+
+    ・php artisan migrate --env=testing  
+
+    ・src/phpunit.xmlを編集する  
+      a.　変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
+         変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
+      b. 変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
+         変更後 <server name="DB_DATABASE" value="demo_test"/>  
+
+    ・データベースのテストをする  
+      vendor/bin/phpunit tests/Feature/HelloTest.php  
+
+      
+
    ##テストユーザー情報(ダミーデータに登録済のためシード後にログイン可能になります）  
    1 name: a-admin(管理者)  
      email: a@docomo.com  
