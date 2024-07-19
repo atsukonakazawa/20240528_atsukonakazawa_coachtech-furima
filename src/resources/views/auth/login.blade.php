@@ -7,7 +7,12 @@
 @section('content')
 <div class="content__outer">
     <div class="content">
-        <div class="message-outer">
+        <div class="login__p-outer">
+            <p class="login__p">
+                お気に入り登録・コメント・購入はログイン後にご利用いただけます
+            </p>
+        </div>
+        <div class="message__outer">
             <p class="message">
             @if(session('message'))
                 {{ session('message')}}
