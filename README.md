@@ -222,7 +222,13 @@
   
    ##デプロイ  
    1 EC2インスタンスの作成  
-   2 nginxのインストール・自動起動化  
+   2 AmazonLinux2にログインし、nginxのインストール・自動起動化  
+     ・ターミナルで　.ssh/に移動しEC2インスタンスにsshでログインする
+     （ssh -i "coachtech-furima.pem" ec2-user@ec2-54-199-100-49.ap-northeast-1.compute.amazonaws.com）
+     ・sudo amazon-linux-extras enable nginx1
+     ・sudo yum -y install nginx 
+     ・sudo systemctl enable nginx  
+     ・sudo systemctl start nginx.service  
    3 RDS DBインスタンスを作成  
    4 sudo yum update -y  
    5 sudo yum -y install mysql git httpd curl  
@@ -234,4 +240,9 @@
    11 cd /var/www  
    12 sudo chown ec2-user:ec2-user /var/www  
    13 git clone 
+   12 sudo chown ec2-user:ec2-user /var/www  
+   13 git clone https://github.com/atsukonakazawa/20240528_atsukonakazawa_coachtech-furima.git  
+   14 sudo yum install -y php-xml  
+   15 cd 20240528_atsukonakazawa_coachtech-furima/src  
+   
    
