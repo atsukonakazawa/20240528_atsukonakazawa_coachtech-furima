@@ -74,10 +74,8 @@
   
    ##ローカル環境構築  
    1 git clone git@github.com:coachtech-material/laravel-docker-template.git  
-
    2 docker compose up -d --build  
      ※MySQLは、OSによっては起動しない場合があるのでそれぞれのPCに合わせてdocker-compose.ymlファイルを編集してください。  
-      
    3 cp .env.example .env  
    ・DBの部分を以下の通りに編集  
     DB_CONNECTION=mysql  
@@ -101,7 +99,6 @@
      STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
      STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
     CASHIER_CURRENCY=jpy  
-     
    4 docker-compose.ymlを以下の通り編集  
    ・versionの下に以下のvolumesを追加  
      volumes:  
@@ -124,37 +121,27 @@
    ・servicesのmysqlとphpmyadminに以下の内容を追加  
      image:の次の行に  
        platform: linux/x86_64  
-
    5 再度docker compose up -d --build  
 
    ##Laravel環境構築  
    1 composer install  
-    
    2 マイグレーションテーブル・モデル・シーダーファイルを作成  
-    
    3 php artisan db:seed  
-     ※DatabaseSeeder.phpに記載されている通りの順で５回に分けてシードする  
-      
+     ※DatabaseSeeder.phpに記載されている通りの順で５回に分けてシードする     
    4 fortify導入  
        composer require laravel/fortify  
        php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"  
        composer require laravel-lang/lang:~7.0 --dev  
-       cp -r ./vendor/laravel-lang/lang/src/ja ./resources/lang/  
-        
+       cp -r ./vendor/laravel-lang/lang/src/ja ./resources/lang/      
    5 php artisan migrate  
-    
    6 php artisan key:generate  
-    
    7 php artisan storage:link  
-    
    8 ４１３TooMuchEntityのエラー対策として  
      docker/nginx/default.confに以下の内容を追加  
      client_max_body_size 10M;  
-      
    9 画像ファイルアップロードの見た目をカスタマイズするために  
      ・jQueryをインストール  srcに移動し　npm install jquery  
-      
-   ・webpack.mix.jsに以下の内容を追加  
+    　　・webpack.mix.jsに以下の内容を追加  
      .sass('resources/sass/app.scss', 'public/css')
      .autoload({
          jquery: ['$', 'window.jQuery', 'jQuery'],
@@ -171,15 +158,13 @@
     mkdir resources/sass  
     touch resources/sass/app.scss  
      
-   ・npm run dev  
-     
+   ・npm run dev    
    10 Laravel Cashierのインストール  
    ・composer require laravel/cashier  
     
    ・php artisan migrate:fresh  
     
    ・ダミーデータを再度５回に分けてシードする  
-
    11 PHPunitでテスト  
    ・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
 
@@ -238,5 +223,15 @@
    ##デプロイ  
    1 EC2インスタンスの作成  
    2 nginxのインストール・自動起動化  
-   3 
+   3 RDS DBインスタンスを作成  
+   4 sudo yum update -y  
+   5 sudo yum -y install mysql git httpd curl  
+   6 git config --global user.name "atsukonakazawa"  
+   7 git config --global user.email tsqe8qm1bmqztbxbjre9@docomo.ne.jp  
+   8 sudo amazon-linux-extras install -y php8.2  
+   9 curl -sS https://getcomposer.org/installer | php  
+   10 sudo mv composer.phar /usr/local/bin/composer  
+   11 cd /var/www  
+   12 sudo chown ec2-user:ec2-user /var/www  
+   13 git clone 
    
