@@ -239,10 +239,49 @@
    10 sudo mv composer.phar /usr/local/bin/composer  
    11 cd /var/www  
    12 sudo chown ec2-user:ec2-user /var/www  
-   13 git clone 
-   12 sudo chown ec2-user:ec2-user /var/www  
    13 git clone https://github.com/atsukonakazawa/20240528_atsukonakazawa_coachtech-furima.git  
    14 sudo yum install -y php-xml  
    15 cd 20240528_atsukonakazawa_coachtech-furima/src  
-   
+   16 composer update  
+   17 composer install  
+   18 cd ../../
+   19 sudo yum install php-devel php-opcache  
+   20 cd 20240528_atsukonakazawa_coachtech-furima/src  
+   21 cp .env.example .env  
+   22 php artisan key:generate  
+   23 .envを編集  
+      ・DB_CONNECTION=mysql
+       DB_HOST=furima-database.cfwgskokkwmy.ap-northeast-1.rds.amazonaws.com
+       DB_PORT=3306
+       DB_DATABASE=FurimaDatabase
+       DB_USERNAME=admin
+       DB_PASSWORD=Furimafurima  
+    24 (srcに移動して）wget https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64  
+    25 chmod +x MailHog_linux_amd64  
+    26 sudo mv MailHog_linux_amd64 /usr/local/bin/mailhog  
+    27 　※※※別ターミナルでAmazonLinuxw2にログイン後、「mailhog]
+    というコマンドを実行しmaihogを起動しておく  
+    28 もとのターミナルで.envを編集  
+       ・MAIL_MAILER=smtp
+        MAIL_HOST=localhost
+        MAIL_PORT=1025
+        MAIL_USERNAME=null
+        MAIL_PASSWORD=null
+        MAIL_ENCRYPTION=null
+        MAIL_FROM_ADDRESS=null
+        MAIL_FROM_NAME="${APP_NAME}"  
+    29 EC２のセキュリティグループのインバウンドルールを追加し、ポート番号８０２５からのアクセスを許可する  
+    30 ブラウザでhttp://(パブリックIP4アドレス）:8025にアクセスしmailhogのインターフェイスが表示されることを確認  
+    31 sudo yum install php-mbstring php-gd php-xml  
+    32 sudo systemctl restart php-fpm  
+    33 sudo systemctl restart nginx  
+    34 composer require stripe/stripe-php  
+    35 .envを編集  
+       STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx
+       STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn
+       CASHIER_CURRENCY=jpy  
+    36 sudo yum install php-opcache  
+    37 
+    
+
    
