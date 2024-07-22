@@ -55,7 +55,7 @@
   
    ##使用技術  
    Laravel Framework 8.83.8  
-   PHP 7.4.9 (cli)  
+   PHP 8.3.6 (cli)  
    MySQL 8.0.26 - MySQL Community Server - GPL  
 
 
