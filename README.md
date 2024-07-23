@@ -259,8 +259,8 @@
     24 (srcに移動して）wget https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64  
     25 chmod +x MailHog_linux_amd64  
     26 sudo mv MailHog_linux_amd64 /usr/local/bin/mailhog  
-    27 　※※※別ターミナルでAmazonLinuxw2にログイン後、「mailhog]
-    というコマンドを実行しmaihogを起動しておく  
+    27 　※※※※※※※※※※※※別ターミナルでAmazonLinuxw2にログイン後、「mailhog]
+    というコマンドを実行しmaihogを起動しておく！！！！！！！！！！！！！！！！※※※※※※※※※※※※※※※※※※※※※※※※  
     28 もとのターミナルで.envを編集  
        ・MAIL_MAILER=smtp
         MAIL_HOST=localhost
@@ -268,7 +268,7 @@
         MAIL_USERNAME=null
         MAIL_PASSWORD=null
         MAIL_ENCRYPTION=null
-        MAIL_FROM_ADDRESS=null
+        MAIL_FROM_ADDRESS=coachtech-furima@example.com
         MAIL_FROM_NAME="${APP_NAME}"  
     29 EC２のセキュリティグループのインバウンドルールを追加し、ポート番号８０２５からのアクセスを許可する  
     30 ブラウザでhttp://(パブリックIP4アドレス）:8025にアクセスしmailhogのインターフェイスが表示されることを確認  
@@ -281,7 +281,78 @@
        STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn
        CASHIER_CURRENCY=jpy  
     36 sudo yum install php-opcache  
-    37 
+    37 sudo systemctl start php-fpm.service  
+    38 sudo systemctl enable php-fpm.service  
+    39 sudo su -  
+    40 cd /etc/php-fpm.d/  
+    41 sudo cp www.conf www.conf_bk_yyyyMMdd  
+    42 vim www.conf  
+    43 www.confを以下の通り編集する  
+       ・２４行目あたり  
+        変更前 user = apache  
+        変更後 user = nginx  
+       ・26行目あたり  
+        変更前 group = apache  
+        変更後 group = nginx  
+       ・48行目あたり  
+        変更前 ;listen.owner = nobody  
+        変更後 listen.owner = nginx  
+       ・49行目あたり  
+        変更前 ;listen.group = nobody  
+        変更後 listen.group = nginx  
+       ・50行目あたり  
+        変更前　;listen.mode = 0660  
+        変更後 listen.mode = 0660  
+    44 vim /etc/nginx/nginx.conf  
+    45 nginx.confを以下の通り編集する  
+       ・変更前  
+        server {  
+        listen       80;  
+        listen       [::]:80;  
+        server_name  _;  
+        root         /usr/share/nginx/html;  
+       ・変更後  
+        server {  
+        listen       80;  
+        listen       [::]:80;  
+        server_name  _;  
+        root         /var/www/20240528_atsukonakazawa_coachtech-furima/src/public;  
+         
+        add_header X-Frame-Options "SAMEORIGIN";  
+        add_header X-Content-Type-Options "nosniff";  
+         
+        index index.php;  
+         
+        charset utf-8;  
+         
+        location / {  
+            try_files $uri $uri/ /index.php?$query_string;  
+        }  
+         
+        location ~ \.php$ {  
+            fastcgi_pass   unix:/run/php-fpm/www.sock;  
+            fastcgi_index  index.php;  
+            fastcgi_param  SCRIPT_FILENAME  
+            $document_root$fastcgi_script_name;  
+            include        fastcgi_params;  
+        }  
+         
+        location ~ /\.(?!well-known).* {  
+            deny all;  
+        }  
+    46 sudo systemctl start nginx.service  
+    47 sudo su -  
+    48 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
+    49 php artisan migrate:fresh  
+    50 cd database/seeders  
+    51 vim DatabaseSeeder.php 
+       ・コメントアウトを外しながら、 DatabaseSeeder.php 内に記載の通り、５回に分けてシードする  
+       ・DatabaseSeeder.phpの編集後はsrcに戻ってからシード→またdatabase/seedersに戻ってDatabaseSeeder.phpを編集の工程を繰り返しながら行う  
+    52 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
+    53 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/storage  
+    54 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/bootstrap/cache  
+    55 sudo systemctl restart nginx  
+    56 
     
 
    
