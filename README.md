@@ -182,10 +182,12 @@ STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl
      vendor/bin/phpunit tests/Feature/HelloTest.php  
    ・ composer require aws/aws-sdk-php
    ・ composer require league/flysystem-aws-s3-v3 "^1.0"  
-   ・ php artisan make:command MigrateItemImagesToS3
+   ・ php artisan make:command MigrateItemImagesToS3  
    ・ php artisan make:command MigrateSoldItemImagesToS3  
-   ・ php artisan make:command MigrateProfileImagesToS3
-   ・ php artisan migrate:itemImages-to-s3
+   ・ php artisan make:command MigrateProfileImagesToS3  
+   ・ php artisan migrate:itemImages-to-s3  
+   ・ php artisan migrate:soldItemImages-to-s3  
+   ・ php artisan migrate:profileImages-to-s3  
 
       
 
