@@ -84,7 +84,6 @@
     DB_DATABASE=laravel_db  
     DB_USERNAME=laravel_user  
     DB_PASSWORD=laravel_pass  
-      
    ・MAILの部分を以下の通りに編集  
     MAIL_MAILER=smtp  
     MAIL_HOST=mail  
@@ -94,17 +93,14 @@
     MAIL_ENCRYPTION=null  
     MAIL_FROM_ADDRESS=info@coachtechfurima.com  
     MAIL_FROM_NAME="${APP_NAME}"  
-
-   ・STRIPEに関する記述を以下の通り追加  
-     STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
-     STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
+   ・STRIPEに関する記述を以下の通り追加   STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
+STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
     CASHIER_CURRENCY=jpy  
    4 docker-compose.ymlを以下の通り編集  
    ・versionの下に以下のvolumesを追加  
      volumes:  
       db-volume:  
       maildir: {}  
-         
    ・services:に以下のmailhogの内容を追加  
      mail:  
        image: mailhog/mailhog  
@@ -117,12 +113,11 @@
          MH_MAILDIR_PATH: /tmp  
        volumes:  
          - maildir:/tmp  
- 
    ・servicesのmysqlとphpmyadminに以下の内容を追加  
      image:の次の行に  
        platform: linux/x86_64  
    5 再度docker compose up -d --build  
-
+    
    ##Laravel環境構築  
    1 composer install  
    2 マイグレーションテーブル・モデル・シーダーファイルを作成  
@@ -132,7 +127,7 @@
        composer require laravel/fortify  
        php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"  
        composer require laravel-lang/lang:~7.0 --dev  
-       cp -r ./vendor/laravel-lang/lang/src/ja ./resources/lang/      
+       cp -r ./vendor/laravel-lang/lang/src/ja ./resources/lang/  
    5 php artisan migrate  
    6 php artisan key:generate  
    7 php artisan storage:link  
@@ -146,62 +141,51 @@
      .autoload({
          jquery: ['$', 'window.jQuery', 'jQuery'],
      })  
-      
    ・resources/js/app.jsに以下の内容を追加  
      import $ from 'jquery';　　
      window.$ = window.jQuery = $;  
-      
    ・npm install  
-    
    ・（npm run devを実行時に指示が出たため）  
     npm install sass-loader@^12.1.0 sass resolve-url-loader@^5.0.0 --save-dev --legacy-peer-deps  
     mkdir resources/sass  
     touch resources/sass/app.scss  
-     
    ・npm run dev    
    10 Laravel Cashierのインストール  
    ・composer require laravel/cashier  
-    
    ・php artisan migrate:fresh  
-    
    ・ダミーデータを再度５回に分けてシードする  
    11 PHPunitでテスト  
    ・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
-
    ・CREATE DATABASE demo_test;  
-
    ・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
-
    ・ペーストした部分の以下4箇所を変更する  
      a.変更前　mysql 変更後　mysql_test  
      b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
      c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
      d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
-
-   ・PHPコンテナに入り、以下を実行  
-
-   ・cp .env .env.testing  
-
+   ・PHPコンテナで　cp .env .env.testing　を実行  
    ・src/.env.testingを編集する  
-     a.　変更前　APP_ENV=local　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
-     b.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
-     c. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
-     d.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
-
+     a.変更前 APP_ENV=local 変更後 APP_ENV=test
+     b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
+     c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
+     d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
+     e.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
    ・php artisan key:generate --env=testing  
-
    ・php artisan config:clear　　
-
    ・php artisan migrate --env=testing  
-
    ・src/phpunit.xmlを編集する  
      a.　変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
         変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
      b. 変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
         変更後 <server name="DB_DATABASE" value="demo_test"/>  
-
    ・データベースのテストをする  
      vendor/bin/phpunit tests/Feature/HelloTest.php  
+   ・ composer require aws/aws-sdk-php
+   ・ composer require league/flysystem-aws-s3-v3 "^1.0"  
+   ・ php artisan make:command MigrateItemImagesToS3
+   ・ php artisan make:command MigrateSoldItemImagesToS3  
+   ・ php artisan make:command MigrateProfileImagesToS3
+   ・ php artisan migrate:itemImages-to-s3
 
       
 
@@ -352,7 +336,15 @@
     53 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/storage  
     54 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/bootstrap/cache  
     55 sudo systemctl restart nginx  
-    56 
+    56 php artisan storage:link  
+    57 Elastic IPアドレスをec2インスタンスに関連付け  
+    58 S3バケットの作成、.envファイルに以下の情報を追加  
+       AWS_ACCESS_KEY_ID=AKIA6ODU4LEDH2UFMUFR　　
+       AWS_SECRET_ACCESS_KEY=fDDadGIY1mVyS+kO+2qht6UZyIDFuGjRMCfJkAo3　　
+       AWS_DEFAULT_REGION=ap-northeast-1　　
+       AWS_BUCKET=coachtech-furima-bucket 
+    59 composer require aws/aws-sdk-php  
+    60 
     
 
    
