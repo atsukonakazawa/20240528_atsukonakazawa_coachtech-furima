@@ -152,6 +152,8 @@ STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl
    ・npm run dev    
    10 Laravel Cashierのインストール  
    ・composer require laravel/cashier  
+   ・composer require stripe/stripe-php  
+   ・composer.jsonに"stripe/stripe-php": "^7.0"を追記  
    ・php artisan migrate:fresh  
    ・ダミーデータを再度５回に分けてシードする  
    11 PHPunitでテスト  
