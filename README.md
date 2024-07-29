@@ -167,25 +167,25 @@
 　　　　　　　　　　　　・CREATE DATABASE demo_test;  
    　　　　　　・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
    　　　　　　・ペーストした部分の以下4箇所を変更する  
-     　　　　　a.変更前　mysql 変更後　mysql_test  
-     　　　　　b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
-     　　　　　c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
-     　　　　　d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
+    　　　　　a.変更前　mysql 変更後　mysql_test  
+    　　　　　b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
+    　　　　　c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
+    　　　　　d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
    　　　　　・PHPコンテナで　cp .env .env.testing　を実行  
   　　　　　 ・src/.env.testingを編集する  
-    　　　　　 a.変更前 APP_ENV=local 変更後 APP_ENV=test
-    　　　　　 b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
-    　　　　　 c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
-     　　　　　d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
-    　　　　　 e.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
+    　　　 a.変更前 APP_ENV=local 変更後 APP_ENV=test
+    　　　 b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
+    　　　 c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
+    　　　　　d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
+    　　　　 e.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
    　　　　　・php artisan key:generate --env=testing  
   　　　　　 ・php artisan config:clear　　
   　　　　　 ・php artisan migrate --env=testing  
   　　　　　 ・src/phpunit.xmlを編集する  
-    　　　　　 a.　　変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
-      　　　　　  変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
-    　　　　　 b. 変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
-     　　　　　   変更後 <server name="DB_DATABASE" value="demo_test"/>  
+    　　　　a. 変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
+    　 　　　　  変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
+    　　　 b. 変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
+   　　　　　    変更後 <server name="DB_DATABASE" value="demo_test"/>  
    　　　　　・基本的なテスト（値が正しいかどうか）のテストをする  
      　　　　　vendor/bin/phpunit tests/Feature/HelloTest.php  
    10  Storageにある画像をS3に移行
@@ -315,28 +315,28 @@
         server_name  _;  
         root         /var/www/20240528_atsukonakazawa_coachtech-furima/src/public;  
           
-      add_header X-Frame-Options "SAMEORIGIN";  
-      add_header X-Content-Type-Options "nosniff";  
-         
-      index index.php;  
-         
-      charset utf-8;  
-         
-      location / {  
-          try_files $uri $uri/ /index.php?$query_string;  
-      }  
-         
-      location ~ \.php$ {  
-          fastcgi_pass   unix:/run/php-fpm/www.sock;  
-          fastcgi_index  index.php;  
-          fastcgi_param  SCRIPT_FILENAME  
-          $document_root$fastcgi_script_name;  
-          include        fastcgi_params;  
-      }  
-         
-      location ~ /\.(?!well-known).* {  
-          deny all;  
-      }  
+     add_header X-Frame-Options "SAMEORIGIN";  
+     add_header X-Content-Type-Options "nosniff";  
+        
+     index index.php;  
+        
+     charset utf-8;  
+        
+     location / {  
+         try_files $uri $uri/ /index.php?$query_string;  
+     }  
+        
+     location ~ \.php$ {  
+         fastcgi_pass   unix:/run/php-fpm/www.sock;  
+         fastcgi_index  index.php;  
+         fastcgi_param  SCRIPT_FILENAME  
+         $document_root$fastcgi_script_name;  
+         include        fastcgi_params;  
+     }  
+        
+     location ~ /\.(?!well-known).* {  
+         deny all;  
+     }  
    44 sudo systemctl start nginx.service  
    45 sudo su -  
    46 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
