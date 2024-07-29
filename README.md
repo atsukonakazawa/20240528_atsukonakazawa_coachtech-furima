@@ -315,47 +315,47 @@
         server_name  _;  
         root         /var/www/20240528_atsukonakazawa_coachtech-furima/src/public;  
           
-        add_header X-Frame-Options "SAMEORIGIN";  
-        add_header X-Content-Type-Options "nosniff";  
+       add_header X-Frame-Options "SAMEORIGIN";  
+       add_header X-Content-Type-Options "nosniff";  
          
-        index index.php;  
+       index index.php;  
          
-        charset utf-8;  
+       charset utf-8;  
          
-        location / {  
-            try_files $uri $uri/ /index.php?$query_string;  
-        }  
+       location / {  
+           try_files $uri $uri/ /index.php?$query_string;  
+       }  
          
-        location ~ \.php$ {  
-            fastcgi_pass   unix:/run/php-fpm/www.sock;  
-            fastcgi_index  index.php;  
-            fastcgi_param  SCRIPT_FILENAME  
-            $document_root$fastcgi_script_name;  
-            include        fastcgi_params;  
-        }  
+       location ~ \.php$ {  
+           fastcgi_pass   unix:/run/php-fpm/www.sock;  
+           fastcgi_index  index.php;  
+           fastcgi_param  SCRIPT_FILENAME  
+           $document_root$fastcgi_script_name;  
+           include        fastcgi_params;  
+       }  
          
-        location ~ /\.(?!well-known).* {  
-            deny all;  
-        }  
-    44 sudo systemctl start nginx.service  
-    45 sudo su -  
-    46 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
-    47 php artisan migrate:fresh  
-    48 cd database/seeders  
-    49 vim DatabaseSeeder.php 
-       ・コメントアウトを外しながら、 DatabaseSeeder.php 内に記載の通り、５回に分けてシードする  
-       ・その際の流れは、DatabaseSeeder.phpの該当部分のコメントアウトを外す→srcに戻ってからシード→またdatabase/seedersに戻ってDatabaseSeeder.phpの次の該当部分のコメントアウトを外す‥の工程の繰り返しとなる。  
-    50 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
-    51 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/storage  
-    52 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/bootstrap/cache  
-    53 sudo systemctl restart nginx  
-    54 php artisan storage:link  
-    55 Elastic IPアドレスをec2インスタンスに関連付け  
-    55 S3バケットの作成  
-    56 composer require aws/aws-sdk-php  
-    57 sudo su -  
-    58 cd /var/www/20240528_atsukonakazawa_coachtech-furima  
-    59 git pull origin main
+       location ~ /\.(?!well-known).* {  
+           deny all;  
+       }  
+   44 sudo systemctl start nginx.service  
+   45 sudo su -  
+   46 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
+   47 php artisan migrate:fresh  
+   48 cd database/seeders  
+   49 vim DatabaseSeeder.php 
+      ・コメントアウトを外しながら、 DatabaseSeeder.php 内に記載の通り、５回に分けてシードする  
+      ・その際の流れは、DatabaseSeeder.phpの該当部分のコメントアウトを外す→srcに戻ってからシード→またdatabase/seedersに戻ってDatabaseSeeder.phpの次の該当部分のコメントアウトを外す‥の工程の繰り返しとなる。  
+   50 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
+   51 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/storage  
+   52 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/bootstrap/cache  
+   53 sudo systemctl restart nginx  
+   54 php artisan storage:link  
+   55 Elastic IPアドレスをec2インスタンスに関連付け  
+   55 S3バケットの作成  
+   56 composer require aws/aws-sdk-php  
+   57 sudo su -  
+   58 cd /var/www/20240528_atsukonakazawa_coachtech-furima  
+   59 git pull origin main
     
     
 
