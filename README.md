@@ -14,10 +14,10 @@
 
   
   ##デプロイ  
-  1 アプリケーションURL: (デプロイ後に記載）  
-  2 デプロイ先:  
-  3 DB:  
-  4 ストレージ:  
+  1 アプリケーションURL: http://54.168.57.188  
+  2 デプロイ先: AWS  
+  3 DB: 8.0.26 - MySQL Community Server - GPL  
+  4 ストレージ: s3  
   5 サーバー:nginx/1.22.1  
 
 
@@ -50,6 +50,8 @@
    管理者によるユーザー・コメントの削除  
    管理者から利用者へのメール送信  
    商品の画像をストレージに保存  
+   PHPUnitを使用してテストを作成済  
+  
 
 
   
@@ -73,123 +75,128 @@
 
   
    ##ローカル環境構築  
-   1 git clone git@github.com:coachtech-material/laravel-docker-template.git  
-   2 docker compose up -d --build  
-     ※MySQLは、OSによっては起動しない場合があるのでそれぞれのPCに合わせてdocker-compose.ymlファイルを編集してください。  
-   3 cp .env.example .env  
-   ・DBの部分を以下の通りに編集  
-    DB_CONNECTION=mysql  
-    DB_HOST=mysql  
-    DB_PORT=3306  
-    DB_DATABASE=laravel_db  
-    DB_USERNAME=laravel_user  
-    DB_PASSWORD=laravel_pass  
-   ・MAILの部分を以下の通りに編集  
-    MAIL_MAILER=smtp  
-    MAIL_HOST=mail  
-    MAIL_PORT=1025  
-    MAIL_USERNAME=null  
-    MAIL_PASSWORD=null  
-    MAIL_ENCRYPTION=null  
-    MAIL_FROM_ADDRESS=info@coachtechfurima.com  
-    MAIL_FROM_NAME="${APP_NAME}"  
-   ・STRIPEに関する記述を以下の通り追加   STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
-STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
-    CASHIER_CURRENCY=jpy  
-   4 docker-compose.ymlを以下の通り編集  
-   ・versionの下に以下のvolumesを追加  
-     volumes:  
-      db-volume:  
-      maildir: {}  
-   ・services:に以下のmailhogの内容を追加  
-     mail:  
-       image: mailhog/mailhog  
-       container_name: mailhog  
-       ports:  
-         - 1025:1025  
-         - 8025:8025  
-       environment:  
-         MH_STORAGE: maildir  
-         MH_MAILDIR_PATH: /tmp  
+   1  git clone git@github.com:coachtech-material/laravel-docker-template.git  
+   2  docker compose up -d --build  
+      ※MySQLは、OSによっては起動しない場合があるのでそれぞれのPCに合わせてdocker-compose.ymlファイルを編集してください。  
+   3  cp .env.example .env  
+     ・DBの部分を以下の通りに編集  
+      DB_CONNECTION=mysql  
+      DB_HOST=mysql  
+      DB_PORT=3306  
+      DB_DATABASE=laravel_db  
+      DB_USERNAME=laravel_user  
+      DB_PASSWORD=laravel_pass  
+     ・MAILの部分を以下の通りに編集  
+      MAIL_MAILER=smtp  
+      MAIL_HOST=mail  
+      MAIL_PORT=1025  
+      MAIL_USERNAME=null  
+      MAIL_PASSWORD=null  
+      MAIL_ENCRYPTION=null  
+      MAIL_FROM_ADDRESS=info@coachtechfurima.com  
+      MAIL_FROM_NAME="${APP_NAME}"  
+     ・AWSの部分を以下の通りに編集  
+      AWS_ACCESS_KEY_ID=AKIA6ODU4LEDH2UFMUFR  
+      AWS_SECRET_ACCESS_KEY=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  
+      AWS_DEFAULT_REGION=ap-northeast-1  
+      AWS_BUCKET=coachtech-furima-bucket  
+      AWS_USE_PATH_STYLE_ENDPOINT=false  
+     ・STRIPEに関する記述を以下の通り追加   
+   　  　STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKRzghxYsAyukWtQ7Lb3Fywa0zXgxV5gq0R4hFT4FfWpUObQ25LR2IrLeJOCez1WHSPlioOBnW00uNsp07oU  
+　　　　　　　　  STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHKo4Mu47HaPikoVpnOuKSXeLnDbmM6gc7n8XriTj2dlTFap3T4NBROuXKV9GcLR39JDCsHKQJY00Yj7x2y0d 　
+      CASHIER_CURRENCY=jpy  
+   4  docker-compose.ymlを以下の通り編集  
+     ・versionの下に以下のvolumesを追加  
        volumes:  
-         - maildir:/tmp  
-   ・servicesのmysqlとphpmyadminに以下の内容を追加  
-     image:の次の行に  
-       platform: linux/x86_64  
-   5 再度docker compose up -d --build  
+        db-volume:  
+        maildir: {}  
+     ・services:に以下のmailhogの内容を追加  
+       mail:  
+         image: mailhog/mailhog  
+         container_name: mailhog  
+         ports:  
+           - 1025:1025  
+           - 8025:8025  
+         environment:  
+           MH_STORAGE: maildir  
+           MH_MAILDIR_PATH: /tmp  
+         volumes:  
+           - maildir:/tmp  
+     ・servicesのmysqlとphpmyadminに以下の内容を追加  
+       image:の次の行に  
+         platform: linux/x86_64  
+   5  再度docker compose up -d --build  
     
    ##Laravel環境構築  
-   1 composer install  
-   2 マイグレーションテーブル・モデル・シーダーファイルを作成  
-   3 php artisan db:seed  
-     ※DatabaseSeeder.phpに記載されている通りの順で５回に分けてシードする     
-   4 fortify導入  
+   1  composer install      
+   2  fortify導入  
        composer require laravel/fortify  
        php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"  
        composer require laravel-lang/lang:~7.0 --dev  
        cp -r ./vendor/laravel-lang/lang/src/ja ./resources/lang/  
-   5 php artisan migrate  
-   6 php artisan key:generate  
-   7 php artisan storage:link  
-   8 ４１３TooMuchEntityのエラー対策として  
-     docker/nginx/default.confに以下の内容を追加  
-     client_max_body_size 10M;  
-   9 画像ファイルアップロードの見た目をカスタマイズするために  
-     ・jQueryをインストール  srcに移動し　npm install jquery  
-    　　・webpack.mix.jsに以下の内容を追加  
-     .sass('resources/sass/app.scss', 'public/css')
-     .autoload({
+   3  php artisan migrate  
+   4  php artisan key:generate  
+   5  php artisan storage:link  
+   6  ４１３TooMuchEntityのエラー対策として  
+      docker/nginx/default.confに以下の内容を追加  
+      client_max_body_size 10M;  
+   7  ・srcに移動し　npm install jquery  
+    　　 ・webpack.mix.jsに以下の内容を追加  
+      .sass('resources/sass/app.scss', 'public/css')
+      .autoload({
          jquery: ['$', 'window.jQuery', 'jQuery'],
-     })  
-   ・resources/js/app.jsに以下の内容を追加  
-     import $ from 'jquery';　　
-     window.$ = window.jQuery = $;  
-   ・npm install  
-   ・（npm run devを実行時に指示が出たため）  
-    npm install sass-loader@^12.1.0 sass resolve-url-loader@^5.0.0 --save-dev --legacy-peer-deps  
-    mkdir resources/sass  
-    touch resources/sass/app.scss  
-   ・npm run dev    
-   10 Laravel Cashierのインストール  
-   ・composer require laravel/cashier  
-   ・composer require stripe/stripe-php  
-   ・composer.jsonに"stripe/stripe-php": "^7.0"を追記  
-   ・php artisan migrate:fresh  
-   ・ダミーデータを再度５回に分けてシードする  
-   11 PHPunitでテスト  
-   ・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
-   ・CREATE DATABASE demo_test;  
-   ・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
-   ・ペーストした部分の以下4箇所を変更する  
-     a.変更前　mysql 変更後　mysql_test  
-     b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
-     c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
-     d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
-   ・PHPコンテナで　cp .env .env.testing　を実行  
-   ・src/.env.testingを編集する  
-     a.変更前 APP_ENV=local 変更後 APP_ENV=test
-     b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
-     c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
-     d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
-     e.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
-   ・php artisan key:generate --env=testing  
-   ・php artisan config:clear　　
-   ・php artisan migrate --env=testing  
-   ・src/phpunit.xmlを編集する  
-     a.　変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
-        変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
-     b. 変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
-        変更後 <server name="DB_DATABASE" value="demo_test"/>  
-   ・データベースのテストをする  
-     vendor/bin/phpunit tests/Feature/HelloTest.php  
-   ・ composer require aws/aws-sdk-php
-   ・ composer require league/flysystem-aws-s3-v3 "^1.0"  
-   ・ php artisan make:command MigrateItemImagesToS3  
-   ・ php artisan make:command MigrateSoldItemImagesToS3  
-   ・ php artisan make:command MigrateProfileImagesToS3  
-   ・ php artisan migrate:itemImages-to-s3  
-   ・ php artisan migrate:soldItemImages-to-s3  
-   ・ php artisan migrate:profileImages-to-s3  
+      })  
+      ・resources/js/app.jsに以下の内容を追加  
+       import $ from 'jquery';　　
+       window.$ = window.jQuery = $;  
+      ・npm install  
+      ・（npm run devを実行時に指示が出たため）  
+       npm install sass-loader@^12.1.0 sass resolve-url-loader@^5.0.0 --save-dev --legacy-peer-deps  
+       mkdir resources/sass  
+       touch resources/sass/app.scss  
+      ・npm run dev    
+   8 Laravel Cashierのインストール  
+      ・composer require laravel/cashier  
+      ・composer require stripe/stripe-php  
+      ・composer.jsonに"stripe/stripe-php": "^7.0"を追記  
+      ・php artisan migrate:fresh  
+      ・php artisan db:seed  
+      ※コメントアウトを外しながら、DatabaseSeeder.phpに記載されている通りの順で５回に分けてシードする 
+   9  PHPunitでテスト  
+   　　　　　　・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
+　　　　　　　　　　　　・CREATE DATABASE demo_test;  
+   　　　　　　・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
+   　　　　　　・ペーストした部分の以下4箇所を変更する  
+     　　　　　a.変更前　mysql 変更後　mysql_test  
+     　　　　　b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
+     　　　　　c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
+     　　　　　d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
+   　　　　　・PHPコンテナで　cp .env .env.testing　を実行  
+  　　　　　 ・src/.env.testingを編集する  
+    　　　　　 a.変更前 APP_ENV=local 変更後 APP_ENV=test
+    　　　　　 b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
+    　　　　　 c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
+     　　　　　d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
+    　　　　　 e.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
+   　　　　　・php artisan key:generate --env=testing  
+  　　　　　 ・php artisan config:clear　　
+  　　　　　 ・php artisan migrate --env=testing  
+  　　　　　 ・src/phpunit.xmlを編集する  
+    　　　　　 a.　　変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
+      　　　　　  変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
+    　　　　　 b. 変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
+     　　　　　   変更後 <server name="DB_DATABASE" value="demo_test"/>  
+   　　　　　・基本的なテスト（値が正しいかどうか）のテストをする  
+     　　　　　vendor/bin/phpunit tests/Feature/HelloTest.php  
+   10  Storageにある画像をS3に移行
+         ・composer require aws/aws-sdk-php
+         ・composer require league/flysystem-aws-s3-v3 "^1.0"  
+         ・php artisan make:command MigrateItemImagesToS3  
+         ・php artisan make:command MigrateSoldItemImagesToS3  
+         ・php artisan make:command MigrateProfileImagesToS3  
+         ・php artisan migrate:itemImages-to-s3  
+         ・php artisan migrate:soldItemImages-to-s3  
+         ・php artisan migrate:profileImages-to-s3  
 
       
 
@@ -238,44 +245,46 @@ STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl
    21 cp .env.example .env  
    22 php artisan key:generate  
    23 .envを編集  
-      ・DB_CONNECTION=mysql
-       DB_HOST=furima-database.cfwgskokkwmy.ap-northeast-1.rds.amazonaws.com
-       DB_PORT=3306
-       DB_DATABASE=FurimaDatabase
-       DB_USERNAME=admin
+      ・DB_CONNECTION=mysql  
+       DB_HOST=furima-database.cfwgskokkwmy.ap-northeast-1.rds.amazonaws.com  
+       DB_PORT=3306  
+       DB_DATABASE=FurimaDatabase  
+       DB_USERNAME=admin  
        DB_PASSWORD=Furimafurima  
+      ・MAIL_MAILER=smtp  
+       MAIL_HOST=localhost  
+       MAIL_PORT=1025  
+       MAIL_USERNAME=null  
+       MAIL_PASSWORD=null  
+       MAIL_ENCRYPTION=null  
+       MAIL_FROM_ADDRESS=coachtech-furima@example.com  
+       MAIL_FROM_NAME="${APP_NAME}"  
+      ・AWS_ACCESS_KEY_ID=AKIA6ODU4LEDH2UFMUFR  
+       AWS_SECRET_ACCESS_KEY=fDDadGIY1mVyS+kO+2qht6UZyIDFuGjRMCfJkAo3  
+       AWS_DEFAULT_REGION=ap-northeast-1  
+       AWS_BUCKET=coachtech-furima-bucket  
+       AWS_USE_PATH_STYLE_ENDPOINT=false  
+      ・STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
+       STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
+       CASHIER_CURRENCY=jpy  
     24 (srcに移動して）wget https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64  
     25 chmod +x MailHog_linux_amd64  
     26 sudo mv MailHog_linux_amd64 /usr/local/bin/mailhog  
-    27 　※※※※※※※※※※※※別ターミナルでAmazonLinuxw2にログイン後、「mailhog]
-    というコマンドを実行しmaihogを起動しておく！！！！！！！！！！！！！！！！※※※※※※※※※※※※※※※※※※※※※※※※  
-    28 もとのターミナルで.envを編集  
-       ・MAIL_MAILER=smtp
-        MAIL_HOST=localhost
-        MAIL_PORT=1025
-        MAIL_USERNAME=null
-        MAIL_PASSWORD=null
-        MAIL_ENCRYPTION=null
-        MAIL_FROM_ADDRESS=coachtech-furima@example.com
-        MAIL_FROM_NAME="${APP_NAME}"  
-    29 EC２のセキュリティグループのインバウンドルールを追加し、ポート番号８０２５からのアクセスを許可する  
-    30 ブラウザでhttp://(パブリックIP4アドレス）:8025にアクセスしmailhogのインターフェイスが表示されることを確認  
-    31 sudo yum install php-mbstring php-gd php-xml  
-    32 sudo systemctl restart php-fpm  
-    33 sudo systemctl restart nginx  
-    34 composer require stripe/stripe-php  
-    35 .envを編集  
-       STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx
-       STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn
-       CASHIER_CURRENCY=jpy  
-    36 sudo yum install php-opcache  
-    37 sudo systemctl start php-fpm.service  
-    38 sudo systemctl enable php-fpm.service  
-    39 sudo su -  
-    40 cd /etc/php-fpm.d/  
-    41 sudo cp www.conf www.conf_bk_yyyyMMdd  
-    42 vim www.conf  
-    43 www.confを以下の通り編集する  
+    27 　※※※※【必須】※※※※メール機能利用のため、別ターミナルでAmazonLinuxw2にログイン後、「mailhog」というコマンドを実行しmaihogを起動したままにしておく！！！！！！！！！！！！！！！！※※※※※※※※※※※※※※※※※※※※※※ 　
+    ２８ EC２のセキュリティグループのインバウンドルールを追加し、ポート番号８０２５からのアクセスを許可する  
+    ２９ ブラウザでhttp://54.168.57.188:8025にアクセスしmailhogのインターフェイスが表示されることを確認  
+    30 sudo yum install php-mbstring php-gd php-xml  
+    31 sudo systemctl restart php-fpm  
+    32 sudo systemctl restart nginx  
+    33 composer require stripe/stripe-php  
+    34 sudo yum install php-opcache  
+    35 sudo systemctl start php-fpm.service  
+    36 sudo systemctl enable php-fpm.service  
+    37 sudo su -  
+    38 cd /etc/php-fpm.d/  
+    39 sudo cp www.conf www.conf_bk_yyyyMMdd  
+    40 vim www.conf  
+    41 www.confを以下の通り編集する  
        ・２４行目あたり  
         変更前 user = apache  
         変更後 user = nginx  
@@ -291,8 +300,8 @@ STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl
        ・50行目あたり  
         変更前　;listen.mode = 0660  
         変更後 listen.mode = 0660  
-    44 vim /etc/nginx/nginx.conf  
-    45 nginx.confを以下の通り編集する  
+    42 vim /etc/nginx/nginx.conf  
+    43 nginx.confを以下の通り編集する  
        ・変更前  
         server {  
         listen       80;  
@@ -328,27 +337,26 @@ STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl
         location ~ /\.(?!well-known).* {  
             deny all;  
         }  
-    46 sudo systemctl start nginx.service  
-    47 sudo su -  
-    48 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
-    49 php artisan migrate:fresh  
-    50 cd database/seeders  
-    51 vim DatabaseSeeder.php 
+    44 sudo systemctl start nginx.service  
+    45 sudo su -  
+    46 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
+    47 php artisan migrate:fresh  
+    48 cd database/seeders  
+    49 vim DatabaseSeeder.php 
        ・コメントアウトを外しながら、 DatabaseSeeder.php 内に記載の通り、５回に分けてシードする  
-       ・DatabaseSeeder.phpの編集後はsrcに戻ってからシード→またdatabase/seedersに戻ってDatabaseSeeder.phpを編集の工程を繰り返しながら行う  
-    52 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
-    53 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/storage  
-    54 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/bootstrap/cache  
-    55 sudo systemctl restart nginx  
-    56 php artisan storage:link  
-    57 Elastic IPアドレスをec2インスタンスに関連付け  
-    58 S3バケットの作成、.envファイルに以下の情報を追加  
-       AWS_ACCESS_KEY_ID=AKIA6ODU4LEDH2UFMUFR　　
-       AWS_SECRET_ACCESS_KEY=fDDadGIY1mVyS+kO+2qht6UZyIDFuGjRMCfJkAo3　　
-       AWS_DEFAULT_REGION=ap-northeast-1　　
-       AWS_BUCKET=coachtech-furima-bucket 
-    59 composer require aws/aws-sdk-php  
-    60 
+       ・その際の流れは、DatabaseSeeder.phpの該当部分のコメントアウトを外す→srcに戻ってからシード→またdatabase/seedersに戻ってDatabaseSeeder.phpの次の該当部分のコメントアウトを外す‥の工程の繰り返しとなる。  
+    50 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
+    51 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/storage  
+    52 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/bootstrap/cache  
+    53 sudo systemctl restart nginx  
+    54 php artisan storage:link  
+    55 Elastic IPアドレスをec2インスタンスに関連付け  
+    55 S3バケットの作成  
+    56 composer require aws/aws-sdk-php  
+    57 sudo su -  
+    58 cd /var/www/20240528_atsukonakazawa_coachtech-furima  
+    59 git pull origin main
+    
     
 
    
