@@ -67,7 +67,7 @@
 <div class="content__outer">
     <div class="user__part">
         <div class="user__img-outer">
-            <img class="user__img" src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
+            <img class="user__img" src="{{ $profile->img }}" alt="user_img">
         </div>
         <div class="user__nickname-outer">
             <p class="user__nickname">
@@ -90,7 +90,7 @@
         <form action="{{ route('mypage.selllist') }}" method="get">
         @csrf
             <button class="sell__list-button" type="submit">
-                販売した商品
+                出品した商品
             </button>
             @if (Auth::check())
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -115,7 +115,7 @@
                     <div class="item__box">
                         <input type="hidden" name="soldItem_id" value="{{ $soldItem->id }}">
                         <div class="item__img-group">
-                            <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
+                            <img src="{{ $soldItem->item_img }}" alt="商品画像">
                             <div class="sold__mark">
                                 <p class="sold">SOLD</p>
                             </div>

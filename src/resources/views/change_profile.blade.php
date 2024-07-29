@@ -74,7 +74,7 @@
         <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
         @csrf
             <div class="input__group-img">
-                <img class="user__img" src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
+                <img class="user__img" src="{{ $profile->img }}" alt="user_img">
                 <div class="img__div">
                     <label class="file__label" for="img">
                         ファイルを選択
@@ -84,7 +84,7 @@
                         選択されていません
                     </p>
                     <p class="limit__p-img">
-                        ※最大サイズは2048KBまでです。
+                        ※最大サイズは1024KBまでです。
                     </p>
                 </div>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

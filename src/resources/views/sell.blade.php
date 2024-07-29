@@ -86,7 +86,7 @@
                         選択されていません
                     </p>
                     <p class="limit__p">
-                        ※最大サイズは2048KBまでです。
+                        ※最大サイズは1024KBまでです。
                     </p>
                 </div>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

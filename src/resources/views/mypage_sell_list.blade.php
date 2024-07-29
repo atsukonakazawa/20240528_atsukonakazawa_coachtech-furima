@@ -67,7 +67,7 @@
 <div class="content__outer">
     <div class="user__part">
         <div class="user__img-outer">
-            <img class="user__img" src="{{ asset('storage/profiles/' . basename($profile->img)) }}" alt="user_img">
+            <img class="user__img" src="{{ $profile->img }}" alt="user_img">
         </div>
         <div class="user__nickname-outer">
             <p class="user__nickname">
@@ -115,7 +115,7 @@
                     <div class="item__box">
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <div class="item__img">
-                            <img src="{{ asset('storage/items/' . basename($item->item_img)) }}" alt="商品画像">
+                            <img src="{{ $item->item_img }}" alt="商品画像">
                         </div>
                         <div class="price__outer">
                             <div class="price">
@@ -133,7 +133,7 @@
                     <div class="item__box">
                         <input type="hidden" name="soldItem_id" value="{{ $soldItem->id }}">
                         <div class="item__img-group">
-                            <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
+                            <img src="{{ $soldItem->item_img }}" alt="商品画像">
                             <div class="sold__mark">
                                 <p class="sold">SOLD</p>
                             </div>

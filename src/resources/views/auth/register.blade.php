@@ -72,7 +72,7 @@
                 <div class="register__box-img-row">
                     <p class="register__box-p">
                         プロフィール画像<span class="required">※必須</span><br>
-                        (最大2048KBまで)
+                        (最大1024KBまで)
                     </p>
                     <div class="flex__group">
                         <label class="file__label" for="img">
@@ -117,9 +117,9 @@
 
                 <div class="register__box-row">
                     <p class="register__box-p">
-                        パスワード(8文字以上) <span class="required">※必須</span>
+                        パスワード(8~12文字) <span class="required">※必須</span>
                     </p>
-                    <input class="register__box-input" name="password" type="password" value="{{ old('password') }}" placeholder="kouchi123（8文字以上）">
+                    <input class="register__box-input" name="password" type="password" value="{{ old('password') }}" placeholder="kouchi123（8~12文字）">
                     <div class="form__error">
                     @error('password')
                         {{ $message }}

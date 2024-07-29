@@ -101,7 +101,7 @@
 <div class="content__outer">
     @foreach($items as $item)
         <div class="img__outer">
-            <img src="{{ asset('storage/items/' . basename($item->item_img)) }}" alt="商品画像">
+            <img src="{{ $item->item_img }}" alt="商品画像">
         </div>
         <div class="detail__outer-group">
             <div class="detail__outer">
@@ -144,7 +144,7 @@
                     @foreach($comments as $comment)
                         <div class="{{ $comment->user_id == $user->id ? 'user__row-right' : 'user__row' }}">
                             <div class="comment-user__img-outer">
-                                <img class="comment-user__img" src="{{ asset('storage/profiles/' . basename($comment->user->profile->img)) }}" alt="user_img">
+                                <img class="comment-user__img" src="{{ $comment->user->profile->img }}" alt="user_img">
                             </div>
                             <div class="comment__user">
                                 {{ $comment->user->profile->nickname }}

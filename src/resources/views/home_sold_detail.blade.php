@@ -64,7 +64,7 @@
 <div class="content__outer">
     @foreach($soldItems as $soldItem)
         <div class="img__outer">
-            <img src="{{ asset('storage/sold_items/' . basename($soldItem->item_img)) }}" alt="商品画像">
+            <img src="{{ $soldItem->item_img }}" alt="商品画像">
             <div class="sold__mark">
                 <p class="sold">SOLD</p>
             </div>
@@ -127,7 +127,7 @@
                         出品者
                     </p>
                     <div class="user__img-outer">
-                        <img class="user__img" src="{{ asset('storage/profiles/' . basename($soldItem->seller->profile->img)) }}" alt="user_img">
+                        <img class="user__img" src="{{ $soldItem->seller->profile->img }}" alt="user_img">
                     </div>
                     <p class="seller__name">
                         {{ $soldItem->seller->profile->nickname }}

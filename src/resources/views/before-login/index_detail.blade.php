@@ -61,7 +61,7 @@
 <div class="content__outer">
     @foreach($items as $item)
     <div class="img__outer">
-        <img src="{{ asset('storage/items/' . basename($item->item_img)) }}" alt="商品画像">
+        <img src="{{ $item->item_img }}" alt="商品画像">
     </div>
     <div class="detail__outer">
         <h2 class="item__title">

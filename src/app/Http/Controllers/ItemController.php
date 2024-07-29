@@ -15,6 +15,7 @@ use App\Models\Favorite;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SellRequest;
+use Illuminate\Support\Facades\Storage;
 
 
 class ItemController extends Controller
@@ -124,26 +125,27 @@ class ItemController extends Controller
             'item_detail' => $request->item_detail,
             'item_price' => $request->item_price,
         ];
-        //brandが入力されている場合のみresultに追加
-        $brand = $request->item_brand;
-        if($brand !== null){
 
+        // brandが入力されている場合のみresultに追加
+        $brand = $request->item_brand;
+        if ($brand !== null) {
             $result['item_brand'] = $request->item_brand;
         }
-        Item::create($result);
 
-        //画像ファイルにitemsテーブルのidの名前をつけてstorage/app/publicに保存
-        $item = Item::where('seller_id',$request->user_id)
-                        ->orderBy('id','desc')
-                        ->first();
+        $item = Item::create($result);
+
+        // 画像ファイルにitemsテーブルのidの名前をつけてS3に保存
         $itemId = $item->id;
         $file = $request->file('item_img');
         $filename = $itemId . '.jpg';
-        $path = $file->storeAs('public/items/', $filename);
+        $s3Path = 'items/' . $filename;
 
-        //画像までのパスをstorage/...の形式でitemsテーブルのimgカラムに保存
-        $publicPath = 'storage/items/' . $filename;
-        $item->update(['item_img' => $publicPath]);
+        // S3に画像を保存
+        Storage::disk('s3')->put($s3Path, file_get_contents($file));
+        $s3Url = Storage::disk('s3')->url($s3Path);
+
+        // 画像までのパスをS3のURL形式でitemsテーブルのimgカラムに保存
+        $item->update(['item_img' => $s3Url]);
 
         return view('sell_done');
     }

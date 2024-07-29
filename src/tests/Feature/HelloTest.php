@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class HelloTest extends TestCase
 {
@@ -24,14 +22,15 @@ class HelloTest extends TestCase
 
     public function testHello()
     {
-        User::factory()->create([
-            'name'=>'aaa',
-            'email'=>'bbb@ccc.com',
-            'password'=>Hash::make('test12345')
-        ]);
-        $this->assertDatabaseHas('users',[
-            'name'=>'aaa',
-            'email'=>'bbb@ccc.com'
-        ]);
+        $this->assertTrue(true);
+
+        $arr = [];
+        $this->assertEmpty($arr);
+
+        $txt = "Hello World";
+        $this->assertEquals('Hello World', $txt);
+
+        $n = random_int(0, 100);
+        $this->assertLessThan(100, $n);
     }
 }

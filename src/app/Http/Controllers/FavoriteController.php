@@ -9,9 +9,6 @@ use App\Models\SoldItem;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 
-
-
-
 class FavoriteController extends Controller
 {
     public function favoriteList(){

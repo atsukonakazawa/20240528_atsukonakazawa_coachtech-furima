@@ -7,7 +7,7 @@ use App\Models\Profile;
 use App\Models\Item;
 use App\Models\SoldItem;
 use App\Http\Requests\RegisterRequest;
-
+use Illuminate\Support\Facades\Storage;
 
 
 class AuthController extends Controller
@@ -44,16 +44,18 @@ class AuthController extends Controller
         }
         Profile::create($result2);
 
-        //画像ファイルにemailの名前をつけてstorage/app/publicに保存
+        // 画像ファイルにitemsテーブルのidの名前をつけてS3に保存
         $email = $request->email;
         $file = $request->file('img');
         $filename = $email . '.jpg';
-        $path = $file->storeAs('public/profiles/', $filename);
+        $s3Path = 'profiles/' . $filename;
+        Storage::disk('s3')->put($s3Path, file_get_contents($file));
 
-        //画像までのパスをstorage/...の形式でprofilesテーブルのimgカラムに保存
-        $user=Profile::where('user_id',$user_id)->first();
-        $publicPath = 'storage/profiles/' . $filename;
-        $user->update(['img' => $publicPath]);
+        // 画像までのパスをS3のURL形式でitemsテーブルのimgカラムに保存
+        $profile = Profile::where('user_id',$user_id)
+                            ->first();
+        $s3Url = Storage::disk('s3')->url($s3Path);
+        $profile->update(['img' => $s3Url]);
 
         $items = Item::all();
         $soldItems = SoldItem::all();

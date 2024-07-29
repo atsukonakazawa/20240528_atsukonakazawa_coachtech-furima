@@ -86,7 +86,7 @@
                         <div class="item__box">
                             <input type="hidden" name="item_id" value="{{ $favorite->item_id }}">
                             <div class="item__img">
-                                <img src="{{ asset('storage/items/' . basename($favorite->item->item_img)) }}" alt="商品画像">
+                                <img src="{{ $favorite->item->item_img }}" alt="商品画像">
                             </div>
                             <div class="price__outer">
                                 <div class="price">
@@ -103,7 +103,7 @@
                         <div class="item__box">
                             <input type="hidden" name="soldItem_id" value="{{ $favorite->sold_item_id }}">
                             <div class="item__img-group">
-                                <img src="{{ asset('storage/sold_items/' . basename($favorite->soldItem->item_img)) }}" alt="商品画像">
+                                <img src="{{ $favorite->soldItem->item_img }}" alt="商品画像">
                                 <div class="sold__mark">
                                     <p class="sold">SOLD</p>
                                 </div>

@@ -63,30 +63,41 @@ class PaymentController extends Controller
                         ->orderby('id','desc')
                         ->first();
 
-            //元々の画像ファイル名とパスを取得
-            $originalFilename = $item->id . '.jpg';
-            $originalFilePath = 'public/items/' . $originalFilename;
+            try {
+                // $item->id を用いてファイル名を決定
+                $filename = $itemId . '.jpg';
+                $filePath = 'items/' . $filename;
 
-            //新しい画像ファイル名とパス
-            $newFilename = $soldItem->id . '.jpg';
-            $newFilePath = 'public/sold_items/' . $newFilename;
+                // S3からファイルを取得
+                if (Storage::disk('s3')->exists($filePath)) {
+                    $fileContents = Storage::disk('s3')->get($filePath);
 
-            //storage内でファイルを移動
-            if (Storage::exists($originalFilePath)) {
-                Storage::move($originalFilePath, $newFilePath);
-            } else {
-                return response()->json(['error' => 'File not found'], 404);
+                    // sold_itemsフォルダにファイルを保存
+                    $soldItemId = $soldItem->id; // $soldItem は売れたアイテムオブジェクト
+                    $newFilename = $soldItemId . '.jpg';
+                    $newFilePath = 'sold_items/' . $newFilename;
+
+                    Storage::disk('s3')->put($newFilePath, $fileContents);
+
+                    Storage::disk('s3')->delete($filePath);
+
+                    //該当商品をitemsテーブルから削除
+                    Item::where('id',$itemId)->delete();
+
+                    //soldItemsテーブルのitem_imgカラムに新しいパスを保存
+                    $soldItem->item_img = Storage::disk('s3')->url($newFilePath);
+                    $soldItem->save();
+
+                    return view('purchase.payment_conbini',compact('item','user','profile'));
+
+                } else {
+                    // ファイルが存在しない場合の処理
+                    return response()->json(['message' => 'ファイルが存在しません。'], 404);
+                }
+            } catch (\Exception $e) {
+                // エラーが発生した場合の処理
+                return response()->json(['message' => 'エラーが発生しました: ' . $e->getMessage()], 500);
             }
-
-            // soldItemsテーブルのitem_imgカラムに新しいパスを保存
-            $soldItem->item_img = 'storage/sold_items/' . $newFilename;
-            $soldItem->save();
-
-            //該当商品をitemsテーブルから削除
-            Item::where('id',$itemId)->delete();
-
-            return view('purchase.payment_conbini',compact('item','user','profile'));
-
         }else{
 
             //該当商品の取得
@@ -119,58 +130,69 @@ class PaymentController extends Controller
                         ->orderby('id','desc')
                         ->first();
 
-            //元々の画像ファイル名とパスを取得
-            $originalFilename = $item->id . '.jpg';
-            $originalFilePath = 'public/items/' . $originalFilename;
+            try {
+                // $item->id を用いてファイル名を決定
+                $filename = $itemId . '.jpg';
+                $filePath = 'items/' . $filename;
 
-            //新しい画像ファイル名とパス
-            $newFilename = $soldItem->id . '.jpg';
-            $newFilePath = 'public/sold_items/' . $newFilename;
+                // S3からファイルを取得
+                if (Storage::disk('s3')->exists($filePath)) {
+                    $fileContents = Storage::disk('s3')->get($filePath);
 
-            //storage内でファイルを移動
-            if (Storage::exists($originalFilePath)) {
-                Storage::move($originalFilePath, $newFilePath);
-            } else {
-                return response()->json(['error' => 'File not found'], 404);
+                    // sold_itemsフォルダにファイルを保存
+                    $soldItemId = $soldItem->id; // $soldItem は売れたアイテムオブジェクト
+                    $newFilename = $soldItemId . '.jpg';
+                    $newFilePath = 'sold_items/' . $newFilename;
+
+                    Storage::disk('s3')->put($newFilePath, $fileContents);
+
+                    Storage::disk('s3')->delete($filePath);
+
+                    //該当商品をitemsテーブルから削除
+                    Item::where('id',$itemId)->delete();
+
+                    //soldItemsテーブルのitem_imgカラムに新しいパスを保存
+                    $soldItem->item_img = Storage::disk('s3')->url($newFilePath);
+                    $soldItem->save();
+
+                    return view('purchase.payment_transfer',compact('item','user','profile'));
+                } else {
+                    // ファイルが存在しない場合の処理
+                    return response()->json(['message' => 'ファイルが存在しません。'], 404);
+                }
+            } catch (\Exception $e) {
+                // エラーが発生した場合の処理
+                return response()->json(['message' => 'エラーが発生しました: ' . $e->getMessage()], 500);
             }
-
-            // soldItemsテーブルのitem_imgカラムに新しいパスを保存
-            $soldItem->item_img = 'storage/sold_items/' . $newFilename;
-            $soldItem->save();
-
-            //該当商品をitemsテーブルから削除
-            Item::where('id',$itemId)->delete();
-
-            return view('purchase.payment_transfer',compact('item','user','profile'));
         }
     }
 
     public function payCredit(Request $request){
-        try{
-            //.envに追加したシークレットキーを使用
+        try {
+            // .envに追加したシークレットキーを使用
             Stripe::setApiKey(env('STRIPE_SECRET'));
 
-            //送信された金額を取得
+            // 送信された金額を取得
             $amount = $request->item_price;
 
-            //顧客情報をStripe側に登録
+            // 顧客情報をStripe側に登録
             $customer = Customer::create(array('email' => $request->stripeEmail,
                 'source' => $request->stripeToken
                 )
             );
 
-            //支払処理
+            // 支払処理
             $charge = Charge::create(array('customer' => $customer->id,
                 'amount' => $amount,//送信された金額
                 'currency' => 'jpy'
                 )
             );
 
-            //該当商品の取得
+            // 該当商品の取得
             $itemId = $request->item_id;
-            $item = Item::where('id',$itemId)->first();
+            $item = Item::where('id', $itemId)->first();
 
-            //該当商品をsoldItemsテーブルに登録
+            // 該当商品をsoldItemsテーブルに登録
             $result = [
                 'seller_id' => $item->seller_id,
                 'buyer_id' => $request->user_id,
@@ -183,46 +205,54 @@ class PaymentController extends Controller
                 'item_detail' => $item->item_detail,
                 'item_price' => $item->item_price
             ];
-            //brandが入力されている場合のみresultに追加
-            $brand = $item->item_brand;
-            if($brand !== null){
 
-                $result['item_brand'] = $request->item_brand;
+            // brandが入力されている場合のみresultに追加
+            $brand = $item->item_brand;
+            if ($brand !== null) {
+                $result['item_brand'] = $brand;
             }
+
             SoldItem::create($result);
 
-            //soldItemsテーブルに保存した該当商品を取得
-            $soldItem = SoldItem::where('buyer_id',$request->user_id)
-                        ->orderby('id','desc')
-                        ->first();
+            // soldItemsテーブルに保存した該当商品を取得
+            $soldItem = SoldItem::where('buyer_id', $request->user_id)
+                                ->orderBy('id', 'desc')
+                                ->first();
 
-            //元々の画像ファイル名とパスを取得
-            $originalFilename = $item->id . '.jpg';
-            $originalFilePath = 'public/items/' . $originalFilename;
 
-            //新しい画像ファイル名とパス
-            $newFilename = $soldItem->id . '.jpg';
-            $newFilePath = 'public/sold_items/' . $newFilename;
+            // $item->id を用いてファイル名を決定
+            $filename = $itemId . '.jpg';
+            $filePath = 'items/' . $filename;
 
-            //storage内でファイルを移動
-            if (Storage::exists($originalFilePath)) {
-                Storage::move($originalFilePath, $newFilePath);
+            // S3からファイルを取得
+            if (Storage::disk('s3')->exists($filePath)) {
+                $fileContents = Storage::disk('s3')->get($filePath);
+
+                // sold_itemsフォルダにファイルを保存
+                $soldItemId = $soldItem->id; // $soldItem は売れたアイテムオブジェクト
+                $newFilename = $soldItemId . '.jpg';
+                $newFilePath = 'sold_items/' . $newFilename;
+
+                Storage::disk('s3')->put($newFilePath, $fileContents);
+
+                Storage::disk('s3')->delete($filePath);
+
+                //該当商品をitemsテーブルから削除
+                Item::where('id',$itemId)->delete();
+
+                //soldItemsテーブルのitem_imgカラムに新しいパスを保存
+                $soldItem->item_img = Storage::disk('s3')->url($newFilePath);
+                $soldItem->save();
+
+                return view('purchase.thanks');
+
             } else {
-                return response()->json(['error' => 'File not found'], 404);
+                // ファイルが存在しない場合の処理
+                return response()->json(['message' => 'ファイルが存在しません。'], 404);
             }
-
-            // soldItemsテーブルのitem_imgカラムに新しいパスを保存
-            $soldItem->item_img = 'storage/sold_items/' . $newFilename;
-            $soldItem->save();
-
-            //該当商品をitemsテーブルから削除
-            Item::where('id',$itemId)->delete();
-
-            return view('purchase.thanks');
-
-        }catch(Exception $e){
-
-            return $e->getMessage();
+        } catch (\Exception $e) {
+            // エラーが発生した場合の処理
+            return response()->json(['message' => 'エラーが発生しました: ' . $e->getMessage()], 500);
         }
     }
 }

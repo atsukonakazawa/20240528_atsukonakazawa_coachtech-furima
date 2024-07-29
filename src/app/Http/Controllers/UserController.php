@@ -11,7 +11,7 @@ use App\Models\PaymentWay;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
-
+use Illuminate\Support\Facades\Log;
 
 
 class UserController extends Controller
@@ -84,7 +84,6 @@ class UserController extends Controller
         return view('mypage_purchased_list',compact('soldItems','profile'));
     }
 
-
     public function profileEdit(Request $request){
 
         $user = User::where('id',$request->user_id)
@@ -95,7 +94,7 @@ class UserController extends Controller
         return view('change_profile',compact('user','profile'));
     }
 
-    public function profileUpdate(ProfileRequest $request){
+    public function profileUpdate(ProfileRequest $request) {
 
         $newImg = $request->newImg;
         $newNickname = $request->newNickname;
@@ -104,85 +103,52 @@ class UserController extends Controller
         $newBuilding = $request->newBuilding;
         $newIntroduction = $request->newIntroduction;
 
-        if($newImg !== null){
-            //画像の変更がある場合
+        // 必要なユーザー情報を取得
+        $user = User::where('id', $request->user_id)->first();
+        $email = $user->email;
+        $profile = Profile::where('user_id', $request->user_id)->first();
 
-            //必要なユーザー情報を取得
-            $user = User::where('id',$request->user_id)
-                        ->first();
-            $email = $user->email;
-            $profile = Profile::where('user_id',$request->user_id)
-                                ->first();
-
-            //既存の画像ファイルをstorage/app/publicから削除
+        if ($newImg !== null) {
+            // 既存の画像ファイルをS3から削除
             $filename = $email . '.jpg';
-            $filePath = 'public/profiles/' . $filename;
+            $filePath = 'profiles/' . $filename;
 
-            Storage::delete($filePath);
+            try {
+                Storage::disk('s3')->delete($filePath);
+                Log::info("File deleted successfully.");
+            } catch (\Exception $e) {
+                Log::error("Failed to delete file: " . $e->getMessage());
+            }
 
-            //新たな画像ファイルに既存のemailの名前をつけて
-            //storage/app/publicに保存
+            // 新たな画像ファイルに既存のemailの名前をつけてS3に保存
             $file = $request->file('newImg');
-            $filename = $email . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('public/profiles/', $filename);
+            $filename = $email . '.jpg';
+            $path = $file->storeAs('profiles', $filename, 's3');
 
-            //画像までのパスをstorage/...の形式でprofilesテーブルのimgカラムに保存
-            $publicPath = 'storage/profiles/' . $filename;
+            // 画像までのパスをS3のURL形式でprofilesテーブルのimgカラムに保存
+            $publicPath = Storage::disk('s3')->url($path);
             $profile->update(['img' => $publicPath]);
         }
 
-        if($newNickname !== null){
-            //ユーザー名の変更がある場合
-
-            $result2 = [
-                'nickname' => $newNickname,
-            ];
-            Profile::where('user_id',$request->user_id)
-                        ->update($result2);
+        if ($newNickname !== null) {
+            $profile->update(['nickname' => $newNickname]);
         }
 
-        if($newPostcode !== null){
-            //郵便番号の変更がある場合
-
-            $result3 = [
-                'postcode' => $newPostcode,
-            ];
-            Profile::where('user_id',$request->user_id)
-                        ->update($result3);
+        if ($newPostcode !== null) {
+            $profile->update(['postcode' => $newPostcode]);
         }
 
-        if($newAddress !== null){
-            //住所の変更がある場合
-
-            $result4 = [
-                'address' => $newAddress,
-            ];
-            Profile::where('user_id',$request->user_id)
-                        ->update($result4);
+        if ($newAddress !== null) {
+            $profile->update(['address' => $newAddress]);
         }
 
-        if($newBuilding !== null){
-            //建物名の変更がある場合
-
-            $result5 = [
-                'building' => $newBuilding,
-            ];
-            Profile::where('user_id',$request->user_id)
-                        ->update($result5);
+        if ($newBuilding !== null) {
+            $profile->update(['building' => $newBuilding]);
         }
 
-        if($newIntroduction !== null){
-            //建物名の変更がある場合
-
-            $result6 = [
-                'introduction' => $newIntroduction,
-            ];
-            Profile::where('user_id',$request->user_id)
-                        ->update($result6);
+        if ($newIntroduction !== null) {
+            $profile->update(['introduction' => $newIntroduction]);
         }
-
-        // ユーザーを再ログインさせる
-        //Auth::login($user);
 
         return view('profile_changed');
     }
