@@ -315,28 +315,28 @@
         server_name  _;  
         root         /var/www/20240528_atsukonakazawa_coachtech-furima/src/public;  
           
-       add_header X-Frame-Options "SAMEORIGIN";  
-       add_header X-Content-Type-Options "nosniff";  
+      add_header X-Frame-Options "SAMEORIGIN";  
+      add_header X-Content-Type-Options "nosniff";  
          
-       index index.php;  
+      index index.php;  
          
-       charset utf-8;  
+      charset utf-8;  
          
-       location / {  
-           try_files $uri $uri/ /index.php?$query_string;  
-       }  
+      location / {  
+          try_files $uri $uri/ /index.php?$query_string;  
+      }  
          
-       location ~ \.php$ {  
-           fastcgi_pass   unix:/run/php-fpm/www.sock;  
-           fastcgi_index  index.php;  
-           fastcgi_param  SCRIPT_FILENAME  
-           $document_root$fastcgi_script_name;  
-           include        fastcgi_params;  
-       }  
+      location ~ \.php$ {  
+          fastcgi_pass   unix:/run/php-fpm/www.sock;  
+          fastcgi_index  index.php;  
+          fastcgi_param  SCRIPT_FILENAME  
+          $document_root$fastcgi_script_name;  
+          include        fastcgi_params;  
+      }  
          
-       location ~ /\.(?!well-known).* {  
-           deny all;  
-       }  
+      location ~ /\.(?!well-known).* {  
+          deny all;  
+      }  
    44 sudo systemctl start nginx.service  
    45 sudo su -  
    46 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
