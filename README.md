@@ -355,7 +355,10 @@
    56 composer require aws/aws-sdk-php  
    57 sudo su -  
    58 cd /var/www/20240528_atsukonakazawa_coachtech-furima  
-   59 git pull origin main
+   59 git pull origin main  
+   60 再度 php artisan migrate:fresh  
+   61 再度 php artisan db:seed  
+      ・コメントアウトを外しながら、 DatabaseSeeder.php 内に記載の通り、５回に分けてシードする   
     
     
 
