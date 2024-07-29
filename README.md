@@ -314,7 +314,7 @@
         listen       [::]:80;  
         server_name  _;  
         root         /var/www/20240528_atsukonakazawa_coachtech-furima/src/public;  
-         
+          
         add_header X-Frame-Options "SAMEORIGIN";  
         add_header X-Content-Type-Options "nosniff";  
          
