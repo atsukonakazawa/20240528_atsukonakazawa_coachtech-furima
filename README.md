@@ -245,6 +245,8 @@
    21 cp .env.example .env  
    22 php artisan key:generate  
    23 .envを編集  
+      ・FILESYSTEM_DRIVER=localを  
+       FILESYSTEM_DRIVER=s3 に修正   
       ・DB_CONNECTION=mysql  
        DB_HOST=furima-database.cfwgskokkwmy.ap-northeast-1.rds.amazonaws.com  
        DB_PORT=3306  
@@ -309,6 +311,8 @@
         server_name  _;  
         root         /usr/share/nginx/html;  
        ・変更後  
+        client_max_body_size 2M;  
+        
         server {  
         listen       80;  
         listen       [::]:80;  
@@ -358,7 +362,14 @@
    59 git pull origin main  
    60 再度 php artisan migrate:fresh  
    61 再度 php artisan db:seed  
-      ・コメントアウトを外しながら、 DatabaseSeeder.php 内に記載の通り、５回に分けてシードする   
+      ・コメントアウトを外しながら、 DatabaseSeeder.php 内に記載の通り、５回に分けてシードする  
+   62 composer update  
+   63 composer require league/flysystem-aws-s3-v3  
+   64 php.iniに以下の内容を追加  
+      post_max_size = 2M  
+      upload_max_filesize = 2M  
+
+
     
     
 
