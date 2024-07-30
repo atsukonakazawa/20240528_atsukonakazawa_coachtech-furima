@@ -179,16 +179,16 @@
      c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
      d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
      e.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
-   　　　・php artisan key:generate --env=testing  
-  　　　　・php artisan config:clear　　
-  　　　　・php artisan migrate --env=testing  
-  　　　　　・src/phpunit.xmlを編集する  
-   　　　a.変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
-    　　　　変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
-   　　 b.変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
-   　　　  変更後 <server name="DB_DATABASE" value="demo_test"/>  
-     　・基本的なテスト（値が正しいかどうか）のテストをする  
-     　　　vendor/bin/phpunit tests/Feature/HelloTest.php  
+     ・php artisan key:generate --env=testing  
+     ・php artisan config:clear　　
+     ・php artisan migrate --env=testing  
+     ・src/phpunit.xmlを編集する  
+     a.変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
+       変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
+     b.変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
+       変更後 <server name="DB_DATABASE" value="demo_test"/>  
+     ・基本的なテスト（値が正しいかどうか）のテストをする  
+      vendor/bin/phpunit tests/Feature/HelloTest.php  
    10  Storageにある画像をS3に移行  
        ・composer require aws/aws-sdk-php  
        ・composer require league/flysystem-aws-s3-v3 "^1.0"  
