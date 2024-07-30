@@ -25,6 +25,9 @@
    ##他のリポジトリ  
    特になし  
 
+   ##注意事項  
+   デプロイ後にメール機能を使用する場合、別ターミナルにてEC2にsshで接続後、mailhogと入力・実行して、mailhogを起動しておかないと、メール機能が使えないのでご注意ください。  
+   (.ssh/ディレクトリに移動後、ssh -i "coachtech-furima.pem" ec2-user@ec2-54-168-57-188.ap-northeast-1.compute.amazonaws.comを実行、mailhogを実行）  
 
       
    ##機能一覧  
