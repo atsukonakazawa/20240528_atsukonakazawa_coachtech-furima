@@ -172,8 +172,8 @@
      b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
      c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
      d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
-     ・PHPコンテナで　cp .env .env.testing　を実行  
-  　　　　　・src/.env.testingを編集する  
+     ・PHPコンテナでcp .env .env.testing　を実行  
+     ・src/.env.testingを編集する  
      a.変更前 APP_ENV=local 変更後 APP_ENV=test  
      b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
      c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
@@ -183,10 +183,8 @@
      ・php artisan config:clear　　
      ・php artisan migrate --env=testing  
      ・src/phpunit.xmlを編集する  
-     a.変更前　<!-- <server name="DB_CONNECTION" value="sqlite"/> -->  
-       変更後　<server name="DB_CONNECTION" value="mysql_test"/>　  
-     b.変更前　<!-- <server name="DB_DATABASE" value=":memory:"/> -->  
-       変更後 <server name="DB_DATABASE" value="demo_test"/>  
+     a.　DB_CONNECTIONの行  database.phpで指定したmysql_testを指定  
+     b. DB_DATABASEの行テスト用のデータベースとして作成したdemo_testを指定  
      ・基本的なテスト（値が正しいかどうか）のテストをする  
       vendor/bin/phpunit tests/Feature/HelloTest.php  
    10  Storageにある画像をS3に移行  
