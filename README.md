@@ -161,19 +161,19 @@
       ・composer.jsonに"stripe/stripe-php": "^7.0"を追記  
       ・php artisan migrate:fresh  
       ・php artisan db:seed  
-      ※コメントアウトを外しながら、DatabaseSeeder.phpに記載されている通りの順で５回に分けてシードする 
+      ※コメントアウトを外しながら、DatabaseSeeder.phpに記載されている通りの順で５回に分けてシードする  
    9  PHPunitでテスト  
-   　　　　　　・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
-　　　　　　　　　　　　・CREATE DATABASE demo_test;  
-   　　　　　　・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
-   　　　　　　・ペーストした部分の以下4箇所を変更する  
-    　　　　　a.変更前　mysql 変更後　mysql_test  
-    　　　　　b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
-    　　　　　c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
-    　　　　　d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
+   　　　　　・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
+　　　　　　　　　　　・CREATE DATABASE demo_test;  
+   　　　　　・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
+   　　　　　・ペーストした部分の以下4箇所を変更する  
+    　　　　a.変更前　mysql 変更後　mysql_test  
+    　　　　b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
+    　　　　c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
+    　　 d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
    　　　　　・PHPコンテナで　cp .env .env.testing　を実行  
   　　　　　 ・src/.env.testingを編集する  
-    　　　 a.変更前 APP_ENV=local 変更後 APP_ENV=test
+    　　　 a.変更前 APP_ENV=local 変更後 APP_ENV=test  
     　　　 b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
     　　　 c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
     　　　　　d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
@@ -188,8 +188,8 @@
    　　　　　    変更後 <server name="DB_DATABASE" value="demo_test"/>  
    　　　　　・基本的なテスト（値が正しいかどうか）のテストをする  
      　　　　　vendor/bin/phpunit tests/Feature/HelloTest.php  
-   10  Storageにある画像をS3に移行
-         ・composer require aws/aws-sdk-php
+   10  Storageにある画像をS3に移行  
+         ・composer require aws/aws-sdk-php  
          ・composer require league/flysystem-aws-s3-v3 "^1.0"  
          ・php artisan make:command MigrateItemImagesToS3  
          ・php artisan make:command MigrateSoldItemImagesToS3  
@@ -218,10 +218,10 @@
    ##デプロイ  
    1 EC2インスタンスの作成  
    2 AmazonLinux2にログインし、nginxのインストール・自動起動化  
-     ・ターミナルで　.ssh/に移動しEC2インスタンスにsshでログインする
-     （ssh -i "coachtech-furima.pem" ec2-user@ec2-54-199-100-49.ap-northeast-1.compute.amazonaws.com）
-     ・sudo amazon-linux-extras enable nginx1
-     ・sudo yum -y install nginx 
+     ・ターミナルで　.ssh/に移動しEC2インスタンスにsshでログインする  
+     （ssh -i "coachtech-furima.pem" ec2-user@ec2-54-199-100-49.ap-northeast-1.compute.amazonaws.com）  
+     ・sudo amazon-linux-extras enable nginx1  
+     ・sudo yum -y install nginx  
      ・sudo systemctl enable nginx  
      ・sudo systemctl start nginx.service  
    3 RDS DBインスタンスを作成  
@@ -239,14 +239,14 @@
    15 cd 20240528_atsukonakazawa_coachtech-furima/src  
    16 composer update  
    17 composer install  
-   18 cd ../../
+   18 cd ../../  
    19 sudo yum install php-devel php-opcache  
    20 cd 20240528_atsukonakazawa_coachtech-furima/src  
    21 cp .env.example .env  
    22 php artisan key:generate  
    23 .envを編集  
       ・FILESYSTEM_DRIVER=localを  
-       FILESYSTEM_DRIVER=s3 に修正   
+       FILESYSTEM_DRIVER=s3 に修正  
       ・DB_CONNECTION=mysql  
        DB_HOST=furima-database.cfwgskokkwmy.ap-northeast-1.rds.amazonaws.com  
        DB_PORT=3306  
@@ -348,7 +348,10 @@
    48 cd database/seeders  
    49 vim DatabaseSeeder.php 
       ・コメントアウトを外しながら、 DatabaseSeeder.php 内に記載の通り、５回に分けてシードする  
-      ・その際の流れは、DatabaseSeeder.phpの該当部分のコメントアウトを外す→srcに戻ってからシード→またdatabase/seedersに戻ってDatabaseSeeder.phpの次の該当部分のコメントアウトを外す‥の工程の繰り返しとなる。  
+      ・その際の流れは、DatabaseSeeder.phpの該当部分のコメントアウトを外す  
+      →srcに戻ってからシード  
+      →またdatabase/seedersに戻ってDatabaseSeeder.phpの次の該当部分のコメントアウトを外す‥  
+      の工程の繰り返しとなる。  
    50 cd /var/www/20240528_atsukonakazawa_coachtech-furima/src  
    51 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/storage  
    52 sudo chown -R nginx:nginx /var/www/20240528_atsukonakazawa_coachtech-furima/src/bootstrap/cache  
