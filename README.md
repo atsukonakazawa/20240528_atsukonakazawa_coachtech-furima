@@ -271,9 +271,12 @@
     24 (srcに移動して）wget https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64  
     25 chmod +x MailHog_linux_amd64  
     26 sudo mv MailHog_linux_amd64 /usr/local/bin/mailhog  
-    27 　※※※※【必須】※※※※メール機能利用のため、別ターミナルでAmazonLinuxw2にログイン後、「mailhog」というコマンドを実行しmaihogを起動したままにしておく！！！！！！！！！！！！！！！！※※※※※※※※※※※※※※※※※※※※※※ 　
-    ２８ EC２のセキュリティグループのインバウンドルールを追加し、ポート番号８０２５からのアクセスを許可する  
-    ２９ ブラウザでhttp://54.168.57.188:8025にアクセスしmailhogのインターフェイスが表示されることを確認  
+    27 　※※※※※※※【必須】※※※※※※※※※※※※
+       メール機能利用のため、別ターミナルでAmazonLinuxw2にログイン後、  
+       「mailhog」というコマンドを実行しmaihogを起動したままにしておく！！！！！！！！！！！！！！  
+       ※※※※※※※※※※※※※※※※※※※※※※ 　
+    28 EC２のセキュリティグループのインバウンドルールを追加し、ポート番号８０２５からのアクセスを許可する  
+    29 ブラウザでhttp://54.168.57.188:8025にアクセスしmailhogのインターフェイスが表示されることを確認  
     30 sudo yum install php-mbstring php-gd php-xml  
     31 sudo systemctl restart php-fpm  
     32 sudo systemctl restart nginx  
