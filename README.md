@@ -142,9 +142,9 @@
       docker/nginx/default.confに以下の内容を追加  
       client_max_body_size 10M;  
    7  ・srcに移動し　npm install jquery  
-    　　・webpack.mix.jsに以下の内容を追加  
-     .sass('resources/sass/app.scss', 'public/css')
-     .autoload({
+      ・webpack.mix.jsに以下の内容を追加  
+      .sass('resources/sass/app.scss', 'public/css')
+      .autoload({
         jquery: ['$', 'window.jQuery', 'jQuery'],
      })  
      ・resources/js/app.jsに以下の内容を追加  
