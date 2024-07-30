@@ -164,21 +164,21 @@
      ・php artisan db:seed  
      ※コメントアウトを外しながら、DatabaseSeeder.phpに記載されている通りの順で５回に分けてシードする  
    9  PHPunitでテスト  
-   　　　　・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
-　　　　　　　　　　・CREATE DATABASE demo_test;  
-   　　　　・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
-   　　　　・ペーストした部分の以下4箇所を変更する  
-    　　　a.変更前　mysql 変更後　mysql_test  
-    　　　b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
-    　　　c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
-    　　d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
-   　　　　・PHPコンテナで　cp .env .env.testing　を実行  
+     ・mysqlコンテナに入り、mysql -u root -p(パスワードはroot)を実行  
+     ・CREATE DATABASE demo_test;  
+     ・config/database.phpに書かれているmysqlのセクションをコピー・すぐ下にペーストする  
+     ・ペーストした部分の以下4箇所を変更する  
+     a.変更前　mysql 変更後　mysql_test  
+     b.変更前　'database' => env('DB_DATABASE', 'forge') 　変更後　'database' => 'demo_test',  
+     c.変更前　'username' => env('DB_USERNAME', 'forge')　　変更後 'username' => 'root',  
+     d.変更前　'password' => env('DB_PASSWORD', '')　　変更後 'password' => 'root',  
+     ・PHPコンテナで　cp .env .env.testing　を実行  
   　　　　　・src/.env.testingを編集する  
      a.変更前 APP_ENV=local 変更後 APP_ENV=test  
-    　　b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
-    　　c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
-    　　d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
-    　　e.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
+     b.　変更前　APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=　変更後　APP_KEY=(テスト用キー作成のため一度からにする）  
+     c.　変更前　DB_DATABASE=laravel_db　変更後　DB_DATABASE=demo_test  
+     d. 変更前 DB_USERNAME=laravel_user 変更後　　DB_USERNAME=root  
+     e.　変更前　DB_PASSWORD=laravel_pass　変更後　DB_PASSWORD=root  
    　　　・php artisan key:generate --env=testing  
   　　　　・php artisan config:clear　　
   　　　　・php artisan migrate --env=testing  
