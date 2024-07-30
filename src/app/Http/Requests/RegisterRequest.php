@@ -29,7 +29,7 @@ class RegisterRequest extends FormRequest
             'postcode' => 'required',
             'address' => 'required',
             'email' => 'required|email|unique:users,email',
-            'img' => 'required|image|max:1024KB',
+            'img' => 'required|image|max:1024',
             'password' => 'required|min:8|max:12'
         ];
     }

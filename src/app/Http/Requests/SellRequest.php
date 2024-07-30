@@ -30,7 +30,7 @@ class SellRequest extends FormRequest
             'color_id' => 'required',
             'item_name' => 'required|string',
             'item_detail' => 'required|string|max:500',
-            'item_img' => 'required|image|max:1024KB',
+            'item_img' => 'required|image|max:1024',
             'item_price' => 'required|integer|min:300',
         ];
     }
