@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  test-php:
+    docker:
+      - image: cimg/php:7.3-node
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "src/composer.lock" }}
+            - v1-dependencies-
+      - run:
+          name: Install dependencies
+          command: cd src && composer install --prefer-dist --no-progress --no-suggest
+      - save_cache:
+          paths:
+            - src/vendor
+          key: v1-dependencies-{{ checksum "src/composer.lock" }}
+      - run:
+          name: Run tests
+          command: cd src && ./vendor/bin/phpunit
+
+workflows:
+  build-and-test:
+    jobs:
+      - test-php
+
