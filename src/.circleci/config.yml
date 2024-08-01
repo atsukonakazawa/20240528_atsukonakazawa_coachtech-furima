@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - checkout:
-          path: ~/20240528_atsukonakazawa_coachtech-furima
+          path: ~/20240528_atsukonakazawa_coachtech-furima/src
 
       - run:
           name: Change directory to src
