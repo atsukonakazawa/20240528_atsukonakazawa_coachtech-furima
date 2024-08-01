@@ -1,25 +1,25 @@
 #サービス名’coachtechフリマ'  
 <img width="1699" alt="coachtech-furimaトップ画面" src="https://github.com/user-attachments/assets/740e4a7b-66a9-4699-aea8-3e69a276f01e">  
-
- 
+  
   
  ##サービス概要  
  ある企業が開発した独自のフリマアプリ  
-
-
+ 
    
  ##制作の背景と目的  
  coachtechブランドのアイテムを出品する  
 
+
+  
  ##SSHキーのpassphrase  
  Stillababy1  
   
  ##デプロイ  
-  1 アプリケーションURL: http://54.168.57.188  
-  2 デプロイ先: AWS  
-  3 DB: 8.0.26 - MySQL Community Server - GPL  
-  4 ストレージ: s3  
-  5 サーバー:nginx/1.22.1  
+   1 アプリケーションURL: http://54.168.57.188  
+   2 デプロイ先: AWS  
+   3 DB: 8.0.26 - MySQL Community Server - GPL  
+   4 ストレージ: s3  
+   5 サーバー:nginx/1.22.1  
 
 
   
