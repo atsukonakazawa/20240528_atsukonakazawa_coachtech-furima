@@ -14,7 +14,7 @@
  ##SSHキーのpassphrase  
  Stillababy1  
   
-  ##デプロイ  
+ ##デプロイ  
   1 アプリケーションURL: http://54.168.57.188  
   2 デプロイ先: AWS  
   3 DB: 8.0.26 - MySQL Community Server - GPL  
