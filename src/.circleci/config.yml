@@ -1,3 +1,47 @@
+version: 2.1
+
+orbs:
+  php: circleci/php@1
+
+jobs:
+  test-php:
+    docker:
+      - image: cimg/php:7.3-node
+
+    steps:
+      - checkout:
+          path: ~/20240528_atsukonakazawa_coachtech-furima
+
+      - run:
+          name: Change directory to src
+          command: cd ~/20240528_atsukonakazawa_coachtech-furima/src
+
+      - php/install-packages:
+          working_directory: ~/20240528_atsukonakazawa_coachtech-furima/src
+
+      - run:
+          name: run tests
+          command: ./vendor/bin/phpunit
+          working_directory: ~/20240528_atsukonakazawa_coachtech-furima/src
+
+  deploy:
+    docker:
+      - image: cimg/base:stable
+
+    steps:
+      - checkout:
+          path: ~/20240528_atsukonakazawa_coachtech-furima
+      - add_ssh_keys:
+          fingerprints:
+            - SHA256:e0MQC4U5v9CbZZuMbaK4cyHvehDn78KgfikdeWW2I8k
+      - run:
+          name: deploy
+          command: ./deploy.sh
+
+workflows:
+  build-and-test:
+    jobs:
+      - test-php
 # This config was automatically generated from your source code
 
 # Stacks detected: deps:node:src,deps:php:src
