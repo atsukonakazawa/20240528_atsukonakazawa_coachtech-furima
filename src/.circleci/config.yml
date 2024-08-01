@@ -16,19 +16,19 @@ jobs:
           
      steps:
         - checkout:
-             path: ~/project
+             path: ~/20240528_atsukonakazawa_coachtech-furima
           
          - run:
              name: Change directory to src
-             command: cd ~/project/src
+             command: cd ~/20240528_atsukonakazawa_coachtech-furima/src
          
         - php/install-packages:
-             working_directory: ~/project/src
+             working_directory: ~/20240528_atsukonakazawa_coachtech-furima/src
          
         - run:
              name: run tests
              command: ./vendor/bin/phpunit
-             working_directory: ~/project/src
+             working_directory: ~/20240528_atsukonakazawa_coachtech-furima/src
              
   deploy:     
     # This is an example deploy job, not actually used by the workflow
