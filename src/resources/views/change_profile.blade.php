@@ -86,6 +86,11 @@
                     <p class="limit__p-img">
                         ※最大サイズは1024KBまでです。
                     </p>
+                    <div class="form__error">
+                    @error('newImg')
+                        {{ $message }}
+                    @enderror
+                    </div>
                 </div>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>

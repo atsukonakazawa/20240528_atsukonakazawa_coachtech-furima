@@ -8,6 +8,8 @@ use App\Models\Comment;
 use App\Models\Item;
 use App\Models\SoldItem;
 use Mail;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 
 class AdminController extends Controller
@@ -46,6 +48,16 @@ class AdminController extends Controller
         $userId = $request->user_id;
         $user = User::where('id',$userId)->first();
         User::where('id',$userId)->delete();
+
+        $email = $user->email;
+        $filename = $email . '.jpg';
+        $filePath = 'profiles/' . $filename;
+        try {
+                Storage::disk('s3')->delete($filePath);
+                Log::info("File deleted successfully.");
+            } catch (\Exception $e) {
+                Log::error("Failed to delete file: " . $e->getMessage());
+            }
 
         session()->flash('message','選択された会員情報を削除しました');
 

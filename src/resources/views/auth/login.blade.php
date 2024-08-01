@@ -17,11 +17,6 @@
             @if(session('message'))
                 {{ session('message')}}
             @endif
-            @if($errors->any())
-                @foreach($errors->all() as $error)
-                {{ $error }}
-                @endforeach
-            @endif
             </p>
         </div>
         <form action="/login" method="post">

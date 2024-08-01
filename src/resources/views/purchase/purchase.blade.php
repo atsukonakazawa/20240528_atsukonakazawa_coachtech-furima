@@ -65,7 +65,7 @@
     <div class="item__data-outer">
         <div class="upper__part">
             <div class="img__outer">
-                <img class="img__outer-img" src="{{ asset('storage/items/' . basename($item->item_img)) }}" alt="商品画像">
+                <img class="img__outer-img" src="{{ $item->item_img }}" alt="商品画像">
             </div>
             <div class="item__data">
                 <h2 class="item__title">
