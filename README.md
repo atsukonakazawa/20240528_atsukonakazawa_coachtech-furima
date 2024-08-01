@@ -21,7 +21,10 @@
   4 ストレージ: s3  
   5 サーバー:nginx/1.22.1  
 
-
+  ##AWSのログイン情報  
+  ルートユーザーのEメールアドレス:tsqe8qm1bmqztbxbjre9@docomo.ne.jp  
+  パスワード:Stillababy1  
+ 
   
    ##他のリポジトリ  
    （CircleCI）git@github.com:atsukonakazawa/20240528_atsukonakazawa_coachtech-furima.git　　
