@@ -23,11 +23,13 @@
 
   
    ##他のリポジトリ  
-   特になし  
+   （CircleCI）git@github.com:atsukonakazawa/20240528_atsukonakazawa_coachtech-furima.git　　
+   ※Circle CIにつきましては、アカウント作成・プロジェクトのセットアップまで行ったものの、config.yml等、なんらかの設定が誤っている模様で、workflowが進まない状態となっており、デプロイとテストの自動化の項目に関してはできておりません。2日ほど色々と試して奮闘しましたが、提出期限となってしまいましたので、こちらに関しては中途半端な状態となってしまい、申し訳ございません。　  
+  
 
    ##注意事項  
-   デプロイ後にメール機能を使用する場合、別ターミナルにてEC2にsshで接続後、mailhogと入力・実行して、mailhogを起動しておかないと、メール機能が使えないのでご注意ください。  
-   (.ssh/ディレクトリに移動後、ssh -i "coachtech-furima.pem" ec2-user@ec2-54-168-57-188.ap-northeast-1.compute.amazonaws.comを実行、mailhogを実行）  
+   1.デプロイ後にメール機能を使用する場合、別ターミナルにてEC2にsshで接続後、mailhogと入力・実行して、mailhogを起動しておかないと、メール機能が使えないのでご注意ください。  (.ssh/ディレクトリに移動後、ssh -i "coachtech-furima.pem" ec2-user@ec2-54-168-57-188.ap-northeast-1.compute.amazonaws.comを実行→mailhogを実行）  
+   2.mailhogが起動していると、　http://54.168.57.188:8025　にアクセスした際にmailhogのインターフェイスを確認できます）  
 
       
    ##機能一覧  
@@ -54,10 +56,10 @@
    管理者から利用者へのメール送信  
    商品の画像をストレージに保存  
    PHPUnitを使用してテストを作成済  
-  
-
-
-  
+   ストレージをAWS S3、バックエンドをAWS EC2、データベースをAWS RDSとして環境を構築する  
+   開発環境と本番環境の切り分けを行う  
+    
+     
    ##使用技術  
    Laravel Framework 8.83.8  
    PHP 8.3.6 (cli)  
