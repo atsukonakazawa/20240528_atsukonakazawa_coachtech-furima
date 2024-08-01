@@ -1,28 +1,56 @@
+# This config was automatically generated from your source code
+
+# Stacks detected: deps:node:src,deps:php:src
+
 version: 2.1
+
+orbs:
+  php: circleci/php@1
 
 jobs:
   test-php:
-    docker:
-      - image: cimg/php:7.3-node
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "src/composer.lock" }}
-            - v1-dependencies-
-      - run:
-          name: Install dependencies
-          command: cd src && composer install --prefer-dist --no-progress --no-suggest
-      - save_cache:
-          paths:
-            - src/vendor
-          key: v1-dependencies-{{ checksum "src/composer.lock" }}
-      - run:
-          name: Run tests
-          command: cd src && ./vendor/bin/phpunit
-
-workflows:
+   # Install php packages and run tests
+        
+     docker:
+        - image: cimg/php:7.3-node
+          
+     steps:
+        - checkout:
+             path: ~/project
+          
+         - run:
+             name: Change directory to src
+             command: cd ~/project/src
+         
+        - php/install-packages:
+             working_directory: ~/project/src
+         
+        - run:
+             name: run tests
+             command: ./vendor/bin/phpunit
+             working_directory: ~/project/src
+             
+  deploy:     
+    # This is an example deploy job, not actually used by the workflow
+              
+      docker:
+        - image: cimg/base:stable
+             
+      steps:  
+        # Replace this with steps to deploy to users
+        - checkout
+        - add_ssh_keys:
+             fingerprints:
+                - SHA256:e0MQC4U5v9CbZZuMbaK4cyHvehDn78KgfikdeWW2I8k 
+                  # 自分のSSHキーのフィンガープリント
+        - run:   
+             name: deploy
+             command: '#e.g. ./deploy.sh'
+                 
+workflows:       
   build-and-test:
-    jobs:
-      - test-php
-
+      jobs:     
+        - test-php
+      # - deploy:
+      #      requires:
+      #         - test-php
