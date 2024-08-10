@@ -9,21 +9,13 @@
  ##制作の背景と目的  
  coachtechブランドのアイテムを出品する  
 
-
-  
- ##SSHキーのpassphrase  
- Stillababy1  
-  
+   
  ##デプロイ  
   1 アプリケーションURL: http://54.168.57.188  
   2 デプロイ先: AWS  
   3 DB: 8.0.26 - MySQL Community Server - GPL  
   4 ストレージ: s3  
   5 サーバー:nginx/1.22.1  
-
-  ##AWSのログイン情報  
-  ルートユーザーのEメールアドレス:tsqe8qm1bmqztbxbjre9@docomo.ne.jp  
-  パスワード:Stillababy1  
  
   
    ##他のリポジトリ  
@@ -32,7 +24,7 @@
   
 
    ##注意事項  
-   1.デプロイ後にメール機能を使用する場合、別ターミナルにてEC2にsshで接続後、mailhogと入力・実行して、mailhogを起動しておかないと、メール機能が使えないのでご注意ください。  (.ssh/ディレクトリに移動後、ssh -i "coachtech-furima.pem" ec2-user@ec2-54-168-57-188.ap-northeast-1.compute.amazonaws.comを実行→mailhogを実行）  
+   1.デプロイ後にメール機能を使用する場合、別ターミナルにてEC2にsshで接続後、mailhogと入力・実行して、mailhogを起動しておかないと、メール機能が使えないのでご注意ください。
    2.mailhogが起動していると、　http://54.168.57.188:8025　にアクセスした際にmailhogのインターフェイスを確認できます）  
 
       
@@ -226,8 +218,7 @@
    ##デプロイ  
    1 EC2インスタンスの作成  
    2 AmazonLinux2にログインし、nginxのインストール・自動起動化  
-     ・ターミナルで　.ssh/に移動しEC2インスタンスにsshでログインする  
-     （ssh -i "coachtech-furima.pem" ec2-user@ec2-54-199-100-49.ap-northeast-1.compute.amazonaws.com）  
+     ・ターミナルで　.ssh/に移動しEC2インスタンスにsshでログインする   
      ・sudo amazon-linux-extras enable nginx1  
      ・sudo yum -y install nginx  
      ・sudo systemctl enable nginx  
@@ -235,8 +226,8 @@
    3 RDS DBインスタンスを作成  
    4 sudo yum update -y  
    5 sudo yum -y install mysql git httpd curl  
-   6 git config --global user.name "atsukonakazawa"  
-   7 git config --global user.email tsqe8qm1bmqztbxbjre9@docomo.ne.jp  
+   6 git config --global user.name "yourname"  
+   7 git config --global user.email  youremail@email.com
    8 sudo amazon-linux-extras install -y php8.2  
    9 curl -sS https://getcomposer.org/installer | php  
    10 sudo mv composer.phar /usr/local/bin/composer  
@@ -269,13 +260,13 @@
        MAIL_ENCRYPTION=null  
        MAIL_FROM_ADDRESS=coachtech-furima@example.com  
        MAIL_FROM_NAME="${APP_NAME}"  
-      ・AWS_ACCESS_KEY_ID=AKIA6ODU4LEDH2UFMUFR  
-       AWS_SECRET_ACCESS_KEY=fDDadGIY1mVyS+kO+2qht6UZyIDFuGjRMCfJkAo3  
+      ・AWS_ACCESS_KEY_ID=aws-access-key  
+       AWS_SECRET_ACCESS_KEY=aws-secret-key  
        AWS_DEFAULT_REGION=ap-northeast-1  
        AWS_BUCKET=coachtech-furima-bucket  
        AWS_USE_PATH_STYLE_ENDPOINT=false  
-      ・STRIPE_KEY=pk_test_51PBdN3IzbSIU1MHKVrPia3U5vPPiCmZsXye7h4EBpq1lwvdm3QEMWaeagHaPEvDagt5EZSETtzIqJMEuWKjnXTn90024rKvEpx  
-       STRIPE_SECRET=sk_test_51PBdN3IzbSIU1MHK4NpwExQfpOQBtRpoPilzRXD0IWXMy9ejcY89jGzVl16pUOcF85lkkZXFRROtFJDoYERI3AjK00jSboz6Vn  
+      ・STRIPE_KEY=stripe-key  
+       STRIPE_SECRET=stripe-secret-key  
        CASHIER_CURRENCY=jpy  
     24 (srcに移動して）wget https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64  
     25 chmod +x MailHog_linux_amd64  
